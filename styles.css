@@ -1,5 +1,5 @@
 body{
-    font-family: Arial, Helvetica, sans-serif;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 
@@ -76,7 +76,7 @@ h1{
     border-radius: 10px;
     background-color: white;
     padding: 13%;
-    padding-top: 15%;
+    padding-top: 10%;
     height: 80%;
 }
 
@@ -106,4 +106,7 @@ h1{
 
 .description {
     margin-top: 5px;
+    font-size: 14px;
+    letter-spacing: 2px;
+    line-height: 1.8;
 }
