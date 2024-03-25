@@ -1,9 +1,27 @@
-async function loadResume() {
+document.addEventListener('DOMContentLoaded', () => {
+    const sidebar = document.getElementById('sidebar');
+    const titles = document.querySelectorAll('.title');
+
+    titles.forEach((title, index) => {
+        // 确保每个标题都有ID
+        if (!title.id) {
+            title.id = `section${index + 1}`;
+        }
+
+        const anchor = document.createElement('a');
+        anchor.href = `#${title.id}`;
+        anchor.textContent = title.textContent;
+        sidebar.appendChild(anchor);
+    });
+});
+
+
+async function loadResume(jsonfile,id) {
     // 使用fetch API从本地获取数据
-    const response = await fetch('data.json');
+    const response = await fetch(jsonfile);
     const resumeData = await response.json(); // 解析JSON数据
 
-    const container = document.getElementById('resume');
+    const container = document.getElementById(id);
     resumeData.experiences.forEach(exp => {
         const expElem = document.createElement('div');
         expElem.classList.add('experience');
@@ -31,4 +49,5 @@ async function loadResume() {
     });
 }
 
-loadResume(); // 调用函数，加载简历数据
+loadResume('./pmdata.json','pm-resume'); // 调用函数，加载简历数据
+loadResume('./devdata.json','dev-resume'); 
