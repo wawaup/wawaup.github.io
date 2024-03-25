@@ -1,0 +1,90 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.live2d {
+    position: fixed;
+    bottom : 0;
+    right : 0;
+}
+
+
+#top-card{
+    background-image: linear-gradient(to top, #ace0f9 0%, #fff1eb 100%);
+    width: 100%;
+    height: 150px;
+}
+
+#id-card {
+    background-color: rgba(245, 245, 245, 0);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    width: 400px;
+    height: 200px;
+    position: absolute;
+    top: 60px;
+    left: 21%;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+h1{
+    font-weight: 900;
+    color: #fff; 
+    width: 400px;
+    height: 200px;
+    position: absolute;
+    top: 130px;
+    right: 15%;
+
+    text-shadow: 
+        -1px -1px 0 #ace0f9,  
+         1px -1px 0 #ace0f9,
+        -2px  2px 0 #ace0f9,
+         1px  1px 0 #ace0f9; /* 文字阴影 */
+}
+
+#bottom-card{
+    /* background-image: url('/public/img/bg.jpg'); */
+    background-color: #ace1f920;
+    box-shadow: 0 0 10px rgba(106, 173, 250, 0.23);
+    padding: 15%;
+    padding-top: 0;
+    min-height: 600px;
+    width: 100%;
+}
+
+#main-content{
+    border-radius: 10px;
+    background-color: white;
+    padding: 10%;
+    padding-top: 15%;
+    height: 80%;
+}
+
+.experience {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.title{
+    font-size: larger;
+    color: #000;
+    font-weight: bold;
+}
+
+.header {
+    color: #2589ff;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+}
+
+.period{
+    color: #000;
+}
+
+.description {
+    margin-top: 5px;
+}

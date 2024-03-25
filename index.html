@@ -1,10 +1,56 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>我的个人博客</title>
+    <title>wawaup的个人主页</title>
+    <script src="https://kit.fontawesome.com/85f430ef75.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>欢迎来到我的博客</h1>
-    <p>这是我的第一篇博客文章。</p>
+    <div style="display: flex; flex-direction: column; align-items: center;">
+        <div id="top-card"></div>
+        <div id="id-card" class="container text-center shadow-sm">
+            <div class="row" style="margin-top: 10px;">
+                <div class="col-4" style="font-size: 12px;">
+                    <img src="public/img/avatar.jpg" style="border-radius: 100%;width: 80px;height: 80px;">
+                    <p style="margin-top:10px; margin-bottom: 0; color: gray;">ps：这只兔子</p><p style="margin-top: 0;color: gray;">不是本人</p>
+                </div>
+                <div class="col-8" style="display: flex; flex-direction: column; text-align: left; font-size: 14px; ">
+                    <p><img src="public/img/name.svg" style="width: 24px;"/> &nbsp;&nbsp;高雅</p>
+                    <p><img src="public/img/mailbox.svg" style="width: 24px;"/> &nbsp;&nbsp;gaoya20020129@gmail.com</p>
+                    <p><img src="public/img/cake.svg" style="width: 24px;"/> &nbsp;&nbsp;2002.01.29</p>
+                    <p><img src="public/img/hobby.svg" style="width: 24px;"/> &nbsp;&nbsp;旅行、美食、唱歌、小说</p>
+                </div>
+            </div>
+            <!-- <img src="public/img/grass.png" style="margin-top: -100px;margin-left: -25px;"> -->
+        </div>
+        <h1 >这里是个人主页^^</h1>
+        <div id="bottom-card" >
+            <div id="main-content">
+                <div id="education" class="title"><img src="public/img/graduate.svg" style="width: 24px;"/> &nbsp;&nbsp;教育背景</div>
+                    <div class="experience">
+                        <div class="header">
+                            <span>天津大学 智能与计算学部 | 2019级本科毕业生 人工智能专业</span>
+                            <span class="period">2019年09月-2023年6月</span>
+                        </div>
+                        <div class="description">
+                            <span><strong>加权/GPA：</strong> 86.76/3.54 &nbsp;&nbsp;<strong>荣誉：</strong> 2020年天津大学优秀学生干部；2021年社团活动先进个人</span>
+                            <div><strong>在校担任：</strong> 天外天工作室产品组组长；天津大学网络安全协会部长</div>
+                        </div>
+                    </div>
+                <div id="project" class="title"><img src="public/img/project.svg" style="width: 24px;"/> &nbsp;&nbsp;项目经历</div>
+                <div id="resume"></div>
+            </div>
+            
+        </div>
+    </div>
+    <canvas class="live2d" id="live2d" width="150" height="300"></canvas>
 </body>
+    <!-- choose one -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/mhDoLbDldZc3qpsJHpLogda//BVZbgYuw6kof4u2FrCedxOtgRZDTHgHUhOCVim" crossorigin="anonymous"></script>
+    <script src="./live2d.js"></script>
+    <script src="./app.js"></script>
+    <script>
+        loadlive2d("live2d", "./xiaomai/xiaomai.model.json");
+    </script>
 </html>
