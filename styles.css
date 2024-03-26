@@ -13,11 +13,13 @@ body{
     position: fixed; /* 或 position: absolute; 根据需要 */
     top: 30%;
     left: 0;
-    width: 200px; /* 侧边导航的宽度 */
-    height: 40%;
+    width: 10%; /* 侧边导航的宽度 */
+    min-width: 150px;
     overflow-y: auto;
     background-color: #fff;
     padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.105);
 }
 
 .sidebar a {
