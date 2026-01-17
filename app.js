@@ -1,5 +1,22 @@
-// 设置默认语言，优先从本地存储读取
-let currentLang = localStorage.getItem('lang') || 'zh';
+// 优先级：1. 用户手动选过的记录 > 2. 浏览器默认语言 > 3. 默认中文
+function getInitialLanguage() {
+    // 检查本地存储是否有用户之前的选择
+    const savedLang = localStorage.getItem('lang');
+    if (savedLang) return savedLang;
+
+    // 获取浏览器首选语言 (例如 "en-US" 或 "zh-CN")
+    const browserLang = navigator.language || navigator.userLanguage;
+    
+    // 如果浏览器语言包含 'en'，则默认显示英文
+    if (browserLang.toLowerCase().includes('en')) {
+        return 'en';
+    }
+
+    // 其他情况默认返回中文
+    return 'zh';
+}
+
+let currentLang = getInitialLanguage();
 
 document.addEventListener('DOMContentLoaded', () => {
     initPage();
