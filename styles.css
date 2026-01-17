@@ -111,7 +111,6 @@ body {
     margin-top: -100px; 
     
     /* 3. 移除之前的 margin-left 和 top/fixed 相关定位 */
-    margin-left: -3%;
     
     z-index: 20;
 }
@@ -130,9 +129,9 @@ body {
 h1 {
     font-weight: 900;
     color: #fff;
-    width: 400px;
-    margin: 0;      /* 去掉默认外边距，确保贴线 */
-    padding-bottom: 20px; /* 稍微抬高文字，视觉上更美观 */
+    width: 400px;    /* 去掉默认外边距，确保贴线 */
+    margin-bottom: 50px; /* 稍微抬高文字，视觉上更美观 */
+    margin-right: 60px;
     font-size: clamp(1.2rem, 3vw, 2.5rem);
     text-shadow: 
         -1px -1px 0 #ace0f9,  
