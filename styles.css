@@ -1,0 +1,138 @@
+/* 建议全局设置 */
+body {
+    /* 优先使用 Inter，如果没有则使用系统字体 */
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased; /* 让字体看起来更清爽 */
+    color: #333;
+}
+
+/* 解决“松散感”的关键 */
+.experience .description {
+    font-size: 14px;
+    line-height: 1.6;      /* 适当的行高 */
+    letter-spacing: -0.01em; /* 稍微缩小字间距，让英文看起来更紧凑专业 */
+    text-align: justify;   
+    margin-top: 8px;
+}
+
+/* 增强标题的厚重感 */
+.header span:first-child {
+    font-weight: 600;      /* 稍微加粗公司和职位名 */
+    color: #1a73e8;        /* 稍微改变颜色以突出重点 */
+}
+
+.period {
+    font-weight: 500;
+    font-variant-numeric: tabular-nums; /* 让日期数字对齐更工整 */
+}
+
+
+.live2d {
+    position: fixed;
+    bottom : 0;
+    right : 0;
+}
+
+.sidebar {
+    position: fixed; /* 或 position: absolute; 根据需要 */
+    top: 30%;
+    left: 0;
+    width: 10%; /* 侧边导航的宽度 */
+    min-width: 150px;
+    overflow-y: auto;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.105);
+}
+
+.sidebar a {
+    display: block;
+    margin-bottom: 10px;
+    color: #409eff;
+}
+
+
+#top-card{
+    background-image: linear-gradient(to top, #ace0f9 0%, #fff1eb 100%);
+    width: 100%;
+    height: 150px;
+}
+
+#id-card {
+    background-color: rgba(245, 245, 245, 0);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    width: 400px;
+    height: 200px;
+    position: absolute;
+    top: 60px;
+    left: 21%;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+h1{
+    font-weight: 900;
+    color: #fff; 
+    width: 400px;
+    height: 200px;
+    position: absolute;
+    top: 130px;
+    right: 15%;
+
+    text-shadow: 
+        -1px -1px 0 #ace0f9,  
+         1px -1px 0 #ace0f9,
+        -2px  2px 0 #ace0f9,
+         1px  1px 0 #ace0f9; /* 文字阴影 */
+}
+
+#bottom-card{
+    /* background-image: url('/public/img/bg.jpg'); */
+    background-color: #ace1f920;
+    box-shadow: 0 0 10px rgba(106, 173, 250, 0.23);
+    padding: 15%;
+    padding-top: 0;
+    min-height: 600px;
+    width: 100%;
+}
+
+#main-content{
+    border-radius: 10px;
+    background-color: white;
+    padding: 13%;
+    padding-top: 120px;
+    height: 80%;
+}
+
+.experience {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.title{
+    font-size: larger;
+    color: #000;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.header {
+    color: #409eff;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+}
+
+.period{
+    color: #000;
+}
+
+.description {
+    margin-top: 5px;
+    font-size: 14px;
+    letter-spacing: 2px;
+    line-height: 1.8;
+}

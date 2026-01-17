@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>wawaup的个人主页</title>
+    <script src="https://kit.fontawesome.com/85f430ef75.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div style="display: flex; flex-direction: column; align-items: center;">
+        <div id="top-card"></div>
+        <div id="id-card" class="container text-center shadow-sm">
+            <div class="row" style="margin-top: 10px;">
+                <div class="col-4" style="font-size: 12px;">
+                    <img src="public/img/avatar0.jpg" style="border-radius: 100%;width: 80px;height: 80px;">
+                    <p style="margin-top:10px; margin-bottom: 0; color: gray;" 
+                    data-zh="ps：这只兔子" data-en="tips: This rabbit is not me">ps：这只兔子不是本人</p>
+                </div>
+
+                <div class="col-8" style="display: flex; flex-direction: column; text-align: left; font-size: 14px; ">
+                    <p><img src="public/img/name.svg" style="width: 24px;"/> &nbsp;&nbsp;<span data-zh="高雅" data-en="Ya Gao (Gloria)">高雅</span></p>
+                    <p><img src="public/img/mailbox.svg" style="width: 24px;"/> &nbsp;&nbsp;wawaupgao@163.com</p>
+                    <p><img src="public/img/cake.svg" style="width: 24px;"/> &nbsp;&nbsp;2002.01.29</p>
+                    <p><img src="public/img/hobby.svg" style="width: 24px;"/> &nbsp;&nbsp;<span data-zh="美食、小说、游戏、唱歌" data-en="Gourmet, Novels, Gaming, Singing">美食、小说、游戏、唱歌</span></p>
+                </div>
+            </div>
+            <!-- <img src="public/img/grass.png" style="margin-top: -100px;margin-left: -25px;"> -->
+        </div>
+        <div class="language-switch" style="position: fixed; right: 20px; top: 20px; z-index: 1000;">
+            <button onclick="switchLang('zh')" class="btn btn-sm btn-outline-primary">中文</button>
+            <button onclick="switchLang('en')" class="btn btn-sm btn-outline-primary">EN</button>
+        </div>
+        <h1 data-zh="这里是个人主页^^" data-en="Welcome to My Homepage ^^">这里是个人主页^^</h1>
+        <div id="sidebar" class="sidebar">
+            <!-- 目录将被填充到这里 -->
+            <p style="font-weight: bold;color: gray;"><img src="public/img/navi.svg" style="width: 24px;"/> &nbsp;&nbsp;导航</p>
+        </div>
+        <div id="bottom-card" >
+            <div id="main-content">
+                <div id="education" class="title">
+                    <img src="public/img/graduate.svg" style="width: 24px;"/> &nbsp;&nbsp;<span data-zh="教育背景" data-en="Education">教育背景</span>
+                </div>
+
+                <div class="experience">
+                    <div class="header">
+                        <span data-zh="天津大学 智能与计算学部 | 2019级本科毕业生 人工智能专业" 
+                            data-en="Tianjin University, CIC | Class of 2019, Artificial Intelligence">
+                            天津大学 智能与计算学部 | 2019级本科毕业生 人工智能专业
+                        </span>
+                        <span class="period">2019.09-2023.06</span>
+                    </div>
+                    <div class="description">
+                        <div>
+                            <strong data-zh="加权/GPA：" data-en="Weighted Avg/GPA: ">加权/GPA：</strong> 86.76/3.54 &nbsp;&nbsp;
+                            <strong data-zh="荣誉：" data-en="Honors: ">荣誉：</strong> 
+                            <span data-zh="2020年天津大学优秀学生干部；2021年社团活动先进个人" 
+                                data-en="2020 Outstanding Student Leader; 2021 Advanced Individual in Social Activities">
+                                2020年天津大学优秀学生干部；2021年社团活动先进个人
+                            </span>
+                        </div>
+                        <div>
+                            
+                        </div>    
+                        <div>
+                            
+                            <strong data-zh="在校担任：" data-en="Campus Roles: ">在校担任：</strong> 
+                            <span data-zh="天外天工作室产品组组长；天津大学网络安全协会部长" 
+                                data-en="Product Lead at TWT Studio; Minister at TJU Cyber Security Association">
+                                天外天工作室产品组组长；天津大学网络安全协会部长
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="project" class="title">
+                    <img src="public/img/project.svg" style="width: 24px;"/> &nbsp;&nbsp;<span data-zh="项目经历" data-en="Projects">项目经历</span>
+                </div>
+                <div id="company-project" class="title" data-zh="工作经历" data-en="Work Experience">工作经历</div>
+                <div id="work-resume"></div>
+                <div id="dev-project" class="title" data-zh="专业项目经历" data-en="Professional Projects">专业项目经历</div>
+                <div id="dev-resume"></div>
+                <div id="pm-project" class="title" data-zh="产品项目经历" data-en="Product Projects">产品项目经历</div>
+                <div id="pm-resume"></div>
+            </div>
+            
+        </div>
+    </div>
+    <canvas class="live2d" id="live2d" width="120" height="300"></canvas>
+</body>
+    <!-- choose one -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/mhDoLbDldZc3qpsJHpLogda//BVZbgYuw6kof4u2FrCedxOtgRZDTHgHUhOCVim" crossorigin="anonymous"></script>
+    <script src="./live2d.js"></script>
+    <script src="./app.js"></script>
+    <script>
+        loadlive2d("live2d", "./xiaomai/xiaomai.model.json");
+    </script>
+</html>
