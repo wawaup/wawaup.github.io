@@ -109,20 +109,37 @@ function renderSection(items, containerId) {
     });
 }
 
-// 生成侧边栏导航
 function renderSidebar() {
     const sidebar = document.getElementById('sidebar');
     const navTitleText = currentLang === 'zh' ? '导航' : 'Navigation';
     
-    // 清空除了标题以外的旧内容
-    sidebar.innerHTML = `<p style="font-weight: bold;color: gray;"><img src="public/img/navi.svg" style="width: 24px;"/> &nbsp;&nbsp;${navTitleText}</p>`;
+    // 1. 保留切换按钮，重新生成内部 HTML
+    // 注意：这里用 innerHTML 会覆盖掉原本写的 button，所以我们要重新塞进去
+    sidebar.innerHTML = `
+        <button id="toggle-sidebar" class="toggle-btn">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <p style="font-weight: bold;color: gray;">
+            <img src="public/img/navi.svg" style="width: 24px;"/> &nbsp;&nbsp;${navTitleText}
+        </p>
+    `;
 
+    // 2. 重新挂载点击事件
+    document.getElementById('toggle-sidebar').addEventListener('click', () => {
+        sidebar.classList.toggle('collapsed');
+    });
+
+    // 3. 填充链接
     const titles = document.querySelectorAll('.title');
     titles.forEach((title, index) => {
         if (!title.id) title.id = `section${index + 1}`;
         const anchor = document.createElement('a');
         anchor.href = `#${title.id}`;
-        anchor.textContent = title.textContent.trim();
+        
+        // 如果是中英混合，.textContent 可能会拿到多余空格，用 trim()
+        // 且只取文字部分，排除可能存在的子元素
+        anchor.textContent = title.innerText.replace(' ', '').trim(); 
+        
         sidebar.appendChild(anchor);
     });
 }

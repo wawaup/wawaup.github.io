@@ -11,32 +11,38 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div style="display: flex; flex-direction: column; align-items: center;">
+    <div style="display: flex; flex-direction: column; align-items: center; ">
         <div id="top-card"></div>
-        <div id="id-card" class="container text-center shadow-sm">
-            <div class="row" style="margin-top: 10px;">
-                <div class="col-4" style="font-size: 12px;">
-                    <img src="public/img/avatar0.jpg" style="border-radius: 100%;width: 80px;height: 80px;">
-                    <p style="margin-top:10px; margin-bottom: 0; color: gray;" 
-                    data-zh="ps：这只兔子" data-en="tips: This rabbit is not me">ps：这只兔子不是本人</p>
-                </div>
+        <div class="overlap-container">
+            <div id="id-card" class="container text-center shadow-sm">
+                <div class="row" style="margin-top: 10px;">
+                    <div class="col-4" style="font-size: 12px;">
+                        <img src="public/img/avatar0.jpg" style="border-radius: 100%;width: 80px;height: 80px;">
+                        <p style="margin-top:10px; margin-bottom: 0; color: gray;" 
+                        data-zh="ps：这只兔子" data-en="tips: This rabbit is not me">ps：这只兔子不是本人</p>
+                    </div>
 
-                <div class="col-8" style="display: flex; flex-direction: column; text-align: left; font-size: 14px; ">
-                    <p><img src="public/img/name.svg" style="width: 24px;"/> &nbsp;&nbsp;<span data-zh="高雅" data-en="Ya Gao (Gloria)">高雅</span></p>
-                    <p><img src="public/img/mailbox.svg" style="width: 24px;"/> &nbsp;&nbsp;wawaupgao@163.com</p>
-                    <p><img src="public/img/cake.svg" style="width: 24px;"/> &nbsp;&nbsp;2002.01.29</p>
-                    <p><img src="public/img/hobby.svg" style="width: 24px;"/> &nbsp;&nbsp;<span data-zh="美食、小说、游戏、唱歌" data-en="Gourmet, Novels, Gaming, Singing">美食、小说、游戏、唱歌</span></p>
+                    <div class="col-8" style="display: flex; flex-direction: column; text-align: left; font-size: 14px; ">
+                        <p><img src="public/img/name.svg" style="width: 24px;"/> &nbsp;&nbsp;<span data-zh="高雅" data-en="Ya Gao (Gloria)">高雅</span></p>
+                        <p><img src="public/img/mailbox.svg" style="width: 24px;"/> &nbsp;&nbsp;wawaupgao@163.com</p>
+                        <p><img src="public/img/cake.svg" style="width: 24px;"/> &nbsp;&nbsp;2002.01.29</p>
+                        <p><img src="public/img/hobby.svg" style="width: 24px;"/> &nbsp;&nbsp;<span data-zh="美食、小说、游戏、唱歌" data-en="Gourmet, Novels, Gaming, Singing">美食、小说、游戏、唱歌</span></p>
+                    </div>
                 </div>
             </div>
-            <!-- <img src="public/img/grass.png" style="margin-top: -100px;margin-left: -25px;"> -->
+
+            <h1 data-zh="这里是个人主页^^" data-en="Welcome to My Homepage ^^">这里是个人主页^^</h1>
         </div>
+        
         <div class="language-switch" style="position: fixed; right: 20px; top: 20px; z-index: 1000;">
             <button onclick="switchLang('zh')" class="btn btn-sm btn-outline-primary">中文</button>
             <button onclick="switchLang('en')" class="btn btn-sm btn-outline-primary">EN</button>
         </div>
-        <h1 data-zh="这里是个人主页^^" data-en="Welcome to My Homepage ^^">这里是个人主页^^</h1>
+        
         <div id="sidebar" class="sidebar">
-            <!-- 目录将被填充到这里 -->
+            <button id="toggle-sidebar" class="toggle-btn">
+                <i class="fas fa-chevron-left"></i>
+            </button>
             <p style="font-weight: bold;color: gray;"><img src="public/img/navi.svg" style="width: 24px;"/> &nbsp;&nbsp;导航</p>
         </div>
         <div id="bottom-card" >
@@ -77,9 +83,8 @@
                 </div>
 
                 <div id="project" class="title">
-                    <img src="public/img/project.svg" style="width: 24px;"/> &nbsp;&nbsp;<span data-zh="项目经历" data-en="Projects">项目经历</span>
+                    <img src="public/img/project.svg" style="width: 24px;"/> &nbsp;&nbsp;<span data-zh="工作经历" data-en="Work Experience">工作经历</span>
                 </div>
-                <div id="company-project" class="title" data-zh="工作经历" data-en="Work Experience">工作经历</div>
                 <div id="work-resume"></div>
                 <div id="dev-project" class="title" data-zh="专业项目经历" data-en="Professional Projects">专业项目经历</div>
                 <div id="dev-resume"></div>

@@ -4,8 +4,162 @@ body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     -webkit-font-smoothing: antialiased; /* 让字体看起来更清爽 */
     color: #333;
+    background-color: #eff9fe;
 }
 
+
+.live2d {
+    position: fixed;
+    bottom : 0;
+    right : 0;
+}
+
+/* 侧边栏基础样式调整 */
+.sidebar {
+    position: fixed;
+    top: 25%;
+    left: 0;
+    width: 180px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 0 12px 12px 0; /* 只给右侧圆角 */
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.05);
+    z-index: 1000;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* 平滑动画 */
+}
+
+/* 收起状态：向左偏移并缩小阴影 */
+.sidebar.collapsed {
+    transform: translateX(-100%);
+    box-shadow: none;
+}
+
+/* 切换按钮样式 */
+.toggle-btn {
+    position: absolute;
+    right: -30px; /* 按钮突出在侧边栏外面 */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 60px;
+    background-color: #fff;
+    border: none;
+    border-radius: 0 8px 8px 0;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    color: #409eff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.toggle-btn:hover {
+    background-color: #f1f9fd;
+}
+
+/* 按钮图标旋转逻辑 */
+.sidebar.collapsed .toggle-btn i {
+    transform: rotate(180deg);
+}
+
+.sidebar a {
+    display: block;
+    margin-bottom: 12px;
+    color: #409eff;
+    text-decoration: none;
+    
+    /* --- 允许换行的核心设置 --- */
+    white-space: normal;      /* 允许正常换行 */
+    word-break: break-word;   /* 针对长单词或链接进行断行 */
+    line-height: 1.4;         /* 适当增加行高，防止多行文字挤在一起 */
+    font-size: 14px;
+    
+    /* 保持左对齐 */
+    text-align: left;
+}
+
+/* 针对侧边栏标题 p 标签的优化 */
+.sidebar p {
+    line-height: 1.5;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+
+#top-card{
+    background-image: linear-gradient(to top, #ace0f9 0%, #fff1eb 100%);
+    width: 100%;
+    height: 20vh; /* 使用视口高度，适配不同屏幕 */
+    min-height: 120px;
+}
+
+/* 压线容器：核心逻辑 */
+.overlap-container {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-between; 
+    align-items: flex-end;         
+    /* 1. 将 fixed 改为 relative */
+    /* relative 会让它留在文档流原来的位置，随页面滚动 */
+    position: relative; 
+    
+    /* 2. 使用负的 margin-top 实现“压线”效果 */
+    /* 这里的数值需要根据你 #top-card 的高度微调，通常为负值 */
+    margin-top: -100px; 
+    
+    /* 3. 移除之前的 margin-left 和 top/fixed 相关定位 */
+    margin-left: -3%;
+    
+    z-index: 20;
+}
+
+#id-card {
+    background-color: rgba(245, 245, 245, 0);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    width: 400px;
+    height: 200px;
+    border-radius: 15px;
+    padding: 10px 0px 0px 10px;
+    margin-bottom: 0; /* 确保贴线 */
+}
+
+h1 {
+    font-weight: 900;
+    color: #fff;
+    width: 400px;
+    margin: 0;      /* 去掉默认外边距，确保贴线 */
+    padding-bottom: 20px; /* 稍微抬高文字，视觉上更美观 */
+    font-size: clamp(1.2rem, 3vw, 2.5rem);
+    text-shadow: 
+        -1px -1px 0 #ace0f9,  
+         1px -1px 0 #ace0f9,
+        -2px  2px 0 #ace0f9,
+         1px  1px 0 #ace0f9;
+}
+
+
+/* --- 4. 主体内容区域 --- */
+#bottom-card {
+    background-color: #eff9fe;
+    margin-top: -13vh;
+    padding: 0% 3% 5% 5%; /* 减少两边留白 */
+    width: 100%;
+}
+
+#main-content {
+    border-radius: 15px;
+    background-color: white;
+    margin:auto;
+    margin-top:0;
+    padding: 15vh 5%; /* 使用百分比 padding */
+    width: 100%;
+    max-width: 900px; /* 限制大屏展示宽度 */
+    box-shadow: 0 0 20px rgba(0,0,0,0.03);
+}
 /* 解决“松散感”的关键 */
 .experience .description {
     font-size: 14px;
@@ -21,118 +175,48 @@ body {
     color: #1a73e8;        /* 稍微改变颜色以突出重点 */
 }
 
+/* --- 5. 简历内容细节排版 --- */
+.experience {
+    margin-bottom: 30px;
+    border-left: 2px solid #ace1f9; /* 增加左侧线条，增强视觉引导 */
+    padding-left: 15px;
+}
+
+.header {
+    display: flex;
+    flex-wrap: wrap; /* 关键：移动端标题和日期自动换行 */
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 8px;
+}
+
+.header span:first-child {
+    font-weight: 600;
+    color: #1a73e8;
+    flex: 1; /* 占据剩余空间 */
+}
+
 .period {
+    font-size: 0.85rem;
+    color: #777;
+    white-space: nowrap; /* 保证日期不折断 */
     font-weight: 500;
     font-variant-numeric: tabular-nums; /* 让日期数字对齐更工整 */
 }
 
-
-.live2d {
-    position: fixed;
-    bottom : 0;
-    right : 0;
-}
-
-.sidebar {
-    position: fixed; /* 或 position: absolute; 根据需要 */
-    top: 30%;
-    left: 0;
-    width: 10%; /* 侧边导航的宽度 */
-    min-width: 150px;
-    overflow-y: auto;
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.105);
-}
-
-.sidebar a {
-    display: block;
-    margin-bottom: 10px;
-    color: #409eff;
-}
-
-
-#top-card{
-    background-image: linear-gradient(to top, #ace0f9 0%, #fff1eb 100%);
-    width: 100%;
-    height: 150px;
-}
-
-#id-card {
-    background-color: rgba(245, 245, 245, 0);
-    backdrop-filter: blur(8px);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    width: 400px;
-    height: 200px;
-    position: absolute;
-    top: 60px;
-    left: 21%;
-    border-radius: 10px;
-    padding: 20px;
-}
-
-h1{
-    font-weight: 900;
-    color: #fff; 
-    width: 400px;
-    height: 200px;
-    position: absolute;
-    top: 130px;
-    right: 15%;
-
-    text-shadow: 
-        -1px -1px 0 #ace0f9,  
-         1px -1px 0 #ace0f9,
-        -2px  2px 0 #ace0f9,
-         1px  1px 0 #ace0f9; /* 文字阴影 */
-}
-
-#bottom-card{
-    /* background-image: url('/public/img/bg.jpg'); */
-    background-color: #ace1f920;
-    box-shadow: 0 0 10px rgba(106, 173, 250, 0.23);
-    padding: 15%;
-    padding-top: 0;
-    min-height: 600px;
-    width: 100%;
-}
-
-#main-content{
-    border-radius: 10px;
-    background-color: white;
-    padding: 13%;
-    padding-top: 120px;
-    height: 80%;
-}
-
-.experience {
-    margin-top: 10px;
-    margin-bottom: 20px;
-}
-
-.title{
-    font-size: larger;
-    color: #000;
-    font-weight: bold;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-.header {
-    color: #409eff;
-    font-weight: bold;
-    display: flex;
-    justify-content: space-between;
-}
-
-.period{
-    color: #000;
-}
-
 .description {
-    margin-top: 5px;
     font-size: 14px;
-    letter-spacing: 2px;
-    line-height: 1.8;
+    line-height: 1.7;
+    letter-spacing: 0.02em;
+    text-align: justify;
+}
+
+.title {
+    font-size: 1.3rem;
+    color: #2c3e50;
+    border-bottom: 2px solid #ace1f950;
+    display: inline-block;
+    padding-bottom: 5px;
+    margin: 30px 0 15px 0;
 }
