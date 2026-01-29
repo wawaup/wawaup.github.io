@@ -19,7 +19,7 @@
         "desc": [
           "Responsible for technical support within the scope of Azure Entra ID product authentication. Expertise includes Account/Device Management, Conditional Access, Identity Protection, and Enterprise Application integration/deployment, alongside supporting on-premises federation services (ADFS). Provided guidance and troubleshooting for Graph API and PowerShell Graph Module, and implemented identity platform authentication code integration, proficient in OAuth2.0, OIDC, and SAML protocols.",
           "Diagnosed root causes by collecting necessary diagnostic information and analyzing symptoms based on user inquiries. Provided tailored solutions to meet practical customer needs and ensure stable system operation.",
-          "Achieved timely localization and efficient resolution of Entra ID authentication business issues. Ensured platform stability and enhanced customer satisfaction through accurate diagnosis and dedicated support."
+          "Achieved timely localization and efficient resolution of Entra ID authentication business issues. Ensured platform stability and enhanced customer satisfaction through accurate diagnosis and dedicated support. Actively participated in the development of team diagnostic tools, contributing to the optimization of the RAG knowledge model for processing technical documentation and knowledge."
         ]
       }
     },
