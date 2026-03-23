@@ -22,11 +22,11 @@
       "gpa": "86.76 / 3.54",
       "honors": {
         "zh": "2020年天津大学优秀学生干部；2021年社团活动先进个人",
-        "en": "Excellent Student Leader at Tianjin University 2020; Advanced Participant in University Associations 2021"
+        "en": "Excellent Student Leader at Tianjin University in 2020; Advanced Individual in Student Association Activities in 2021"
       },
       "campusRoles": {
         "zh": "天外天工作室产品组组长；天津大学网络安全协会部长",
-        "en": "Product Lead at TWT Studio; Minister at TJU Cyber Security Association"
+        "en": "Product Team Lead at TWT Studio; Minister of the Tianjin University Cyber Security Association"
       }
     }
   ],
@@ -43,19 +43,21 @@
       },
       "position": {
         "zh": "技术支持工程师",
-        "en": "Tech Support Engineer"
+        "en": "Technical Support Engineer"
       },
       "period": "2024.06-2025.04",
       "bullets": {
         "zh": [
-          "负责 Azure Entra ID 身份认证范围内的技术支持，覆盖账号与设备管理、条件访问、Identity Protection、企业应用集成部署，以及本地联合身份服务 ADFS 等场景。",
-          "支持 Graph API 与 PowerShell Graph Module 的问题排查与方案落地，熟悉 OAuth 2.0、OIDC、SAML 等认证协议。",
-          "基于用户问题收集诊断信息、定位根因并输出可执行解决方案，参与团队诊断工具建设与技术知识 RAG 模型优化，提升问题闭环效率与客户满意度。"
+          "负责 Azure Entra ID 产品验证范围内的技术支持工作，深度处理基于 OAuth 2.0、OIDC、SAML 2.0、WS-Fed 等主流验证协议的集成问题；分析 Microsoft Graph API 的复杂请求失败案例，并通过诊断 PowerShell Graph Module 调用逻辑，辅助开发者优化 Token 获取流程及代码集成。",
+          "支持领域覆盖云端身份验证、设备管理、条件访问策略以及身份保护风险检测；在日常工作中通过脚本、网络抓包或后台数据收集必要诊断信息，定位根因并结合用户实际需求提供最合适的解决方案，保障系统稳定运行。",
+          "实现对 Entra ID 验证业务问题的及时定位与高效解决，通过准确诊断与针对性支持提升平台稳定性与客户满意度。",
+          "积极参与团队诊断工具开发，为基于技术文档和知识的 RAG 知识模型优化做出贡献；在内部 Hackathon 中与团队基于 LangChain 和大语言模型开发自动化 RAG 诊断助手，通过向量化索引海量技术文档实现精准检索，显著降低平均处理时长（MTTR）。"
         ],
         "en": [
-          "Responsible for technical support within the Azure Entra ID authentication scope, covering account and device management, Conditional Access, Identity Protection, enterprise application integration and deployment, and on-premises federation services such as ADFS.",
-          "Provided troubleshooting support for Graph API and PowerShell Graph Module, with hands-on knowledge of OAuth 2.0, OIDC, and SAML authentication protocols.",
-          "Collected diagnostics, identified root causes, and delivered practical solutions for customer issues while contributing to internal diagnostic tooling and a RAG knowledge model for technical documentation."
+          "Provided technical support for issues within the Azure Entra ID authentication scope, with deep experience troubleshooting integrations based on OAuth 2.0, OIDC, SAML 2.0, and WS-Fed. Investigated complex Microsoft Graph API request failures and diagnosed PowerShell Graph Module call flows to help developers optimize token acquisition and integration logic.",
+          "Supported scenarios spanning cloud identity authentication, device management, Conditional Access policies, and identity protection risk detection. In day-to-day operations, collected diagnostics through scripts, network traces, and backend data, identified root causes, and delivered solutions tailored to customer needs to keep systems stable.",
+          "Achieved timely diagnosis and efficient resolution of Entra ID authentication issues, improving platform stability and customer satisfaction through precise troubleshooting and targeted support.",
+          "Actively contributed to internal diagnostic tool development and RAG knowledge-model optimization for technical documentation. During an internal hackathon, the team used LangChain and LLMs to build an automated RAG diagnostic assistant that vector-indexed large-scale technical documents, enabled precise knowledge retrieval, and significantly reduced mean time to resolution (MTTR)."
         ]
       }
     },
@@ -63,35 +65,28 @@
       "logo": "public/img/ZKWG.jpeg",
       "company": {
         "zh": "中科闻歌",
-        "en": "Wenge Tech"
+        "en": "Wenge Technology"
       },
       "department": {
         "zh": "天湖部门",
         "en": "Tianhu Department"
       },
       "position": {
-        "zh": "算法工程师实习生",
+        "zh": "实习算法工程师",
         "en": "Algorithm Engineer Intern"
       },
       "period": "2022.04-2022.06",
       "bullets": {
         "zh": [
-          "在自动新闻评论项目中，以提升用户互动率和优化舆情管理为目标，构建了一个能够自动生成带有情感倾向评论的新闻评论生成系统。",
-          "基于腾讯快报新闻评论数据构建训练集，并使用 PaddleHub 的 senta-bow 模型进行情感标注；随后微调 Hugging Face 上的 Mengzi-T5 模型，累计处理约 16 万条数据。",
-          "持续优化生成策略，提升娱乐和体育新闻场景下评论的连贯性与情绪准确度，最终完成可在线访问的评论生成模型。"
+          "围绕新闻自动评论课题，在实习期间完成新闻文本评论自动生成模型的搭建，以提升用户活跃度并辅助舆情控制。",
+          "训练数据集来自腾讯快报新闻及评论，利用 PaddleHub 的 senta-bow 模型为 16 万条新闻评论对添加极性标签，高效构建高质量监督微调数据集；基于 Hugging Face 预训练的 Mengzi-T5 模型进行微调，通过拼接新闻文本及情感标签进行建模，使模型能够生成符合特定情感基调的回复。",
+          "对比并优化 Beam Search、Top-K Sampling 等解码策略，在生成文本的流利度与多样性之间取得平衡，使模型在娱乐、体育类场景下能够生成语义自然且立场鲜明的评论。"
         ],
         "en": [
-          "In the Automated News Commenting project, built a system that generates emotionally aligned news comments to improve user engagement and support public opinion operations.",
-          "Constructed training sets using Tencent Kuai-bao news and comment data, performed sentiment labeling with PaddleHub's senta-bow model, and fine-tuned the Mengzi-T5 model from Hugging Face with about 160,000 data samples.",
-          "Iteratively optimized the generation strategy to improve fluency, coherence, and sentiment accuracy for entertainment and sports news scenarios."
+          "Built an automatic news-comment generation model during the internship to support user engagement growth and public-opinion management.",
+          "Constructed a high-quality supervised fine-tuning dataset from Tencent Kuai-bao news and comment data, using PaddleHub's senta-bow model to assign sentiment polarity labels to 160,000 news-comment pairs. Fine-tuned the pretrained Mengzi-T5 model from Hugging Face by jointly modeling news text and sentiment labels so the model could generate responses with a specific emotional tone.",
+          "Compared and optimized decoding strategies such as Beam Search and Top-K Sampling to balance fluency and diversity, enabling the model to generate natural and stance-aware comments in entertainment and sports scenarios."
         ]
-      },
-      "link": {
-        "url": "https://huggingface.co/wawaup/MengziT5-Comment",
-        "label": {
-          "zh": "在线模型",
-          "en": "Online Model"
-        }
       }
     }
   ],
@@ -102,98 +97,165 @@
         "en": "Real-time Data Visualization Platform"
       },
       "role": {
-        "zh": "开发者",
-        "en": "Developer"
+        "zh": "全栈开发",
+        "en": "Full-stack Developer"
       },
       "period": "2024.03",
       "bullets": {
         "zh": [
-          "面向游乐园用户动线与历史数据分析场景，开发了一套实时数据可视化平台。",
-          "使用 Python 完成数据清洗与趋势预测，前端采用 HTML、CSS、JavaScript 与 Bootstrap，后端使用 Node.js 和 Express，数据库为 PostgreSQL 16。",
-          "平台覆盖实时大屏、动态图表、工作日志同步和历史数据分析等核心能力。"
+          "实现一个能处理游乐场用户移动实时数据、分析历史数据的可视化平台；先使用 Python 完成数据清洗预处理与趋势预测，再基于 HTML、CSS、JavaScript、Bootstrap 开发前端，使用 Node.js、Express 完成后端接口，并以 PostgreSQL 16 作为数据库。",
+          "基于 Node.js 和 Express 开发后端 RESTful APIs，前端使用 HTML5、CSS3、JavaScript、Bootstrap 构建响应式仪表盘；采用 PostgreSQL 16 存储海量时空轨迹数据，并设计高效索引以支撑低延迟查询。",
+          "使用 Python 进行数据清洗与特征工程，构建时间序列预测引擎，利用历史客流趋势预测未来拥挤程度，辅助运营方预警安全风险；实现实时热力图、动态趋势图表及工作日志自动化同步功能，将运营决策效率提升约 30%。"
         ],
         "en": [
-          "Implemented a visualization platform for processing real-time amusement park user movement data and analyzing historical trends.",
-          "Used Python for data cleaning and forecasting, built the frontend with HTML, CSS, JavaScript, and Bootstrap, developed backend APIs with Node.js and Express, and used PostgreSQL 16 as the database.",
-          "Delivered a platform with real-time dashboards, dynamic charts, synchronized work logs, and historical analysis features."
+          "Built a visualization platform capable of processing real-time amusement-park movement data and analyzing historical trends. Used Python for data cleaning, preprocessing, and trend forecasting; developed the frontend with HTML, CSS, JavaScript, and Bootstrap; implemented backend APIs with Node.js and Express; and used PostgreSQL 16 as the database.",
+          "Designed and implemented a full-stack architecture with RESTful APIs on Node.js and Express and a responsive dashboard built with HTML5, CSS3, JavaScript, and Bootstrap. Stored large-scale spatiotemporal trajectory data in PostgreSQL 16 and designed efficient indexes to support low-latency queries.",
+          "Performed data cleaning and feature engineering in Python, built a time-series forecasting engine to predict future congestion based on historical visitor flows, and helped operators proactively manage safety risks. Delivered real-time heat maps, dynamic trend charts, and automated work-log synchronization, improving operational decision-making efficiency by about 30%."
         ]
       }
     },
     {
       "name": {
-        "zh": "智能语音交互系统",
-        "en": "Intelligent Voice Interaction System"
+        "zh": "基于机器学习的海洋牧场生物分布与环境因子的关系建模",
+        "en": "Modeling the Relationship Between Marine Ranching Species Distribution and Environmental Factors Using Machine Learning"
       },
       "role": {
-        "zh": "课程项目",
-        "en": "Course Project"
+        "zh": "毕业设计",
+        "en": "Graduation Project"
+      },
+      "period": "2023.03-2023.06",
+      "bullets": {
+        "zh": [
+          "基于天津海域海洋牧场的真实环境与生物数据，针对小样本学习难点以及传统 BP 模型易陷入局部最优、易过拟合的问题，使用改进的 GABP（Genetic Algorithm-enhanced Backpropagation）模型对海洋牧场生物分布与环境因子进行建模，并对生物分布趋势进行预测。",
+          "针对海洋牧场环境复杂、样本稀疏的问题，提出并实现了 GABP 预测模型；引入遗传算法（GA）对神经网络的初始权值和阈值进行全局寻优，利用 GA 的并行搜索能力缓解传统 BP 模型对初始权重敏感且易陷入局部最优的问题。",
+          "利用温度、盐度、溶解氧等真实环境因子数据进行建模，模型在极值预测方面表现出较高精度；预测结果可为养殖者捕捞计划和海洋牧场管理提供科学依据，并为生态平衡管理提供数字化决策支持。"
+        ],
+        "en": [
+          "Based on real environmental and biological data collected from marine ranches in Tianjin waters, this study addressed the challenges of small-sample learning and the tendency of conventional BP models to overfit and fall into local optima by using an improved GABP (Genetic Algorithm-enhanced Backpropagation) model to describe species distribution and predict distribution trends.",
+          "To handle complex marine-ranch environments and sparse samples, proposed and implemented a GABP forecasting model. Introduced a genetic algorithm (GA) to globally optimize the neural network's initial weights and thresholds, using GA's parallel search capability to mitigate the traditional BP model's sensitivity to initialization and tendency to get trapped in local optima.",
+          "Modeled real environmental factors such as temperature, salinity, and dissolved oxygen. The model achieved strong accuracy in extreme-value prediction, and its results can support harvesting plans, marine ranch management, and digital decision-making for ecological balance."
+        ]
+      }
+    },
+    {
+      "name": {
+        "zh": "基于树莓派的语音交互系统",
+        "en": "Raspberry Pi-based Voice Interaction System"
+      },
+      "role": {
+        "zh": "课程实践",
+        "en": "Course Practice"
       },
       "period": "2022.03",
       "bullets": {
         "zh": [
-          "与团队协作完成基于树莓派的语音交互系统，系统包含语音识别、语音合成、问答和自然语言对话能力。",
-          "负责将模型回复转化为语音输出，使用 Tacotron2 模型完成 TTS 模块训练与调优。",
-          "参与分词、韵律标注、模型参数微调，以及 ASR、问答、TTS 模块在树莓派端的联调集成。"
+          "与小组成员共同完成基于树莓派的语音交互系统，系统包含语音识别、语音合成、问答与自然语言对话功能。",
+          "负责基于 Tacotron2 模型将问答与对话中的模型回复转换为语音输出，并对待合成文本进行分词、韵律标注等预处理工作，同时通过参数微调优化合成速度。",
+          "在树莓派环境下完成语音识别、问答系统和语音合成模块的串接联调，并针对设备算力限制优化推理性能，确保语音交互的低延迟响应。"
         ],
         "en": [
-          "Collaborated on a Raspberry Pi-based voice interaction system featuring ASR, TTS, Q&A, and NLP dialogue.",
-          "Focused on converting model responses into speech using the Tacotron2 model for the TTS module.",
-          "Handled preprocessing tasks such as word segmentation and prosody labeling, fine-tuned parameters, and participated in end-to-end integration on the Raspberry Pi device."
+          "Worked with teammates to build a Raspberry Pi-based voice interaction system featuring speech recognition, speech synthesis, question answering, and natural-language dialogue.",
+          "Took responsibility for converting model responses into speech with the Tacotron2 model, including preprocessing tasks such as word segmentation and prosody labeling, while tuning the model to improve synthesis speed.",
+          "Integrated and jointly debugged the speech recognition, QA, and TTS modules on Raspberry Pi, and optimized inference performance under hardware constraints to ensure low-latency voice interaction."
         ]
       }
     },
     {
       "name": {
-        "zh": "地理知识图谱查询平台",
-        "en": "Geographic Knowledge Graph Query Platform"
+        "zh": "知识工程与问答系统系列实践",
+        "en": "Knowledge Engineering and KGQA Practice Series"
       },
       "role": {
-        "zh": "课程设计",
-        "en": "Course Design"
+        "zh": "课程设计 / 专业实践",
+        "en": "Course Design / Professional Practice"
       },
-      "period": "2021.12",
+      "period": "2021.09-2021.12",
       "bullets": {
         "zh": [
-          "基于 Neo4j 图数据库设计地理知识查询平台，实现节点查询、动态地图展示和坐标信息联动。",
-          "使用网络爬虫采集地理知识文本，并进行结构化整理。",
-          "前端采用 Vue 与 ElementUI，结合 neovis.js 完成图谱渲染，并通过百度地图 API 集成动态地图功能。"
+          "地理知识查询平台：编写 Python 爬虫获取非结构化文本，基于 Vue.js 和 ElementUI 搭建交互界面；调用百度地图 API 实现地理坐标实时映射，并使用 neovis.js 实现前端与 Neo4j 后端的直连，动态渲染地理知识网络。",
+          "图书榜单知识图谱：利用 Neo4j 构建结构化的图书、作者及排名关系网络，后端基于 Flask，前端使用 Angular，支持多维度节点分类查看、全文搜索及个人已读库管理。",
+          "红军长征问答系统（KGQA）：基于长征数据集实现自然语言问题到 Cypher 查询语言的转换逻辑，支持会议参与人员、部队转移路线等复杂关系推理。"
         ],
         "en": [
-          "Designed a geographic knowledge query platform based on the Neo4j graph database, featuring node queries, dynamic maps, and coordinate display.",
-          "Used web crawlers to gather and structure geographic knowledge text.",
-          "Built the frontend with Vue and ElementUI, rendered graph data with neovis.js, and integrated map functionality with the Baidu Maps API."
+          "Geographic knowledge query platform: wrote Python crawlers to collect unstructured text, built the interactive interface with Vue.js and ElementUI, integrated the Baidu Maps API for real-time geographic mapping, and used neovis.js to connect the frontend directly to Neo4j for dynamic rendering of the knowledge network.",
+          "Book-ranking knowledge graph: used Neo4j to build a structured network of books, authors, and ranking relationships; developed the backend with Flask and the frontend with Angular; and supported multidimensional node categorization, full-text search, and personal reading-library management.",
+          "Red Army Long March KGQA system: implemented the logic for converting natural-language questions into Cypher queries based on the Long March dataset, supporting complex relationship reasoning such as conference participants and troop transfer routes."
         ]
       }
     },
     {
       "name": {
-        "zh": "知识工程实践",
-        "en": "Knowledge Engineering Practice"
+        "zh": "工业大数据智能分析",
+        "en": "Industrial Big Data Intelligent Analysis"
       },
       "role": {
-        "zh": "课程项目",
-        "en": "Course Project"
+        "zh": "大创项目",
+        "en": "Innovation and Entrepreneurship Project"
       },
-      "period": "2021.09",
+      "period": "2020.03-2021.03",
       "bullets": {
         "zh": [
-          "使用 Neo4j、Angular 和 Flask 搭建本地图书排行知识图谱，支持节点分类、关系检索和已读书单管理。",
-          "完成图谱前后端联调，并实现面向本地图书主题的知识检索流程。",
-          "在第二阶段基于红军长征数据集完成问答系统实验，结合课程指导与开源项目进行功能实现。"
+          "基于 ELK 开源软件完成“工业大数据智能分析”一年期大创项目，系统学习 Elasticsearch 与 Kibana，并基于现有工业数据集实现机器实时工作状态可视化与异常值报警。",
+          "基于 ELK Stack（Elasticsearch、Logstash、Kibana）架构对工业传感数据集进行实时流处理，在 Kibana 中定制监控仪表盘，实现机器工作状态的实时可视化与非正常参数的自动化报警监测。"
         ],
         "en": [
-          "Built a local book-ranking knowledge graph with Neo4j, Angular, and Flask, including node classification, relationship search, and a read-books library.",
-          "Completed frontend-backend integration and implemented a knowledge retrieval workflow around book-related entities.",
-          "In the second phase, finished a Q&A experiment based on the Red Army Long March dataset using course guidance and open-source references."
+          "Completed a one-year innovation and entrepreneurship project on Industrial Big Data Intelligent Analysis based on open-source ELK tools, developing practical knowledge of Elasticsearch and Kibana and building real-time machine-status visualization and anomaly alerts on top of an existing industrial dataset.",
+          "Processed industrial sensor data in real time with the ELK Stack (Elasticsearch, Logstash, Kibana) and customized monitoring dashboards in Kibana to visualize machine operating status and automate abnormal-parameter alerts."
+        ]
+      }
+    },
+    {
+      "name": {
+        "zh": "快应用与 Kaldi 实践应用",
+        "en": "Quick App and Kaldi Practice Program"
+      },
+      "role": {
+        "zh": "小米训练营",
+        "en": "Xiaomi Training Camp"
+      },
+      "period": "2020.02",
+      "bullets": {
+        "zh": [
+          "完成小米集团与天津大学智能与计算学部“快应用与 Kaldi 实践应用”校企合作课程，学习快应用与前端开发技术。",
+          "调用小米 Kaldi 语音接口实现语音转文字功能，并集成到 TODO 应用中，优化移动端任务录入的交互体验。"
+        ],
+        "en": [
+          "Completed the university-industry course Quick App and Kaldi Practice Program jointly offered by Xiaomi Group and the College of Intelligence and Computing at Tianjin University, focusing on Quick App and frontend development technologies.",
+          "Integrated Xiaomi's Kaldi speech interface to convert voice input into text and embedded the feature into a TODO application, improving the mobile task-entry experience."
         ]
       }
     }
   ],
   "pm": [
+    {  
+      "name": {
+        "zh": "天外天工作室（天津大学）",
+        "en": "TWT Studio (Tianjin University)"
+      },
+      "role": {
+        "zh": "产品组组长 / 产品经理",
+        "en": "Product Team Lead / Product Manager"
+      },
+      "period": "2020.09-2023.06",
+      "bullets": {
+        "zh": [
+          "负责一个 100+ 人互联网工作室多款校园产品（App / Web / Mini-Programs）的全生命周期推进，推动校园服务数字化建设。",
+          "主导“微北洋”4.0 App 迭代，通过数据驱动的功能优化与以用户为中心的 UI / UX 改版，将平台单日 PV 提升至 3w+。",
+          "统筹“校友之家”小程序（5,000+ 用户）等项目，协调 UI / UX 设计与开发跨职能团队，并通过敏捷协作将项目上线周期缩短约 30%。",
+          "牵头“纳新 H5”项目，通过交互逻辑与像素风设计在 3 天内吸引 500+ 报名，优化团队人才招募转化效率。"
+        ],
+        "en": [
+          "Managed the end-to-end lifecycle of a suite of campus products (App, Web, and Mini-Programs) for a 100+ member internet studio, driving the digital transformation of campus services.",
+          "Led the WePeiyang 4.0 app iteration, scaling the platform to 30,000+ daily page views through data-driven feature optimization and user-centric UI/UX redesign.",
+          "Directed projects including the Alumni Home Mini-Program (5,000+ users), coordinating cross-functional UI/UX and engineering teams and shortening the launch cycle by about 30% through agile collaboration.",
+          "Spearheaded the Recruitment H5 project, using interactive logic and pixel-art design to attract 500+ sign-ups within three days and improve the team's talent acquisition conversion."
+        ]
+      }
+    },
     {
       "name": {
-        "zh": "天大校友之家小程序",
-        "en": "TJU Alumni Home Mini-Program"
+        "zh": "天津大学校友之家小程序",
+        "en": "Tianjin University Alumni Home Mini-Program"
       },
       "role": {
         "zh": "产品经理",
@@ -202,14 +264,37 @@
       "period": "2023.03-2023.07",
       "bullets": {
         "zh": [
-          "负责校友之家小程序及管理后台从需求分析到上线交付的全流程，并协调校内客户与第三方资源推进项目。",
-          "围绕在校生、教师和校友场景设计了场地预订、文创商城、留言板、资讯公告等核心功能，并在后台支持预订管理、留言审核和用户反馈处理。",
-          "引入有赞交易能力后，小程序累计服务 5k+ 用户，增强了校友与学校之间的连接。"
+          "应校友会需求，为在校师生设计一款多功能小程序；TJU 校友之家集预约会议室、购买茶饮周边、校友留言、咨询公告等功能于一体，面向在校学生、教职工和校友三类用户，同时配套管理后台，用于管理留言、会议室预约时段与记录、资讯发布及用户反馈。",
+          "茶饮周边下单交易系统接入第三方有赞平台；在项目中作为 PM 完成小程序与后台从需求分析到落地上线的全过程，并负责与甲方和第三方的需求合作沟通。",
+          "小程序上线后至今用户达 5k+，较好维系了校友与母校之间的联系，也为校友返校提供便利。"
         ],
         "en": [
-          "Owned the full lifecycle of the alumni mini-program and management backend, from requirements analysis to launch, while coordinating with campus stakeholders and third-party partners.",
-          "Designed features such as room booking, merchandise shopping, guestbooks, and news announcements for students, faculty, and alumni, with supporting backend workflows for bookings, moderation, and feedback.",
-          "Integrated Youzan for transaction flows and helped the mini-program reach 5k+ users, strengthening the bond between alumni and the university."
+          "Built a multifunctional mini-program for Tianjin University alumni affairs in response to alumni association needs. TJU Alumni Home integrates meeting-room reservations, beverage and merchandise purchases, alumni message boards, and announcements for students, faculty, and alumni, together with an admin backend for managing messages, reservation records, announcements, and user feedback.",
+          "Integrated the ordering and transaction flow for beverage-related merchandise with the third-party platform Youzan. As product manager, owned the full process from requirements analysis to launch and coordinated collaboration with both the client and external partners.",
+          "The mini-program has reached 5,000+ users since launch, helping maintain stronger ties between alumni and the university while making return visits more convenient."
+        ]
+      }
+    },
+    {
+      "name": {
+        "zh": "方寸流年摄影比赛平台",
+        "en": "Fangcun Liunian Photography Competition Platform"
+      },
+      "role": {
+        "zh": "产品经理",
+        "en": "Product Manager"
+      },
+      "period": "2023.03-2023.04",
+      "bullets": {
+        "zh": [
+          "作为 PM 完成方寸流年摄影比赛平台从需求分析到落地上线的全过程，并负责与新闻中心的需求沟通。",
+          "平台为天外天新闻中心定期举办的摄影比赛提供公告与报名能力，主要面向天津地区摄影爱好者；分为用户端与管理端，用户端可报名比赛、上传作品、浏览参赛作品、查看比赛通知与奖品，管理端可发布比赛通知、审核作品、为作品打分并设置获奖作品。",
+          "项目上线后助力 2023 年方寸流年摄影大赛顺利举办，上线后用户新增 1k+。"
+        ],
+        "en": [
+          "As product manager, delivered the Fangcun Liunian Photography Competition Platform end to end, from requirements analysis to launch, including requirement alignment with the university news center.",
+          "The platform was built for recurring photography competitions hosted by the TWT News Center and mainly targeted photography enthusiasts in Tianjin. It included a user side for registration, submission, browsing entries, and viewing notices and prizes, as well as an admin side for publishing notices, reviewing works, scoring submissions, and selecting winners.",
+          "After launch, the platform supported the successful execution of the 2023 competition and brought in more than 1,000 new users."
         ]
       }
     },
@@ -225,43 +310,20 @@
       "period": "2021.03-2022.09",
       "bullets": {
         "zh": [
-          "负责微北洋 4.0 从需求、上线到运营迭代的完整流程，这是一款集课表、成绩、空教室查询和论坛功能于一体的校园应用。",
-          "主导论坛模块迭代以及整体 UI 和功能升级，推动自定义课表、考试日历、节日皮肤等新功能上线。",
-          "项目最高单日 PV 达 3w+、UV 达 1w+，论坛与校园事务板块成为用户高频使用入口。"
+          "作为 PM 完成微北洋 4.0 从需求分析到落地上线的全过程，并参与后期运营；微北洋是一款集课表、GPA、自习室查询、校园论坛、校务专区于一体的天津大学校园功能型 App。",
+          "负责微北洋论坛功能的新增迭代以及 App 整体功能与 UI 的翻新；新版除论坛外还增加了自定义课表与考表、运营活动限定皮肤等功能。",
+          "上线后最高单日 PV 达 3w+、UV 达 1w+，校园论坛与校务专区功能深受用户喜爱。"
         ],
         "en": [
-          "Managed the full lifecycle from requirements to launch and iteration for WePeiyang 4.0, a campus app integrating schedules, GPA, study room lookup, and forums.",
-          "Led the forum iteration and the overall UI and functionality refresh, shipping features such as custom schedules, exam calendars, and seasonal skins.",
-          "Reached 30k+ peak daily PV and 10k+ UV, with the forum and campus affairs sections becoming highly active user destinations."
+          "As product manager, owned the full lifecycle of WePeiyang 4.0 from requirements analysis to launch and later operations. WePeiyang is a campus utility app for Tianjin University that integrates schedules, GPA, study-room lookup, campus forums, and a university affairs section.",
+          "Led the forum feature expansion and the overall refresh of the app's functionality and UI. The new version also introduced custom class and exam schedules as well as limited-edition skins for operational campaigns.",
+          "After launch, the app reached 30,000+ peak daily PV and 10,000+ UV, with the campus forum and university affairs sections becoming especially popular among users."
         ]
       }
     },
     {
       "name": {
-        "zh": "天外天工作室 2020 招新 H5",
-        "en": "TWT Studio 2020 Recruitment H5"
-      },
-      "role": {
-        "zh": "产品经理",
-        "en": "Product Manager"
-      },
-      "period": "2020.09",
-      "bullets": {
-        "zh": [
-          "为工作室招新，与 8 位开发和设计同学协作，打造了一个以“天大冒险新手村”为主题的互动式招新 H5。",
-          "采用明亮像素风视觉与角色选择、场景探索、人物对话等交互机制，让用户在轻量剧情中了解产品、设计、开发等不同组别的工作内容。",
-          "最终将团队文化介绍与报名转化自然串联，帮助意向同学快速找到适合自己的方向。"
-        ],
-        "en": [
-          "Collaborated with eight developers and designers to create an interactive recruitment H5 themed around a 'TJU Adventure Novice Village.'",
-          "Used a bright pixel-art style and interactions such as character selection, scene exploration, and dialogue with animated team avatars to introduce Product, Design, and Dev groups.",
-          "Connected studio culture storytelling with recruitment conversion, helping interested students quickly identify their preferred direction."
-        ]
-      }
-    },
-    {
-      "name": {
-        "zh": "天外天招新中心",
+        "zh": "天外天招募中心",
         "en": "TWT Recruitment Center"
       },
       "role": {
@@ -271,14 +333,37 @@
       "period": "2020.09-2021.09",
       "bullets": {
         "zh": [
-          "负责天外天招新中心从需求分析、原型设计到项目管理的全流程，面向全校组织统一提供招新工具。",
-          "系统包含学生浏览与报名的客户端，以及组织方创建问卷、管理报名信息、记录面试和自动发送短信通知的管理端。",
-          "项目有效简化了校园社团和组织的招新流程，也统一了学生侧的报名体验。"
+          "作为 PM 完成天外天招募中心需求分析、原型设计与项目管理的全过程。",
+          "招募中心是一款供全校社团或组织使用的招募与纳新管理应用，分为客户端与管理端；客户端提供招募浏览与报名功能，管理端支持设置问卷、管理报名信息、填写面试记录、自动发送面试短信等。",
+          "该项目为校内社团与组织举办活动及纳新提供了便利，也为用户统一报名方式提供了更顺畅的体验。"
         ],
         "en": [
-          "Handled the entire process from requirements analysis and prototyping to project management for the Recruitment Center, a platform serving campus organizations.",
-          "The system included an applicant-facing client and an admin side for questionnaire creation, applicant management, interview records, and automated SMS notifications.",
-          "It streamlined recruitment for campus clubs and organizations while creating a more unified application experience for students."
+          "As product manager, completed the full process of requirements analysis, prototyping, and project management for the TWT Recruitment Center.",
+          "The Recruitment Center is a recruitment and member-onboarding management application for campus clubs and organizations, consisting of a client side for browsing opportunities and applying, and an admin side for configuring questionnaires, managing applicant information, recording interviews, and automatically sending interview text messages.",
+          "The project significantly improved the efficiency of recruitment and event organization for student groups while also creating a more unified application experience for users."
+        ]
+      }
+    },
+    {
+      "name": {
+        "zh": "天外天工作室 2020 纳新 H5",
+        "en": "TWT Studio 2020 Recruitment H5"
+      },
+      "role": {
+        "zh": "产品经理",
+        "en": "Product Manager"
+      },
+      "period": "2020.09",
+      "bullets": {
+        "zh": [
+          "为招募工作室新成员，与 8 位开发和设计同学协作，基于“天大冒险新手村”主题设计像素风任务导向交互 H5。",
+          "用户进入 H5 后可选择角色并依次进入不同场景，与产品组、设计组、开发组的动漫化形象互动完成任务，通过交互直观了解不同组别的职能。",
+          "项目在 3 天内吸引 500+ 用户互动申请，有效提升了人才招募的转化效率。"
+        ],
+        "en": [
+          "Collaborated with eight developers and designers to create a pixel-art, task-driven interactive H5 for studio recruitment under the theme of 'TJU Adventure Novice Village.'",
+          "Users could choose a character, move through different scenes, and interact with animated avatars representing the Product, Design, and Development teams, allowing them to understand each team's role through gameplay.",
+          "The project attracted more than 500 interactive applications within three days and significantly improved recruitment conversion efficiency."
         ]
       }
     }
