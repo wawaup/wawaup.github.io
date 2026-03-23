@@ -112,7 +112,23 @@
           "Designed and implemented a full-stack architecture with RESTful APIs on Node.js and Express and a responsive dashboard built with HTML5, CSS3, JavaScript, and Bootstrap. Stored large-scale spatiotemporal trajectory data in PostgreSQL 16 and designed efficient indexes to support low-latency queries.",
           "Performed data cleaning and feature engineering in Python, built a time-series forecasting engine to predict future congestion based on historical visitor flows, and helped operators proactively manage safety risks. Delivered real-time heat maps, dynamic trend charts, and automated work-log synchronization, improving operational decision-making efficiency by about 30%."
         ]
-      }
+      },
+      "images": [
+        {
+          "src": "public/pics/实时数据可视化平台_1.png",
+          "alt": {
+            "zh": "实时数据可视化平台 展示图 1",
+            "en": "Real-time Data Visualization Platform screenshot 1"
+          }
+        },
+        {
+          "src": "public/pics/实时数据可视化平台_2.png",
+          "alt": {
+            "zh": "实时数据可视化平台 展示图 2",
+            "en": "Real-time Data Visualization Platform screenshot 2"
+          }
+        }
+      ]
     },
     {
       "name": {
@@ -181,53 +197,73 @@
           "Book-ranking knowledge graph: used Neo4j to build a structured network of books, authors, and ranking relationships; developed the backend with Flask and the frontend with Angular; and supported multidimensional node categorization, full-text search, and personal reading-library management.",
           "Red Army Long March KGQA system: implemented the logic for converting natural-language questions into Cypher queries based on the Long March dataset, supporting complex relationship reasoning such as conference participants and troop transfer routes."
         ]
-      }
-    },
-    {
-      "name": {
-        "zh": "工业大数据智能分析",
-        "en": "Industrial Big Data Intelligent Analysis"
       },
-      "role": {
-        "zh": "大创项目",
-        "en": "Innovation and Entrepreneurship Project"
-      },
-      "period": "2020.03-2021.03",
-      "bullets": {
-        "zh": [
-          "基于 ELK 开源软件完成“工业大数据智能分析”一年期大创项目，系统学习 Elasticsearch 与 Kibana，并基于现有工业数据集实现机器实时工作状态可视化与异常值报警。",
-          "基于 ELK Stack（Elasticsearch、Logstash、Kibana）架构对工业传感数据集进行实时流处理，在 Kibana 中定制监控仪表盘，实现机器工作状态的实时可视化与非正常参数的自动化报警监测。"
-        ],
-        "en": [
-          "Completed a one-year innovation and entrepreneurship project on Industrial Big Data Intelligent Analysis based on open-source ELK tools, developing practical knowledge of Elasticsearch and Kibana and building real-time machine-status visualization and anomaly alerts on top of an existing industrial dataset.",
-          "Processed industrial sensor data in real time with the ELK Stack (Elasticsearch, Logstash, Kibana) and customized monitoring dashboards in Kibana to visualize machine operating status and automate abnormal-parameter alerts."
-        ]
-      }
-    },
-    {
-      "name": {
-        "zh": "快应用与 Kaldi 实践应用",
-        "en": "Quick App and Kaldi Practice Program"
-      },
-      "role": {
-        "zh": "小米训练营",
-        "en": "Xiaomi Training Camp"
-      },
-      "period": "2020.02",
-      "bullets": {
-        "zh": [
-          "完成小米集团与天津大学智能与计算学部“快应用与 Kaldi 实践应用”校企合作课程，学习快应用与前端开发技术。",
-          "调用小米 Kaldi 语音接口实现语音转文字功能，并集成到 TODO 应用中，优化移动端任务录入的交互体验。"
-        ],
-        "en": [
-          "Completed the university-industry course Quick App and Kaldi Practice Program jointly offered by Xiaomi Group and the College of Intelligence and Computing at Tianjin University, focusing on Quick App and frontend development technologies.",
-          "Integrated Xiaomi's Kaldi speech interface to convert voice input into text and embedded the feature into a TODO application, improving the mobile task-entry experience."
-        ]
-      }
+      "images": [
+        {
+          "src": "public/pics/知识工程_1.png",
+          "alt": {
+            "zh": "知识工程与问答系统系列实践 展示图 1",
+            "en": "Knowledge Engineering and KGQA Practice Series screenshot 1"
+          }
+        }
+      ]
     }
   ],
   "pm": [
-    {  
+    {
+      "name": {
+        "zh": "天津大学校友之家小程序",
+        "en": "Tianjin University Alumni Home Mini-Program"
+      },
+      "role": {
+        "zh": "产品经理",
+        "en": "Product Manager"
+      },
+      "period": "2023.03-2023.07",
+      "bullets": {
+        "zh": [
+          "应校友会需求，为在校师生设计一款多功能小程序；TJU 校友之家集预约会议室、购买茶饮周边、校友留言、咨询公告等功能于一体，面向在校学生、教职工和校友三类用户，同时配套管理后台，用于管理留言、会议室预约时段与记录、资讯发布及用户反馈。",
+          "茶饮周边下单交易系统接入第三方有赞平台；在项目中作为 PM 完成小程序与后台从需求分析到落地上线的全过程，并负责与甲方和第三方的需求合作沟通。",
+          "小程序上线后至今用户达 5k+，较好维系了校友与母校之间的联系，也为校友返校提供便利。"
+        ],
+        "en": [
+          "Built a multifunctional mini-program for Tianjin University alumni affairs in response to alumni association needs. TJU Alumni Home integrates meeting-room reservations, beverage and merchandise purchases, alumni message boards, and announcements for students, faculty, and alumni, together with an admin backend for managing messages, reservation records, announcements, and user feedback.",
+          "Integrated the ordering and transaction flow for beverage-related merchandise with the third-party platform Youzan. As product manager, owned the full process from requirements analysis to launch and coordinated collaboration with both the client and external partners.",
+          "The mini-program has reached 5,000+ users since launch, helping maintain stronger ties between alumni and the university while making return visits more convenient."
+        ]
+      },
+      "images": [
+        {
+          "src": "public/pics/校友之家_1.png",
+          "alt": {
+            "zh": "天津大学校友之家小程序 展示图 1",
+            "en": "Tianjin University Alumni Home Mini-Program screenshot 1"
+          }
+        },
+        {
+          "src": "public/pics/校友之家_2.png",
+          "alt": {
+            "zh": "天津大学校友之家小程序 展示图 2",
+            "en": "Tianjin University Alumni Home Mini-Program screenshot 2"
+          }
+        },
+        {
+          "src": "public/pics/校友之家_3.png",
+          "alt": {
+            "zh": "天津大学校友之家小程序 展示图 3",
+            "en": "Tianjin University Alumni Home Mini-Program screenshot 3"
+          }
+        },
+        {
+          "src": "public/pics/校友之家_4.png",
+          "alt": {
+            "zh": "天津大学校友之家小程序 展示图 4",
+            "en": "Tianjin University Alumni Home Mini-Program screenshot 4"
+          }
+        }
+      ]
+    },
+    {
       "name": {
         "zh": "天外天工作室（天津大学）",
         "en": "TWT Studio (Tianjin University)"
@@ -254,29 +290,6 @@
     },
     {
       "name": {
-        "zh": "天津大学校友之家小程序",
-        "en": "Tianjin University Alumni Home Mini-Program"
-      },
-      "role": {
-        "zh": "产品经理",
-        "en": "Product Manager"
-      },
-      "period": "2023.03-2023.07",
-      "bullets": {
-        "zh": [
-          "应校友会需求，为在校师生设计一款多功能小程序；TJU 校友之家集预约会议室、购买茶饮周边、校友留言、咨询公告等功能于一体，面向在校学生、教职工和校友三类用户，同时配套管理后台，用于管理留言、会议室预约时段与记录、资讯发布及用户反馈。",
-          "茶饮周边下单交易系统接入第三方有赞平台；在项目中作为 PM 完成小程序与后台从需求分析到落地上线的全过程，并负责与甲方和第三方的需求合作沟通。",
-          "小程序上线后至今用户达 5k+，较好维系了校友与母校之间的联系，也为校友返校提供便利。"
-        ],
-        "en": [
-          "Built a multifunctional mini-program for Tianjin University alumni affairs in response to alumni association needs. TJU Alumni Home integrates meeting-room reservations, beverage and merchandise purchases, alumni message boards, and announcements for students, faculty, and alumni, together with an admin backend for managing messages, reservation records, announcements, and user feedback.",
-          "Integrated the ordering and transaction flow for beverage-related merchandise with the third-party platform Youzan. As product manager, owned the full process from requirements analysis to launch and coordinated collaboration with both the client and external partners.",
-          "The mini-program has reached 5,000+ users since launch, helping maintain stronger ties between alumni and the university while making return visits more convenient."
-        ]
-      }
-    },
-    {
-      "name": {
         "zh": "方寸流年摄影比赛平台",
         "en": "Fangcun Liunian Photography Competition Platform"
       },
@@ -296,7 +309,37 @@
           "The platform was built for recurring photography competitions hosted by the TWT News Center and mainly targeted photography enthusiasts in Tianjin. It included a user side for registration, submission, browsing entries, and viewing notices and prizes, as well as an admin side for publishing notices, reviewing works, scoring submissions, and selecting winners.",
           "After launch, the platform supported the successful execution of the 2023 competition and brought in more than 1,000 new users."
         ]
-      }
+      },
+      "images": [
+        {
+          "src": "public/pics/方寸流年_1.png",
+          "alt": {
+            "zh": "方寸流年摄影比赛平台 展示图 1",
+            "en": "Fangcun Liunian Photography Competition Platform screenshot 1"
+          }
+        },
+        {
+          "src": "public/pics/方寸流年_2.png",
+          "alt": {
+            "zh": "方寸流年摄影比赛平台 展示图 2",
+            "en": "Fangcun Liunian Photography Competition Platform screenshot 2"
+          }
+        },
+        {
+          "src": "public/pics/方寸流年_3.png",
+          "alt": {
+            "zh": "方寸流年摄影比赛平台 展示图 3",
+            "en": "Fangcun Liunian Photography Competition Platform screenshot 3"
+          }
+        },
+        {
+          "src": "public/pics/方寸流年_4.png",
+          "alt": {
+            "zh": "方寸流年摄影比赛平台 展示图 4",
+            "en": "Fangcun Liunian Photography Competition Platform screenshot 4"
+          }
+        }
+      ]
     },
     {
       "name": {
@@ -319,6 +362,50 @@
           "Led the forum feature expansion and the overall refresh of the app's functionality and UI. The new version also introduced custom class and exam schedules as well as limited-edition skins for operational campaigns.",
           "After launch, the app reached 30,000+ peak daily PV and 10,000+ UV, with the campus forum and university affairs sections becoming especially popular among users."
         ]
+      },
+      "images": [
+        {
+          "src": "public/pics/微北洋_1.png",
+          "alt": {
+            "zh": "微北洋 4.0 展示图 1",
+            "en": "WePeiyang 4.0 screenshot 1"
+          }
+        },
+        {
+          "src": "public/pics/微北洋_2.png",
+          "alt": {
+            "zh": "微北洋 4.0 展示图 2",
+            "en": "WePeiyang 4.0 screenshot 2"
+          }
+        },
+        {
+          "src": "public/pics/微北洋_3.png",
+          "alt": {
+            "zh": "微北洋 4.0 展示图 3",
+            "en": "WePeiyang 4.0 screenshot 3"
+          }
+        },
+        {
+          "src": "public/pics/微北洋_4.png",
+          "alt": {
+            "zh": "微北洋 4.0 展示图 4",
+            "en": "WePeiyang 4.0 screenshot 4"
+          }
+        },
+        {
+          "src": "public/pics/微北洋_5.png",
+          "alt": {
+            "zh": "微北洋 4.0 展示图 5",
+            "en": "WePeiyang 4.0 screenshot 5"
+          }
+        }
+      ],
+      "link": {
+        "url": "https://apps.apple.com/tw/app/%E5%BE%AE%E5%8C%97%E6%B4%8B/id1542905353",
+        "label": {
+          "zh": "App Store",
+          "en": "App Store"
+        }
       }
     },
     {
@@ -342,7 +429,37 @@
           "The Recruitment Center is a recruitment and member-onboarding management application for campus clubs and organizations, consisting of a client side for browsing opportunities and applying, and an admin side for configuring questionnaires, managing applicant information, recording interviews, and automatically sending interview text messages.",
           "The project significantly improved the efficiency of recruitment and event organization for student groups while also creating a more unified application experience for users."
         ]
-      }
+      },
+      "images": [
+        {
+          "src": "public/pics/招募中心_1.png",
+          "alt": {
+            "zh": "天外天招募中心 展示图 1",
+            "en": "TWT Recruitment Center screenshot 1"
+          }
+        },
+        {
+          "src": "public/pics/招募中心_2.png",
+          "alt": {
+            "zh": "天外天招募中心 展示图 2",
+            "en": "TWT Recruitment Center screenshot 2"
+          }
+        },
+        {
+          "src": "public/pics/招募中心_3.png",
+          "alt": {
+            "zh": "天外天招募中心 展示图 3",
+            "en": "TWT Recruitment Center screenshot 3"
+          }
+        },
+        {
+          "src": "public/pics/招募中心_4.png",
+          "alt": {
+            "zh": "天外天招募中心 展示图 4",
+            "en": "TWT Recruitment Center screenshot 4"
+          }
+        }
+      ]
     },
     {
       "name": {
@@ -356,15 +473,56 @@
       "period": "2020.09",
       "bullets": {
         "zh": [
-          "为招募工作室新成员，与 8 位开发和设计同学协作，基于“天大冒险新手村”主题设计像素风任务导向交互 H5。",
-          "用户进入 H5 后可选择角色并依次进入不同场景，与产品组、设计组、开发组的动漫化形象互动完成任务，通过交互直观了解不同组别的职能。",
-          "项目在 3 天内吸引 500+ 用户互动申请，有效提升了人才招募的转化效率。"
+          "为工作室纳新，与开发和设计同学协作，打造了一个以“天大冒险新手村”为主题的交互式招新 H5。",
+          "采用像素风视觉与角色选择、场景探索、人物对话等交互机制，让用户在轻量剧情中了解产品、设计、开发等不同组别的工作内容。",
+          "将团队文化介绍与报名转化自然串联，上线 3 天内吸引 500+ 报名，帮助意向同学更快找到适合自己的方向。"
         ],
         "en": [
-          "Collaborated with eight developers and designers to create a pixel-art, task-driven interactive H5 for studio recruitment under the theme of 'TJU Adventure Novice Village.'",
-          "Users could choose a character, move through different scenes, and interact with animated avatars representing the Product, Design, and Development teams, allowing them to understand each team's role through gameplay.",
-          "The project attracted more than 500 interactive applications within three days and significantly improved recruitment conversion efficiency."
+          "Collaborated with developers and designers to create an interactive recruitment H5 themed around a \"TJU Adventure Novice Village.\"",
+          "Used pixel-art visuals together with character selection, scene exploration, and dialogue interactions so visitors could learn about Product, Design, and Development through a light narrative journey.",
+          "Connected studio culture storytelling with sign-up conversion and attracted 500+ applications within three days, helping interested students quickly identify the direction that fit them best."
         ]
+      },
+      "images": [
+        {
+          "src": "public/pics/纳新H5_1.png",
+          "alt": {
+            "zh": "天外天工作室 2020 纳新 H5 展示图 1",
+            "en": "TWT Studio 2020 Recruitment H5 screenshot 1"
+          }
+        },
+        {
+          "src": "public/pics/纳新H5_2.png",
+          "alt": {
+            "zh": "天外天工作室 2020 纳新 H5 展示图 2",
+            "en": "TWT Studio 2020 Recruitment H5 screenshot 2"
+          }
+        },
+        {
+          "src": "public/pics/纳新H5_3.png",
+          "alt": {
+            "zh": "天外天工作室 2020 纳新 H5 展示图 3",
+            "en": "TWT Studio 2020 Recruitment H5 screenshot 3"
+          }
+        },
+        {
+          "src": "public/pics/纳新H5_4.png",
+          "alt": {
+            "zh": "天外天工作室 2020 纳新 H5 展示图 4",
+            "en": "TWT Studio 2020 Recruitment H5 screenshot 4"
+          }
+        },
+        {
+          "src": "public/pics/纳新H5_5.png",
+          "alt": {
+            "zh": "天外天工作室 2020 纳新 H5 展示图 5",
+            "en": "TWT Studio 2020 Recruitment H5 screenshot 5"
+          }
+        }
+      ],
+      "timelineLabel": {
+        "zh": "招新 H5",
+        "en": "Recruitment H5"
       }
     }
   ]

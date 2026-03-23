@@ -105,63 +105,83 @@
         </div>
     </nav>
 
-    <main class="content-shell">
-        <div id="main-content" class="content-panel">
-            <section id="education" class="resume-section" data-nav-zh="教育背景" data-nav-en="Education">
-                <div class="section-heading">
-                    <div class="section-icon">
-                        <img src="public/img/graduate.svg" alt="" aria-hidden="true">
-                    </div>
+    <main class="page-layout">
+        <aside id="timeline-sidebar" class="timeline-sidebar">
+            <div class="timeline-card">
+                <div class="timeline-topbar">
                     <div>
-                        <p class="section-kicker" data-zh="Academic" data-en="Academic">Academic</p>
-                        <h2 class="title" data-zh="教育背景" data-en="Education">教育背景</h2>
+                        <p class="timeline-kicker" data-zh="Overview" data-en="Overview">Overview</p>
+                        <h2 class="timeline-title" data-zh="简历时间轴" data-en="Resume Timeline">简历时间轴</h2>
                     </div>
+                    <button id="timeline-toggle" class="timeline-toggle" type="button" aria-expanded="true" aria-label="Collapse timeline">
+                        <span class="timeline-toggle-bar"></span>
+                        <span class="timeline-toggle-bar"></span>
+                    </button>
                 </div>
-                <div id="education-list" class="resume-list"></div>
-            </section>
+                <div id="timeline-links" class="timeline-links"></div>
+            </div>
+        </aside>
 
-            <section id="work" class="resume-section" data-nav-zh="工作经历" data-nav-en="Work Experience">
-                <div class="section-heading">
-                    <div class="section-icon">
-                        <img src="public/img/project.svg" alt="" aria-hidden="true">
+        <div class="content-shell">
+            <div id="main-content" class="content-panel">
+                <section id="education" class="resume-section" data-nav-zh="教育背景" data-nav-en="Education">
+                    <div class="section-heading">
+                        <div class="section-icon">
+                            <img src="public/img/graduate.svg" alt="" aria-hidden="true">
+                        </div>
+                        <div>
+                            <p class="section-kicker" data-zh="Academic" data-en="Academic">Academic</p>
+                            <h2 class="title" data-zh="教育背景" data-en="Education">教育背景</h2>
+                        </div>
                     </div>
-                    <div>
-                        <p class="section-kicker" data-zh="Career" data-en="Career">Career</p>
-                        <h2 class="title" data-zh="工作经历" data-en="Work Experience">工作经历</h2>
-                    </div>
-                </div>
-                <div id="work-list" class="resume-list"></div>
-            </section>
+                    <div id="education-list" class="resume-list"></div>
+                </section>
 
-            <section id="dev-project" class="resume-section" data-nav-zh="专业项目经历" data-nav-en="Professional Projects">
-                <div class="section-heading">
-                    <div class="section-icon">
-                        <img src="public/img/code.svg" alt="" aria-hidden="true">
+                <section id="work" class="resume-section" data-nav-zh="工作经历" data-nav-en="Work Experience">
+                    <div class="section-heading">
+                        <div class="section-icon">
+                            <img src="public/img/project.svg" alt="" aria-hidden="true">
+                        </div>
+                        <div>
+                            <p class="section-kicker" data-zh="Career" data-en="Career">Career</p>
+                            <h2 class="title" data-zh="工作经历" data-en="Work Experience">工作经历</h2>
+                        </div>
                     </div>
-                    <div>
-                        <p class="section-kicker" data-zh="Build" data-en="Build">Build</p>
-                        <h2 class="title" data-zh="专业项目经历" data-en="Professional Projects">专业项目经历</h2>
-                    </div>
-                </div>
-                <div id="dev-list" class="resume-list"></div>
-            </section>
+                    <div id="work-list" class="resume-list"></div>
+                </section>
 
-            <section id="pm-project" class="resume-section" data-nav-zh="产品项目经历" data-nav-en="Product Projects">
-                <div class="section-heading">
-                    <div class="section-icon">
-                        <img src="public/img/product.svg" alt="" aria-hidden="true">
+                <section id="dev-project" class="resume-section" data-nav-zh="专业项目经历" data-nav-en="Professional Projects">
+                    <div class="section-heading">
+                        <div class="section-icon">
+                            <img src="public/img/code.svg" alt="" aria-hidden="true">
+                        </div>
+                        <div>
+                            <p class="section-kicker" data-zh="Build" data-en="Build">Build</p>
+                            <h2 class="title" data-zh="专业项目经历" data-en="Professional Projects">专业项目经历</h2>
+                        </div>
                     </div>
-                    <div>
-                        <p class="section-kicker" data-zh="Product" data-en="Product">Product</p>
-                        <h2 class="title" data-zh="产品项目经历" data-en="Product Projects">产品项目经历</h2>
+                    <div id="dev-list" class="resume-list"></div>
+                </section>
+
+                <section id="pm-project" class="resume-section" data-nav-zh="产品项目经历" data-nav-en="Product Projects">
+                    <div class="section-heading">
+                        <div class="section-icon">
+                            <img src="public/img/product.svg" alt="" aria-hidden="true">
+                        </div>
+                        <div>
+                            <p class="section-kicker" data-zh="Product" data-en="Product">Product</p>
+                            <h2 class="title" data-zh="产品项目经历" data-en="Product Projects">产品项目经历</h2>
+                        </div>
                     </div>
-                </div>
-                <div id="pm-list" class="resume-list"></div>
-            </section>
+                    <div id="pm-list" class="resume-list"></div>
+                </section>
+            </div>
         </div>
     </main>
 
     <div id="image-modal" class="image-modal" aria-hidden="true" role="dialog" aria-modal="true">
+        <button id="image-modal-prev" class="image-modal-nav image-modal-prev" type="button" aria-label="Previous image">&lt;</button>
+        <button id="image-modal-next" class="image-modal-nav image-modal-next" type="button" aria-label="Next image">&gt;</button>
         <button id="image-modal-close" class="image-modal-close" type="button" aria-label="Close image viewer">x</button>
         <figure class="image-modal-figure">
             <img id="image-modal-img" src="" alt="">
@@ -169,12 +189,6 @@
         </figure>
     </div>
 
-    <canvas class="live2d" id="live2d" width="120" height="300"></canvas>
-
-    <script src="./live2d.js"></script>
     <script src="./app.js"></script>
-    <script>
-        loadlive2d("live2d", "./xiaomai/xiaomai.model.json");
-    </script>
 </body>
 </html>
