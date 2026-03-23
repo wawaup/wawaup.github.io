@@ -212,6 +212,31 @@
   "pm": [
     {
       "name": {
+        "zh": "天外天工作室（天津大学）",
+        "en": "TWT Studio (Tianjin University)"
+      },
+      "role": {
+        "zh": "产品组组长 / 产品经理",
+        "en": "Product Team Lead / Product Manager"
+      },
+      "period": "2020.09-2023.06",
+      "bullets": {
+        "zh": [
+          "负责一个 100+ 人互联网工作室多款校园产品（App / Web / Mini-Programs）的全生命周期推进，推动校园服务数字化建设。",
+          "主导“微北洋”4.0 App 迭代，通过数据驱动的功能优化与以用户为中心的 UI / UX 改版，将平台单日 PV 提升至 3w+。",
+          "统筹“校友之家”小程序（5,000+ 用户）等项目，协调 UI / UX 设计与开发跨职能团队，并通过敏捷协作将项目上线周期缩短约 30%。",
+          "牵头“纳新 H5”项目，通过交互逻辑与像素风设计在 3 天内吸引 500+ 报名，优化团队人才招募转化效率。"
+        ],
+        "en": [
+          "Managed the end-to-end lifecycle of a suite of campus products (App, Web, and Mini-Programs) for a 100+ member internet studio, driving the digital transformation of campus services.",
+          "Led the WePeiyang 4.0 app iteration, scaling the platform to 30,000+ daily page views through data-driven feature optimization and user-centric UI/UX redesign.",
+          "Directed projects including the Alumni Home Mini-Program (5,000+ users), coordinating cross-functional UI/UX and engineering teams and shortening the launch cycle by about 30% through agile collaboration.",
+          "Spearheaded the Recruitment H5 project, using interactive logic and pixel-art design to attract 500+ sign-ups within three days and improve the team's talent acquisition conversion."
+        ]
+      }
+    },
+    {
+      "name": {
         "zh": "天津大学校友之家小程序",
         "en": "Tianjin University Alumni Home Mini-Program"
       },
@@ -262,31 +287,6 @@
           }
         }
       ]
-    },
-    {
-      "name": {
-        "zh": "天外天工作室（天津大学）",
-        "en": "TWT Studio (Tianjin University)"
-      },
-      "role": {
-        "zh": "产品组组长 / 产品经理",
-        "en": "Product Team Lead / Product Manager"
-      },
-      "period": "2020.09-2023.06",
-      "bullets": {
-        "zh": [
-          "负责一个 100+ 人互联网工作室多款校园产品（App / Web / Mini-Programs）的全生命周期推进，推动校园服务数字化建设。",
-          "主导“微北洋”4.0 App 迭代，通过数据驱动的功能优化与以用户为中心的 UI / UX 改版，将平台单日 PV 提升至 3w+。",
-          "统筹“校友之家”小程序（5,000+ 用户）等项目，协调 UI / UX 设计与开发跨职能团队，并通过敏捷协作将项目上线周期缩短约 30%。",
-          "牵头“纳新 H5”项目，通过交互逻辑与像素风设计在 3 天内吸引 500+ 报名，优化团队人才招募转化效率。"
-        ],
-        "en": [
-          "Managed the end-to-end lifecycle of a suite of campus products (App, Web, and Mini-Programs) for a 100+ member internet studio, driving the digital transformation of campus services.",
-          "Led the WePeiyang 4.0 app iteration, scaling the platform to 30,000+ daily page views through data-driven feature optimization and user-centric UI/UX redesign.",
-          "Directed projects including the Alumni Home Mini-Program (5,000+ users), coordinating cross-functional UI/UX and engineering teams and shortening the launch cycle by about 30% through agile collaboration.",
-          "Spearheaded the Recruitment H5 project, using interactive logic and pixel-art design to attract 500+ sign-ups within three days and improve the team's talent acquisition conversion."
-        ]
-      }
     },
     {
       "name": {
