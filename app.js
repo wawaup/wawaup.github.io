@@ -1,145 +1,380 @@
-// 优先级：1. 用户手动选过的记录 > 2. 浏览器默认语言 > 3. 默认中文
+const SECTION_CONFIG = [
+    { key: 'education', containerId: 'education-list', type: 'education' },
+    { key: 'work', containerId: 'work-list', type: 'work' },
+    { key: 'dev', containerId: 'dev-list', type: 'project' },
+    { key: 'pm', containerId: 'pm-list', type: 'project' }
+];
+
+const LABELS = {
+    gpa: { zh: '加权 / GPA', en: 'Weighted Avg / GPA' },
+    honors: { zh: '荣誉', en: 'Honors' },
+    campusRoles: { zh: '在校担任', en: 'Campus Roles' },
+    onlineLink: { zh: '在线展示', en: 'Online Link' },
+    schoolWebsite: { zh: '学校官网', en: 'School Website' }
+};
+
+let currentLang = getInitialLanguage();
+let resumeDataPromise;
+let sectionObserver;
+let cardObserver;
+
+document.addEventListener('DOMContentLoaded', async () => {
+    setupLanguageSwitch();
+    setupImageModal();
+    await initPage();
+});
+
 function getInitialLanguage() {
-    // 检查本地存储是否有用户之前的选择
     const savedLang = localStorage.getItem('lang');
     if (savedLang) return savedLang;
 
-    // 获取浏览器首选语言 (例如 "en-US" 或 "zh-CN")
-    const browserLang = navigator.language || navigator.userLanguage;
-    
-    // 如果浏览器语言包含 'en'，则默认显示英文
-    if (browserLang.toLowerCase().includes('en')) {
-        return 'en';
-    }
-
-    // 其他情况默认返回中文
-    return 'zh';
+    const browserLang = navigator.language || navigator.userLanguage || 'zh';
+    return browserLang.toLowerCase().includes('en') ? 'en' : 'zh';
 }
-
-let currentLang = getInitialLanguage();
-
-document.addEventListener('DOMContentLoaded', () => {
-    initPage();
-});
 
 async function initPage() {
-    // 1. 更新所有带有 data-zh 属性的静态文本
-    updateStaticText();
-    
-    // 2. 加载 JSON 数据并渲染各个板块
-    await loadAllResumes();
-    
-    // 3. 渲染侧边栏导航 (确保标题显示正确语言)
-    renderSidebar();
+    const data = await loadResumeData();
+    applyStaticLanguage();
+    renderAllSections(data);
+    renderNavigation();
+    activateLanguageButton();
+    observeSections();
+    observeCards();
 }
 
-// 切换语言的入口函数
-function switchLang(lang) {
-    currentLang = lang;
-    localStorage.setItem('lang', lang); // 记录用户选择
-    initPage(); // 重新刷新内容
-}
-
-// 翻译静态文本
-function updateStaticText() {
-    document.querySelectorAll('[data-zh]').forEach(el => {
-        const text = el.getAttribute(`data-${currentLang}`);
-        if (text) {
-            // 如果内部有图片（如标题里的 icon），只替换文字部分
-            if (el.querySelector('img')) {
-                const img = el.querySelector('img').outerHTML;
-                el.innerHTML = `${img} &nbsp;&nbsp;${text}`;
-            } else {
-                el.textContent = text;
+async function loadResumeData() {
+    if (!resumeDataPromise) {
+        resumeDataPromise = fetch('./data.json').then(response => {
+            if (!response.ok) {
+                throw new Error(`Failed to load data.json: ${response.status}`);
             }
+            return response.json();
+        });
+    }
+
+    return resumeDataPromise;
+}
+
+function setupLanguageSwitch() {
+    document.querySelectorAll('.lang-btn').forEach(button => {
+        button.addEventListener('click', async () => {
+            const nextLang = button.dataset.lang;
+            if (!nextLang || nextLang === currentLang) return;
+
+            currentLang = nextLang;
+            localStorage.setItem('lang', nextLang);
+            await initPage();
+        });
+    });
+}
+
+function activateLanguageButton() {
+    document.documentElement.lang = currentLang === 'zh' ? 'zh-CN' : 'en';
+    document.title = currentLang === 'zh' ? 'wawaup的个人主页' : "wawaup's homepage";
+
+    document.querySelectorAll('.lang-btn').forEach(button => {
+        button.classList.toggle('is-active', button.dataset.lang === currentLang);
+    });
+}
+
+function applyStaticLanguage() {
+    document.querySelectorAll('[data-zh][data-en]').forEach(element => {
+        const text = element.dataset[currentLang];
+        if (typeof text === 'string') {
+            element.textContent = text;
         }
     });
 }
 
-// 核心渲染逻辑
-async function loadAllResumes() {
-    try {
-        const response = await fetch('./data.json');
-        const data = await response.json();
+function renderAllSections(data) {
+    SECTION_CONFIG.forEach(section => {
+        const container = document.getElementById(section.containerId);
+        if (!container) return;
 
-        // 对应 data.json 里的三个 key 和 HTML 里的三个 ID
-        renderSection(data.work, 'work-resume');
-        renderSection(data.dev, 'dev-resume');
-        renderSection(data.pm, 'pm-resume');
-    } catch (error) {
-        console.error("加载数据失败:", error);
+        container.innerHTML = '';
+        const items = Array.isArray(data[section.key]) ? data[section.key] : [];
+        items.forEach(item => {
+            const card = renderItemCard(item, section.type);
+            container.appendChild(card);
+        });
+    });
+}
+
+function renderItemCard(item, type) {
+    const article = createElement('article', `resume-card ${type}-card`);
+    article.appendChild(renderHeader(item, type));
+
+    if (type === 'education') {
+        article.appendChild(renderEducationBody(item));
+    } else {
+        article.appendChild(renderBulletList(item.bullets, type));
+
+        if (item.link?.url) {
+            article.appendChild(renderExternalLink(item.link));
+        }
+
+        if (type === 'project' && Array.isArray(item.images) && item.images.length > 0) {
+            article.appendChild(renderGallery(item.images));
+        }
+    }
+
+    return article;
+}
+
+function renderHeader(item, type) {
+    const header = createElement('div', 'item-header');
+    const titleGroup = createElement('div', 'item-title-group');
+    const titleLine = createElement('div', 'item-title-line');
+    const period = createElement('span', 'item-period', item.period || '');
+
+    if (type === 'work' && item.logo) {
+        const logo = createElement('img', 'company-logo');
+        logo.src = item.logo;
+        logo.alt = getLocalizedText(item.company);
+        titleLine.appendChild(logo);
+    }
+
+    const titleText = createElement('div', 'item-title-text');
+    const title = createElement('h3', 'item-title');
+    const inlineMeta = createElement('span', 'item-title-inline');
+    inlineMeta.textContent = buildInlineMeta(item, type);
+
+    if (type === 'education') {
+        title.appendChild(renderSchoolLink(item));
+    } else {
+        title.textContent = getLocalizedText(type === 'work' ? item.company : item.name);
+    }
+    title.appendChild(inlineMeta);
+    titleText.appendChild(title);
+    titleLine.appendChild(titleText);
+    titleGroup.append(titleLine, period);
+    header.appendChild(titleGroup);
+
+    return header;
+}
+
+function renderSchoolLink(item) {
+    const schoolName = getLocalizedText(item.school);
+    if (!item.schoolUrl) {
+        return document.createTextNode(schoolName);
+    }
+
+    const anchor = createElement('a', 'title-link', schoolName);
+    anchor.href = item.schoolUrl;
+    anchor.target = '_blank';
+    anchor.rel = 'noreferrer';
+    anchor.setAttribute('aria-label', `${schoolName} - ${getLocalizedText(LABELS.schoolWebsite)}`);
+    return anchor;
+}
+
+function buildInlineMeta(item, type) {
+    if (type === 'education') {
+        const parts = [
+            getLocalizedText(item.college),
+            getLocalizedText(item.major),
+            getLocalizedText(item.grade)
+        ].filter(Boolean);
+        return parts.length ? ` | ${parts.join(' | ')}` : '';
+    }
+
+    if (type === 'work') {
+        const parts = [
+            getLocalizedText(item.department),
+            getLocalizedText(item.position)
+        ].filter(Boolean);
+        return parts.length ? ` | ${parts.join(' | ')}` : '';
+    }
+
+    const role = getLocalizedText(item.role);
+    return role ? ` | ${role}` : '';
+}
+
+function renderEducationBody(item) {
+    const body = createElement('div', 'education-body');
+    body.appendChild(renderEducationSummaryRow(item));
+    body.appendChild(renderMetaRow(LABELS.campusRoles, getLocalizedText(item.campusRoles)));
+    return body;
+}
+
+function renderEducationSummaryRow(item) {
+    const row = createElement('div', 'meta-row meta-row-split');
+    row.append(
+        renderMetaPair(LABELS.gpa, item.gpa),
+        renderMetaPair(LABELS.honors, getLocalizedText(item.honors))
+    );
+    return row;
+}
+
+function renderMetaRow(label, value) {
+    const row = createElement('div', 'meta-row');
+    row.appendChild(renderMetaPair(label, value));
+    return row;
+}
+
+function renderMetaPair(label, value) {
+    const pair = createElement('span', 'meta-pair');
+    const labelElement = createElement('strong', 'meta-label', `${getLocalizedText(label)}：`);
+    const valueElement = createElement('span', 'meta-value', value || '');
+    pair.append(labelElement, valueElement);
+    return pair;
+}
+
+function renderBulletList(bullets, type) {
+    const localizedBullets = Array.isArray(bullets?.[currentLang]) ? bullets[currentLang] : [];
+    const list = createElement('ul', `bullet-list ${type === 'work' ? 'work-bullets' : 'project-bullets'}`);
+
+    localizedBullets.forEach(text => {
+        const item = createElement('li', 'bullet-item', text);
+        list.appendChild(item);
+    });
+
+    return list;
+}
+
+function renderExternalLink(link) {
+    const wrapper = createElement('div', 'item-link-row');
+    const anchor = createElement('a', 'item-link', getLocalizedText(link.label || LABELS.onlineLink));
+    anchor.href = link.url;
+    anchor.target = '_blank';
+    anchor.rel = 'noreferrer';
+    anchor.appendChild(createElement('span', 'item-link-arrow', '->'));
+    wrapper.appendChild(anchor);
+    return wrapper;
+}
+
+function renderGallery(images) {
+    const gallery = createElement('div', 'project-gallery');
+
+    images.forEach(image => {
+        const button = createElement('button', 'gallery-button');
+        button.type = 'button';
+        button.dataset.fullsrc = image.src;
+        button.dataset.caption = getLocalizedText(image.alt);
+
+        const img = createElement('img', 'gallery-image');
+        img.src = image.src;
+        img.alt = getLocalizedText(image.alt);
+
+        button.appendChild(img);
+        gallery.appendChild(button);
+    });
+
+    return gallery;
+}
+
+function renderNavigation() {
+    const navLinks = document.getElementById('nav-links');
+    if (!navLinks) return;
+
+    navLinks.innerHTML = '';
+    document.querySelectorAll('.resume-section').forEach(section => {
+        const link = createElement('a', 'nav-link');
+        link.href = `#${section.id}`;
+        link.dataset.target = section.id;
+        link.textContent = currentLang === 'zh' ? section.dataset.navZh : section.dataset.navEn;
+        navLinks.appendChild(link);
+    });
+}
+
+function observeSections() {
+    if (sectionObserver) {
+        sectionObserver.disconnect();
+    }
+
+    const navLinks = [...document.querySelectorAll('.nav-link')];
+    sectionObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+
+            navLinks.forEach(link => {
+                link.classList.toggle('is-active', link.dataset.target === entry.target.id);
+            });
+        });
+    }, {
+        rootMargin: '-35% 0px -50% 0px',
+        threshold: 0.1
+    });
+
+    document.querySelectorAll('.resume-section').forEach(section => {
+        sectionObserver.observe(section);
+    });
+}
+
+function observeCards() {
+    if (cardObserver) {
+        cardObserver.disconnect();
+    }
+
+    cardObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                cardObserver.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.15
+    });
+
+    document.querySelectorAll('.resume-card').forEach(card => {
+        cardObserver.observe(card);
+    });
+}
+
+function setupImageModal() {
+    const modal = document.getElementById('image-modal');
+    const modalImage = document.getElementById('image-modal-img');
+    const modalCaption = document.getElementById('image-modal-caption');
+    const closeButton = document.getElementById('image-modal-close');
+
+    if (!modal || !modalImage || !modalCaption || !closeButton) return;
+
+    document.addEventListener('click', event => {
+        const trigger = event.target.closest('.gallery-button');
+        if (trigger) {
+            modalImage.src = trigger.dataset.fullsrc || '';
+            modalImage.alt = trigger.dataset.caption || '';
+            modalCaption.textContent = trigger.dataset.caption || '';
+            modal.classList.add('is-open');
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.classList.add('modal-open');
+            return;
+        }
+
+        if (event.target === modal || event.target === closeButton) {
+            closeImageModal();
+        }
+    });
+
+    document.addEventListener('keydown', event => {
+        if (event.key === 'Escape') {
+            closeImageModal();
+        }
+    });
+
+    function closeImageModal() {
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+        modalImage.src = '';
+        modalImage.alt = '';
+        modalCaption.textContent = '';
+        document.body.classList.remove('modal-open');
     }
 }
 
-function renderSection(items, containerId) {
-    const container = document.getElementById(containerId);
-    if (!container) return;
-    container.innerHTML = ''; 
-
-    items.forEach(item => {
-        const langData = item[currentLang];
-        const expElem = document.createElement('div');
-        expElem.classList.add('experience');
-
-        // 修改逻辑：判断是否为工作经历容器 (work-resume)
-        // 如果是，则每一行加 💠；如果不是，则直接显示
-        const descriptionHTML = langData.desc
-            .map(text => {
-                if (containerId === 'work-resume') {
-                    return `<div>💠${text}</div>`;
-                } else {
-                    return `<div>${text}</div>`;
-                }
-            })
-            .join('');
-
-        expElem.innerHTML = `
-            <div class="header">
-                <span>
-                    ${item.logo ? `<img src="${item.logo}" style="width: 24px;"/>&nbsp;&nbsp;` : ''}
-                    ${langData.title} | ${langData.position}
-                </span>
-                <span class="period">${langData.period}</span>
-            </div>
-            <div class="description">
-                ${descriptionHTML}
-            </div>
-        `;
-        container.appendChild(expElem);
-    });
+function getLocalizedText(value) {
+    if (typeof value === 'string') return value;
+    if (!value || typeof value !== 'object') return '';
+    return value[currentLang] || value.zh || value.en || '';
 }
 
-function renderSidebar() {
-    const sidebar = document.getElementById('sidebar');
-    const navTitleText = currentLang === 'zh' ? '导航' : 'Navigation';
-    
-    // 1. 保留切换按钮，重新生成内部 HTML
-    // 注意：这里用 innerHTML 会覆盖掉原本写的 button，所以我们要重新塞进去
-    sidebar.innerHTML = `
-        <button id="toggle-sidebar" class="toggle-btn">
-            <i class="fas fa-chevron-left"></i>
-        </button>
-        <p style="font-weight: bold;color: gray;">
-            <img src="public/img/navi.svg" style="width: 24px;"/> &nbsp;&nbsp;${navTitleText}
-        </p>
-    `;
-
-    // 2. 重新挂载点击事件
-    document.getElementById('toggle-sidebar').addEventListener('click', () => {
-        sidebar.classList.toggle('collapsed');
-    });
-
-    // 3. 填充链接
-    const titles = document.querySelectorAll('.title');
-    titles.forEach((title, index) => {
-        if (!title.id) title.id = `section${index + 1}`;
-        const anchor = document.createElement('a');
-        anchor.href = `#${title.id}`;
-        
-        // 如果是中英混合，.textContent 可能会拿到多余空格，用 trim()
-        // 且只取文字部分，排除可能存在的子元素
-        anchor.textContent = title.innerText.replace(' ', '').trim(); 
-        
-        sidebar.appendChild(anchor);
-    });
+function createElement(tagName, className, text) {
+    const element = document.createElement(tagName);
+    if (className) {
+        element.className = className;
+    }
+    if (typeof text === 'string') {
+        element.textContent = text;
+    }
+    return element;
 }
