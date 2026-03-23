@@ -442,10 +442,6 @@ button {
     opacity: 0;
 }
 
-.timeline-sidebar.is-collapsed {
-    width: 146px;
-}
-
 .timeline-sidebar.is-collapsed .timeline-card {
     padding: 12px 12px 10px;
 }
@@ -475,6 +471,10 @@ button {
 .timeline-sidebar.is-collapsed .timeline-title {
     font-size: 0.88rem;
     line-height: 1.2;
+}
+
+.timeline-sidebar.is-collapsed .timeline-links {
+    display: none;
 }
 
 .timeline-links {
