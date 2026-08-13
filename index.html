@@ -3,187 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>wawaup的个人主页</title>
+    <title>wawaup 的个人主页</title>
+    <link rel="icon" href="public/img/favicon.svg" type="image/svg+xml">
+    <link rel="alternate icon" href="public/img/favicon.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Yellowtail&family=Outfit:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/marked@9/marked.min.js"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="page-background" aria-hidden="true">
-        <div class="bg-orb orb-left"></div>
-        <div class="bg-orb orb-right"></div>
-        <div class="bg-grid"></div>
-    </div>
-
-    <header class="hero-shell">
-        <div id="id-card" class="profile-card">
-            <div class="avatar-column">
-                <img class="avatar-image" src="public/img/avatar0.jpg" alt="Avatar">
-                <div class="profile-socials">
-                    <a class="social-link social-link-github" href="https://github.com/wawaup" target="_blank" rel="noreferrer" aria-label="GitHub" title="GitHub">
-                        <span class="profile-icon social-icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" focusable="false">
-                                <path d="M9 19c-4 1.2-4-2-5.5-2.5"></path>
-                                <path d="M15 21v-3.4a2.9 2.9 0 0 0-.8-2.1c2.6-.3 5.3-1.3 5.3-6a4.7 4.7 0 0 0-1.3-3.3 4.4 4.4 0 0 0-.1-3.2s-1-.3-3.4 1.3a11.8 11.8 0 0 0-6.2 0C6.1 2.7 5 3 5 3a4.4 4.4 0 0 0-.1 3.2 4.7 4.7 0 0 0-1.3 3.3c0 4.7 2.7 5.7 5.3 6a2.5 2.5 0 0 0-.7 1.9V21"></path>
-                            </svg>
-                        </span>
-                    </a>
-                    <span class="social-link social-link-linkedin is-placeholder" aria-label="LinkedIn coming soon" title="LinkedIn coming soon">
-                        <span class="profile-icon social-icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" focusable="false">
-                                <path d="M7 9v8"></path>
-                                <path d="M7 6.8a.2.2 0 1 1 0 .4.2.2 0 0 1 0-.4Z"></path>
-                                <path d="M11 17V9"></path>
-                                <path d="M11 12.4a3 3 0 0 1 6 0V17"></path>
-                            </svg>
-                        </span>
-                    </span>
-                </div>
-            </div>
-            <div class="profile-meta">
-                <div class="profile-row">
-                    <span class="profile-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" focusable="false">
-                            <path d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4Z"></path>
-                            <path d="M5.5 19.5c.7-3 3.5-5 6.5-5s5.8 2 6.5 5"></path>
-                        </svg>
-                    </span>
-                    <span data-zh="高雅" data-en="Ya Gao (Gloria)">高雅</span>
-                </div>
-                <div class="profile-row">
-                    <span class="profile-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" focusable="false">
-                            <rect x="4" y="6.5" width="16" height="11" rx="2"></rect>
-                            <path d="m5.5 8 6.5 5 6.5-5"></path>
-                        </svg>
-                    </span>
-                    <span>wawaupgao@163.com</span>
-                </div>
-                <div class="profile-row">
-                    <span class="profile-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" focusable="false">
-                            <path d="M7 10h10v8H7z"></path>
-                            <path d="M6 18h12"></path>
-                            <path d="M9.5 10V7.5"></path>
-                            <path d="M12 10V6"></path>
-                            <path d="M14.5 10V7.5"></path>
-                            <path d="M9.5 6.5c.6-.4.6-1.2 0-1.7-.6.5-.6 1.3 0 1.7Z"></path>
-                            <path d="M12 5c.6-.4.6-1.2 0-1.7-.6.5-.6 1.3 0 1.7Z"></path>
-                            <path d="M14.5 6.5c.6-.4.6-1.2 0-1.7-.6.5-.6 1.3 0 1.7Z"></path>
-                        </svg>
-                    </span>
-                    <span>2002.01.29</span>
-                </div>
-                <div class="profile-row">
-                    <span class="profile-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" focusable="false">
-                            <path d="m12 4 1.7 4 4.3 1.6-3.3 2.8 1 4.2-3.7-2.1-3.7 2.1 1-4.2L6 9.6 10.3 8Z"></path>
-                        </svg>
-                    </span>
-                    <span data-zh="美食、小说、游戏" data-en="Food, novels, gaming">美食、小说、游戏</span>
-                </div>
-            </div>
+    <header class="top-bar">
+        <div class="top-bar-brand">
+            <span class="site-wordmark" aria-label="Homepage">
+                <svg viewBox="0 0 248 56" role="img" focusable="false">
+                    <title>Homepage</title>
+                    <defs>
+                        <linearGradient id="homepage-ink" x1="0" y1="0" x2="1" y2="0.35">
+                            <stop offset="0%" stop-color="#2f6dff"/>
+                            <stop offset="34%" stop-color="#5a45f0"/>
+                            <stop offset="68%" stop-color="#9a46ff"/>
+                            <stop offset="100%" stop-color="#d06bff"/>
+                        </linearGradient>
+                        <filter id="homepage-brush" x="-8%" y="-20%" width="116%" height="140%">
+                            <feTurbulence type="fractalNoise" baseFrequency="0.04 0.09" numOctaves="2" seed="7" result="paper"/>
+                            <feDisplacementMap in="SourceGraphic" in2="paper" scale="1.1" xChannelSelector="R" yChannelSelector="G"/>
+                        </filter>
+                    </defs>
+                    <text class="wordmark-ink" x="4" y="40" filter="url(#homepage-brush)" stroke="url(#homepage-ink)" stroke-width="1.1" paint-order="stroke fill">Homepage</text>
+                </svg>
+            </span>
         </div>
-
-        <div class="hero-copy">
-            <p class="hero-kicker" data-zh="个人名片 / 简历主页" data-en="Personal Card / Resume Site">个人名片 / 简历主页</p>
-            <h1 data-zh="欢迎来到我的主页" data-en="Welcome to My Homepage">欢迎来到我的主页</h1>
-            <p class="hero-intro" data-zh="我把教育背景、工作经历和项目经历整理成了一张更清晰也更好逛的在线名片，希望它既专业，也有一点点个人趣味。" data-en="I organized my education, work, and project experience into a cleaner online resume that feels professional while keeping a little personality.">我把教育背景、工作经历和项目经历整理成了一张更清晰也更好逛的在线名片，希望它既专业，也有一点点个人趣味。</p>
+        <nav class="top-nav" aria-label="Main navigation">
+            <button type="button" class="page-tab is-active" data-page="resume" data-zh="简历" data-en="Resume">简历</button>
+            <button type="button" class="page-tab" data-page="blog" data-zh="博客" data-en="Blog">博客</button>
+        </nav>
+        <div class="top-bar-actions">
+            <div class="lang-switch" aria-label="Language switch">
+                <button type="button" class="lang-btn" data-lang="zh">中</button>
+                <button type="button" class="lang-btn" data-lang="en">EN</button>
+            </div>
         </div>
     </header>
 
-    <nav id="section-nav" class="section-nav">
-        <div class="nav-brand">
-            <span class="nav-brand-dot"></span>
-            <span data-zh="内容导航" data-en="Section Navigation">内容导航</span>
-        </div>
-        <div id="nav-links" class="nav-links"></div>
-        <div class="language-switch" aria-label="Language switch">
-            <button type="button" class="lang-btn" data-lang="zh">中文</button>
-            <button type="button" class="lang-btn" data-lang="en">EN</button>
-        </div>
-    </nav>
-
-    <main class="page-layout">
-        <aside id="timeline-sidebar" class="timeline-sidebar">
-            <div class="timeline-card">
-                <div class="timeline-topbar">
-                    <div>
-                        <p class="timeline-kicker" data-zh="Overview" data-en="Overview">Overview</p>
-                        <h2 class="timeline-title" data-zh="简历时间轴" data-en="Resume Timeline">简历时间轴</h2>
-                    </div>
-                    <button id="timeline-toggle" class="timeline-toggle" type="button" aria-expanded="true" aria-label="Collapse timeline">
-                        <span class="timeline-toggle-bar"></span>
-                        <span class="timeline-toggle-bar"></span>
-                    </button>
+    <div class="app-layout">
+        <aside class="sidebar">
+            <div class="profile-area">
+                <div class="avatar-ring">
+                    <img class="avatar-img" src="public/img/avatar.png" alt="Avatar">
                 </div>
-                <div id="timeline-links" class="timeline-links"></div>
+                <h1 class="profile-name" data-zh="高雅" data-en="Gao Ya(Gloria)">高雅</h1>
+                <p class="profile-bio" data-zh="AI · 产品 · 技术支持" data-en="AI · Product · Tech Support">AI · 产品 · 技术支持</p>
+                <ul class="profile-details" aria-label="Contact details">
+                    <li class="detail-item">
+                        <svg class="detail-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M1.5 5.5 8 9l6.5-3.5" stroke="currentColor" stroke-width="1.3"/></svg>
+                        <span>ya002@e.ntu.edu.sg</span>
+                    </li>
+                    <li class="detail-item">
+                        <svg class="detail-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="2" y="3" width="12" height="10" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M5 3V2M11 3V2M2 6.5h12" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+                        <span>2002.01.29</span>
+                    </li>
+                    <li class="detail-item">
+                        <svg class="detail-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.5 9.8 6H14l-3.4 2.5 1.3 4-3.9-2.5-3.9 2.5 1.3-4L2 6h4.2Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+                        <span data-zh="美食、小说、游戏" data-en="Food, novels, gaming">美食、小说、游戏</span>
+                    </li>
+                </ul>
+                <div class="profile-links">
+                    <a class="profile-link-btn" href="https://github.com/wawaup" target="_blank" rel="noreferrer" aria-label="GitHub">
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 19c-4 1.2-4-2-5.5-2.5M15 21v-3.4a2.9 2.9 0 0 0-.8-2.1c2.6-.3 5.3-1.3 5.3-6a4.7 4.7 0 0 0-1.3-3.3A4.4 4.4 0 0 0 20 4.9s-1-.3-3.4 1.3a11.8 11.8 0 0 0-6.2 0C8.1 4.6 7 4.9 7 4.9a4.4 4.4 0 0 0-.1 3.2 4.7 4.7 0 0 0-1.3 3.3c0 4.7 2.7 5.7 5.3 6a2.5 2.5 0 0 0-.7 1.9V21" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        GitHub
+                    </a>
+                    <span class="profile-link-btn is-soon" title="LinkedIn coming soon" aria-label="LinkedIn coming soon">
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 9v8M7 6.8a.2.2 0 1 1 0 .4.2.2 0 0 1 0-.4ZM11 17V9M11 12.4a3 3 0 0 1 6 0V17" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        LinkedIn
+                    </span>
+                </div>
             </div>
+            <nav id="section-tabs" class="section-nav" aria-label="Resume sections"></nav>
         </aside>
 
-        <div class="content-shell">
-            <div id="main-content" class="content-panel">
-                <section id="education" class="resume-section" data-nav-zh="教育背景" data-nav-en="Education">
-                    <div class="section-heading">
-                        <div class="section-icon">
-                            <img src="public/img/graduate.svg" alt="" aria-hidden="true">
-                        </div>
-                        <div>
-                            <p class="section-kicker" data-zh="Academic" data-en="Academic">Academic</p>
-                            <h2 class="title" data-zh="教育背景" data-en="Education">教育背景</h2>
-                        </div>
-                    </div>
+        <main class="main-content">
+            <div id="resume-view" class="page-view is-active">
+                <section id="education" class="resume-section is-active" data-nav-zh="教育背景" data-nav-en="Education">
+                    <div class="section-head"><span class="section-kicker">Academic</span><h2 class="section-title" data-zh="教育背景" data-en="Education">教育背景</h2></div>
                     <div id="education-list" class="resume-list"></div>
                 </section>
-
                 <section id="work" class="resume-section" data-nav-zh="工作经历" data-nav-en="Work Experience">
-                    <div class="section-heading">
-                        <div class="section-icon">
-                            <img src="public/img/project.svg" alt="" aria-hidden="true">
-                        </div>
-                        <div>
-                            <p class="section-kicker" data-zh="Career" data-en="Career">Career</p>
-                            <h2 class="title" data-zh="工作经历" data-en="Work Experience">工作经历</h2>
-                        </div>
-                    </div>
+                    <div class="section-head"><span class="section-kicker">Career</span><h2 class="section-title" data-zh="工作经历" data-en="Work Experience">工作经历</h2></div>
                     <div id="work-list" class="resume-list"></div>
                 </section>
-
                 <section id="dev-project" class="resume-section" data-nav-zh="专业项目经历" data-nav-en="Professional Projects">
-                    <div class="section-heading">
-                        <div class="section-icon">
-                            <img src="public/img/code.svg" alt="" aria-hidden="true">
-                        </div>
-                        <div>
-                            <p class="section-kicker" data-zh="Build" data-en="Build">Build</p>
-                            <h2 class="title" data-zh="专业项目经历" data-en="Professional Projects">专业项目经历</h2>
-                        </div>
-                    </div>
+                    <div class="section-head"><span class="section-kicker">Build</span><h2 class="section-title" data-zh="专业项目经历" data-en="Professional Projects">专业项目经历</h2></div>
                     <div id="dev-list" class="resume-list"></div>
                 </section>
-
                 <section id="pm-project" class="resume-section" data-nav-zh="产品项目经历" data-nav-en="Product Projects">
-                    <div class="section-heading">
-                        <div class="section-icon">
-                            <img src="public/img/product.svg" alt="" aria-hidden="true">
-                        </div>
-                        <div>
-                            <p class="section-kicker" data-zh="Product" data-en="Product">Product</p>
-                            <h2 class="title" data-zh="产品项目经历" data-en="Product Projects">产品项目经历</h2>
-                        </div>
-                    </div>
+                    <div class="section-head"><span class="section-kicker">Product</span><h2 class="section-title" data-zh="产品项目经历" data-en="Product Projects">产品项目经历</h2></div>
                     <div id="pm-list" class="resume-list"></div>
                 </section>
             </div>
-        </div>
-    </main>
+
+            <div id="blog-view" class="page-view">
+                <div id="blog-index">
+                    <div class="blog-toolbar">
+                        <div class="blog-search-wrap">
+                            <svg class="blog-search-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="m13.5 13.5 3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                            <input type="search" id="blog-search" class="blog-search-input" data-zh="搜索文章标题..." data-en="Search posts by title..." placeholder="搜索文章标题..." aria-label="Search posts">
+                        </div>
+                        <div id="blog-tags" class="blog-tag-filters" role="group" aria-label="Filter by tag"></div>
+                    </div>
+                    <div id="blog-list" class="blog-list"></div>
+                    <div id="blog-empty" class="blog-empty-state" hidden>
+                        <p class="blog-empty-main" data-zh="努力整理中.....^^" data-en="Working on it.....^^">努力整理中.....^^</p>
+                        <p class="blog-empty-sub" data-zh="暂无符合的文章" data-en="No posts match">暂无符合的文章</p>
+                    </div>
+                </div>
+                <div id="blog-post-view" class="blog-post-view" hidden>
+                    <button type="button" id="blog-back-btn" class="blog-back-btn">
+                        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M12.5 5 7.5 10l5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <span data-zh="返回列表" data-en="Back to list">返回列表</span>
+                    </button>
+                    <article id="blog-post-content" class="blog-post-body"></article>
+                </div>
+            </div>
+        </main>
+    </div>
 
     <div id="image-modal" class="image-modal" aria-hidden="true" role="dialog" aria-modal="true">
-        <button id="image-modal-prev" class="image-modal-nav image-modal-prev" type="button" aria-label="Previous image">&lt;</button>
-        <button id="image-modal-next" class="image-modal-nav image-modal-next" type="button" aria-label="Next image">&gt;</button>
-        <button id="image-modal-close" class="image-modal-close" type="button" aria-label="Close image viewer">x</button>
-        <figure class="image-modal-figure">
+        <button id="image-modal-close" class="modal-close" type="button" aria-label="Close">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+        <button id="image-modal-prev" class="modal-nav modal-prev" type="button" aria-label="Previous" hidden>
+            <svg viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button id="image-modal-next" class="modal-nav modal-next" type="button" aria-label="Next" hidden>
+            <svg viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <figure class="modal-figure">
             <img id="image-modal-img" src="" alt="">
             <figcaption id="image-modal-caption"></figcaption>
         </figure>

@@ -1,6 +1,41 @@
 {
   "education": [
     {
+      "logo": "public/img/NTU.png",
+      "school": {
+        "zh": "南洋理工大学",
+        "en": "Nanyang Technological University"
+      },
+      "schoolUrl": "https://www.ntu.edu.sg/",
+      "college": {
+        "zh": "计算机与数据科学学院",
+        "en": "College of Computing and Data Science"
+      },
+      "major": {
+        "zh": "人工智能理学硕士",
+        "en": "Master of Science in Artificial Intelligence"
+      },
+      "period": {
+        "zh": "2026.08 - 至今",
+        "en": "2026.08 - NOW"
+      },
+      "coreCourses": {
+        "zh": [
+          "INTRODUCTION TO AI & AI ETHICS",
+          "DEEP LEARNING & APPLICATIONS",
+          "DEEP NEURAL NETWORKS FOR NATURAL LANGUAGE PROCESSING",
+          "LARGE LANGUAGE MODELS"
+        ],
+        "en": [
+          "INTRODUCTION TO AI & AI ETHICS",
+          "DEEP LEARNING & APPLICATIONS",
+          "DEEP NEURAL NETWORKS FOR NATURAL LANGUAGE PROCESSING",
+          "LARGE LANGUAGE MODELS"
+        ]
+      }
+    },
+    {
+      "logo": "public/img/TJU.png",
       "school": {
         "zh": "天津大学",
         "en": "Tianjin University"

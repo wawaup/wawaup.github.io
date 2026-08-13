@@ -1,673 +1,717 @@
+/* ── Blog posts data ── */
+const BLOG_POSTS = [
+  {
+    id: "from-pm-to-tech-support",
+    title: {
+      zh: "从产品经理到技术支持：在微软的一年",
+      en: "From PM to Tech Support: A Year at Microsoft"
+    },
+    date: "2025-03-20",
+    tags: ["career", "microsoft", "identity"],
+    excerpt: {
+      zh: "大学四年做了很多产品项目，毕业后却去做了技术支持工程师——这个跨度让很多人困惑过，包括我自己。一年后回头看，这段经历给了我很多在 PM 岗位上得不到的东西。",
+      en: "Four years of product work in college, then a technical support role at Microsoft — a jump that puzzled many, including me. Looking back after a year, it gave me things a PM role simply couldn't."
+    },
+    content: {
+      zh: `大学四年做了很多产品项目，毕业后却去做了技术支持工程师——这个跨度让很多人困惑过，包括我自己。
+
+## 为什么去做技术支持？
+
+说实话，最开始接到微软 CSS 的 offer 时，我犹豫了很久。彼时我在校内做产品已经三年，带过团队，上过线过几款真实产品，路径看起来挺清晰。"为什么要去做客服？"——这是周围朋友问得最多的问题。
+
+但我当时有一个很直觉的判断：**我对技术的理解太浅了**。做产品三年，我可以写 PRD、做原型、跟用户访谈、推进跨团队项目，但我很难独立判断一个技术方案的合理性，也很难和工程师在同一个层面上讨论问题。
+
+Azure Entra ID 的技术支持岗位让我觉得有意思，是因为它要处理的不是用户界面问题，而是 OAuth 2.0、OIDC、SAML 2.0 这些认证协议的集成问题——纯粹的技术问题，没有模糊地带。
+
+## 那一年学到的事
+
+入职前三个月基本处于被淹没的状态。微软有完整的培训体系，但真正的学习来自 case。每天处理来自企业客户的认证问题：token 获取失败、条件访问策略误配置、SAML 断言格式错误……
+
+几个月之后，我发现自己能在 5 分钟内大致判断一个 case 的根因方向，而不是对着错误日志发呆。这种**系统性诊断思维**是以前做产品时从未训练过的。
+
+另一件意外的收获是：**我学会了精准表达**。技术支持的核心是"帮别人解决问题"，客户是不同背景的开发者，有的经验丰富，有的刚接触云服务。同一个问题要能对不同受众讲清楚，这逼我养成了先确认对方心智模型、再组织语言的习惯。
+
+## 团队 Hackathon：用 LangChain 做 RAG 诊断助手
+
+在微软做 TSE，另一件让我兴奋的事是内部 Hackathon。我们团队在一次 Hackathon 里用 LangChain + GPT-4 做了一个 RAG 诊断助手——把海量技术文档向量化索引，然后通过自然语言检索来辅助定位问题。
+
+从产品角度看，这个工具本质上是把诊断流程中"查文档"这一步自动化了。效果确实不错，在内测里 MTTR（平均处理时长）下降明显。更重要的是，做这个项目的过程让我第一次把"LLM 作为工具"的想法落地成了真实系统，而不只是停留在概念上。
+
+## 去 NTU 读 AI 硕士
+
+一年技术支持经历之后，我拿到了南洋理工 AI 硕士的 offer。这个决定比离开 PM 路径更难做，毕竟放弃了稳定薪资和积累中的技术深度，去重新做学生。
+
+但那次 Hackathon 之后我意识到：我最想做的事，是在 AI 系统里做产品和工程的交叉。这需要我对模型本身有足够深的理解，而不只是会调用 API。
+
+所以去读书。2026 年 8 月，NTU，AI。
+
+---
+
+这篇文章写于刚到新加坡的第一周，时差还没倒过来，但很期待接下来两年能学到什么。`
+    }
+  }
+];
+
+/* ── Section config ── */
 const SECTION_CONFIG = [
-    { key: "education", containerId: "education-list", sectionId: "education", type: "education" },
-    { key: "work", containerId: "work-list", sectionId: "work", type: "work" },
-    { key: "dev", containerId: "dev-list", sectionId: "dev-project", type: "project" },
-    { key: "pm", containerId: "pm-list", sectionId: "pm-project", type: "project" }
+  { key: "education", containerId: "education-list", sectionId: "education", type: "education" },
+  { key: "work",      containerId: "work-list",      sectionId: "work",       type: "work" },
+  { key: "dev",       containerId: "dev-list",        sectionId: "dev-project",type: "project" },
+  { key: "pm",        containerId: "pm-list",         sectionId: "pm-project", type: "project" }
 ];
 
 const LABELS = {
-    gpa: { zh: "加权 / GPA", en: "Weighted Avg / GPA" },
-    honors: { zh: "荣誉", en: "Honors" },
-    campusRoles: { zh: "在校担任", en: "Campus Roles" },
-    onlineLink: { zh: "在线展示", en: "Online Link" },
-    schoolWebsite: { zh: "学校官网", en: "School Website" }
+  gpa:           { zh: "加权 / GPA",  en: "Weighted Avg / GPA" },
+  honors:        { zh: "荣誉",        en: "Honors" },
+  campusRoles:   { zh: "在校担任",    en: "Campus Roles" },
+  coreCourses:   { zh: "核心课程",    en: "Core Courses" },
+  onlineLink:    { zh: "在线展示",    en: "Online Link" },
+  schoolWebsite: { zh: "学校官网",    en: "School Website" }
 };
 
-const TIMELINE_SHORT_LABELS = {
-    zh: {
-        "基于机器学习的海洋牧场生物分布与环境因子的关系建模": "海洋牧场建模（毕设）",
-        "基于树莓派的语音交互系统": "树莓派语音交互",
-        "知识工程与问答系统系列实践": "知识工程与 KGQA",
-        "天津大学校友之家小程序": "校友之家小程序",
-        "TWT Studio（天津大学）": "TWT Studio Leadership",
-        "方寸流年摄影比赛平台": "方寸流年摄影平台",
-        "微北洋 4.0": "微北洋 4.0",
-        "天外天招募中心": "招募中心"
-    },
-    en: {
-        "Modeling the Relationship Between Marine Ranching Species Distribution and Environmental Factors Using Machine Learning": "Marine Ranching Modeling",
-        "Raspberry Pi-based Voice Interaction System": "Raspberry Pi Voice System",
-        "Knowledge Engineering and KGQA Practice Series": "Knowledge Engineering & KGQA",
-        "Tianjin University Alumni Home Mini-Program": "Alumni Home Mini-Program",
-        "TWT Studio (Tianjin University)": "TWT Studio Leadership",
-        "Fangcun Liunian Photography Competition Platform": "Photography Platform",
-        "WePeiyang 4.0": "WePeiyang 4.0",
-        "TWT Recruitment Center": "Recruitment Center"
-    }
-};
-
-let currentLang = getInitialLanguage();
+/* ── State ── */
+let currentLang     = getInitialLanguage();
+let currentPage     = "resume";
+let currentSection  = "education";
 let resumeDataPromise;
-let sectionObserver;
 let cardRevealObserver;
-let timelineObserver;
 let galleryResizeQueued = false;
 let galleryResizeHandlerBound = false;
-const imageModalState = {
-    galleryButtons: [],
-    currentIndex: 0
-};
+const imageModalState = { galleryButtons: [], currentIndex: 0 };
 
+/* Blog state */
+let blogActiveTag    = null;   /* null = all */
+let blogSearchQuery  = "";
+let blogCurrentPostId = null;
+
+/* ── Boot ── */
 document.addEventListener("DOMContentLoaded", async () => {
-    setupLanguageSwitch();
-    setupTimelineToggle();
-    setupImageModal();
-    setupGalleryResizeHandler();
-    await initPage();
+  setupWordmarkDraw();
+  setupLanguageSwitch();
+  setupPageTabs();
+  setupImageModal();
+  setupGalleryResizeHandler();
+  setupBlogControls();
+  await initPage();
 });
 
-function getInitialLanguage() {
-    const savedLang = localStorage.getItem("lang");
-    if (savedLang) return savedLang;
+function setupWordmarkDraw() {
+  const mark = document.querySelector(".site-wordmark");
+  if (!mark) return;
 
-    const browserLang = navigator.language || navigator.userLanguage || "zh";
-    return browserLang.toLowerCase().includes("en") ? "en" : "zh";
+  const start = () => {
+    mark.classList.add("is-ready");
+    mark.addEventListener("animationend", () => mark.classList.add("is-drawn"), { once: true });
+  };
+
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    mark.classList.add("is-ready", "is-drawn");
+    return;
+  }
+
+  if (document.fonts?.ready) {
+    document.fonts.ready.then(start);
+    return;
+  }
+  start();
+}
+
+function getInitialLanguage() {
+  const saved = localStorage.getItem("lang");
+  if (saved) return saved;
+  const b = navigator.language || "zh";
+  return b.toLowerCase().startsWith("en") ? "en" : "zh";
 }
 
 async function initPage() {
-    const data = await loadResumeData();
-    applyStaticLanguage();
-    renderAllSections(data);
-    refreshProjectGalleries();
-    renderNavigation();
-    renderTimeline(data);
-    activateLanguageButton();
-    observeSections();
-    observeTimelineItems();
-    revealCardsOnScroll();
+  const data = await loadResumeData();
+  applyStaticLanguage();
+  renderAllSections(data);
+  refreshProjectGalleries();
+  renderSectionTabs();
+  activateLanguageButton();
+  activatePageTab();
+  activateSectionTab();
+  revealCardsOnScroll();
+  renderBlogPage();
 }
 
 async function loadResumeData() {
-    if (!resumeDataPromise) {
-        resumeDataPromise = fetch("./data.json").then((response) => {
-            if (!response.ok) {
-                throw new Error(`Failed to load data.json: ${response.status}`);
-            }
-            return response.json();
-        });
-    }
-
-    return resumeDataPromise;
+  if (!resumeDataPromise) {
+    resumeDataPromise = fetch("./data.json").then(r => {
+      if (!r.ok) throw new Error(`data.json: ${r.status}`);
+      return r.json();
+    });
+  }
+  return resumeDataPromise;
 }
 
+/* ── Language ── */
 function setupLanguageSwitch() {
-    document.querySelectorAll(".lang-btn").forEach((button) => {
-        button.addEventListener("click", async () => {
-            const nextLang = button.dataset.lang;
-            if (!nextLang || nextLang === currentLang) return;
-
-            currentLang = nextLang;
-            localStorage.setItem("lang", nextLang);
-            await initPage();
-        });
+  document.querySelectorAll(".lang-btn").forEach(btn => {
+    btn.addEventListener("click", async () => {
+      const next = btn.dataset.lang;
+      if (!next || next === currentLang) return;
+      currentLang = next;
+      localStorage.setItem("lang", next);
+      await initPage();
     });
-}
-
-function setupTimelineToggle() {
-    const toggle = document.getElementById("timeline-toggle");
-    const sidebar = document.getElementById("timeline-sidebar");
-    if (!toggle || !sidebar) return;
-
-    toggle.addEventListener("click", () => {
-        const collapsed = sidebar.classList.toggle("is-collapsed");
-        toggle.setAttribute("aria-expanded", String(!collapsed));
-        toggle.setAttribute("aria-label", collapsed ? "Expand timeline" : "Collapse timeline");
-    });
+  });
 }
 
 function activateLanguageButton() {
-    document.documentElement.lang = currentLang === "zh" ? "zh-CN" : "en";
-    document.title = currentLang === "zh" ? "wawaup的个人主页" : "wawaup's homepage";
-
-    document.querySelectorAll(".lang-btn").forEach((button) => {
-        button.classList.toggle("is-active", button.dataset.lang === currentLang);
-    });
+  document.documentElement.lang = currentLang === "zh" ? "zh-CN" : "en";
+  document.title = currentLang === "zh" ? "wawaup 的个人主页" : "wawaup's homepage";
+  document.querySelectorAll(".lang-btn").forEach(btn => {
+    btn.classList.toggle("is-active", btn.dataset.lang === currentLang);
+  });
 }
 
 function applyStaticLanguage() {
-    document.querySelectorAll("[data-zh][data-en]").forEach((element) => {
-        const text = element.dataset[currentLang];
-        if (typeof text === "string") {
-            element.textContent = text;
-        }
-    });
+  document.querySelectorAll("[data-zh][data-en]").forEach(el => {
+    const text = el.dataset[currentLang];
+    if (typeof text !== "string") return;
+    if (el instanceof HTMLInputElement || el instanceof HTMLTextAreaElement) {
+      el.placeholder = text;
+      return;
+    }
+    el.textContent = text;
+  });
 }
 
-function renderAllSections(data) {
-    SECTION_CONFIG.forEach((section) => {
-        const container = document.getElementById(section.containerId);
-        if (!container) return;
-
-        container.innerHTML = "";
-        const items = Array.isArray(data[section.key]) ? data[section.key] : [];
-
-        items.forEach((item, index) => {
-            const cardId = getCardId(section.key, index);
-            const card = renderItemCard(item, section.type, cardId);
-            container.appendChild(card);
-        });
+/* ── Page tabs ── */
+function setupPageTabs() {
+  document.querySelectorAll(".page-tab").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const page = btn.dataset.page;
+      if (!page || page === currentPage) return;
+      currentPage = page;
+      activatePageTab();
     });
+  });
+}
+
+function activatePageTab() {
+  document.querySelectorAll(".page-tab").forEach(btn => {
+    btn.classList.toggle("is-active", btn.dataset.page === currentPage);
+  });
+  document.getElementById("resume-view")?.classList.toggle("is-active", currentPage === "resume");
+  document.getElementById("blog-view")?.classList.toggle("is-active",   currentPage === "blog");
+  const nav = document.getElementById("section-tabs");
+  if (nav) nav.classList.toggle("is-hidden", currentPage !== "resume");
+}
+
+/* ── Section tabs ── */
+function renderSectionTabs() {
+  const container = document.getElementById("section-tabs");
+  if (!container) return;
+  container.innerHTML = "";
+  document.querySelectorAll(".resume-section").forEach(section => {
+    const btn = createElement("button", "section-tab");
+    btn.type = "button";
+    btn.dataset.section = section.id;
+    btn.textContent = currentLang === "zh" ? section.dataset.navZh : section.dataset.navEn;
+    btn.addEventListener("click", () => {
+      if (currentSection === section.id) return;
+      currentSection = section.id;
+      activateSectionTab();
+    });
+    container.appendChild(btn);
+  });
+}
+
+function activateSectionTab() {
+  document.querySelectorAll(".section-tab").forEach(btn => {
+    btn.classList.toggle("is-active", btn.dataset.section === currentSection);
+  });
+  document.querySelectorAll(".resume-section").forEach(section => {
+    section.classList.toggle("is-active", section.id === currentSection);
+  });
+  revealCardsOnScroll();
+  refreshProjectGalleries();
+}
+
+/* ── Render all resume sections ── */
+function renderAllSections(data) {
+  SECTION_CONFIG.forEach(section => {
+    const container = document.getElementById(section.containerId);
+    if (!container) return;
+    container.innerHTML = "";
+    const items = Array.isArray(data[section.key]) ? data[section.key] : [];
+    items.forEach((item, index) => {
+      container.appendChild(renderItemCard(item, section.type, getCardId(section.key, index)));
+    });
+  });
 }
 
 function renderItemCard(item, type, cardId) {
-    const article = createElement("article", `resume-card ${type}-card`);
-    article.id = cardId;
-    article.appendChild(renderHeader(item, type));
-
-    if (type === "education") {
-        article.appendChild(renderEducationBody(item));
-    } else {
-        article.appendChild(renderBulletList(item.bullets, type));
-
-        if (item.link?.url) {
-            article.appendChild(renderExternalLink(item.link));
-        }
-
-        if (type === "project" && Array.isArray(item.images) && item.images.length > 0) {
-            article.appendChild(renderGallery(item.images));
-        }
+  const article = createElement("article", `resume-card ${type}-card`);
+  article.id = cardId;
+  article.appendChild(renderHeader(item, type));
+  if (type === "education") {
+    article.appendChild(renderEducationBody(item));
+  } else {
+    article.appendChild(renderBulletList(item.bullets, type));
+    if (item.link?.url) article.appendChild(renderExternalLink(item.link));
+    if (type === "project" && Array.isArray(item.images) && item.images.length > 0) {
+      article.appendChild(renderGallery(item.images));
     }
-
-    return article;
+  }
+  return article;
 }
 
 function renderHeader(item, type) {
-    const header = createElement("div", "item-header");
-    const titleGroup = createElement("div", "item-title-group");
-    const titleLine = createElement("div", "item-title-line");
-    const period = createElement("span", "item-period", item.period || "");
+  const header = createElement("div", "item-header");
+  const line = createElement("div", "item-title-line");
 
-    if (type === "work" && item.logo) {
-        const logo = createElement("img", "company-logo");
-        logo.src = item.logo;
-        logo.alt = getLocalizedText(item.company);
-        titleLine.appendChild(logo);
-    }
+  if (item.logo && (type === "work" || type === "education")) {
+    const logo = createElement("img", type === "education" ? "school-logo" : "company-logo");
+    logo.src = item.logo;
+    logo.alt = type === "education" ? getLocalizedText(item.school) : getLocalizedText(item.company);
+    line.appendChild(logo);
+  }
 
-    const titleText = createElement("div", "item-title-text");
-    const title = createElement("h3", "item-title");
-    const inlineMeta = createElement("span", "item-title-inline");
-    inlineMeta.textContent = buildInlineMeta(item, type);
+  const titleText = createElement("div", "item-title-text");
+  const title = createElement("h3", "item-title");
 
-    if (type === "education") {
-        title.appendChild(renderSchoolLink(item));
-    } else {
-        title.textContent = getEntryTitle(item, type);
-    }
+  if (type === "education") {
+    title.appendChild(renderSchoolLink(item));
+  } else {
+    title.textContent = getEntryTitle(item, type);
+  }
 
-    title.appendChild(inlineMeta);
-    titleText.appendChild(title);
-    titleLine.appendChild(titleText);
-    titleGroup.append(titleLine, period);
-    header.appendChild(titleGroup);
+  titleText.appendChild(title);
+  const subtitle = buildSubtitle(item, type);
+  if (subtitle) {
+    titleText.appendChild(createElement("p", "item-subtitle", subtitle));
+  }
+  line.appendChild(titleText);
 
-    return header;
+  header.appendChild(line);
+  header.appendChild(createElement("span", "item-period", formatPeriod(item.period)));
+  return header;
 }
 
 function renderSchoolLink(item) {
-    const schoolName = getLocalizedText(item.school);
-    if (!item.schoolUrl) {
-        return document.createTextNode(schoolName);
-    }
-
-    const anchor = createElement("a", "title-link", schoolName);
-    anchor.href = item.schoolUrl;
-    anchor.target = "_blank";
-    anchor.rel = "noreferrer";
-    anchor.setAttribute("aria-label", `${schoolName} - ${getLocalizedText(LABELS.schoolWebsite)}`);
-    return anchor;
+  const name = getLocalizedText(item.school);
+  if (!item.schoolUrl) return document.createTextNode(name);
+  const a = createElement("a", "title-link", name);
+  a.href = item.schoolUrl;
+  a.target = "_blank";
+  a.rel = "noreferrer";
+  a.setAttribute("aria-label", `${name} - ${getLocalizedText(LABELS.schoolWebsite)}`);
+  return a;
 }
 
-function buildInlineMeta(item, type) {
-    if (type === "education") {
-        const parts = [
-            getLocalizedText(item.college),
-            getLocalizedText(item.major),
-            getLocalizedText(item.grade)
-        ].filter(Boolean);
-        return parts.length ? ` | ${parts.join(" | ")}` : "";
-    }
+function buildSubtitle(item, type) {
+  if (type === "education") {
+    return [getLocalizedText(item.college), getLocalizedText(item.major), getLocalizedText(item.grade)]
+      .filter(Boolean).join(" / ");
+  }
+  if (type === "work") {
+    return [getLocalizedText(item.department), getLocalizedText(item.position)]
+      .filter(Boolean).join(" / ");
+  }
+  return getLocalizedText(item.role);
+}
 
-    if (type === "work") {
-        const parts = [
-            getLocalizedText(item.department),
-            getLocalizedText(item.position)
-        ].filter(Boolean);
-        return parts.length ? ` | ${parts.join(" | ")}` : "";
-    }
-
-    const role = getLocalizedText(item.role);
-    return role ? ` | ${role}` : "";
+function formatPeriod(period) {
+  const raw = getLocalizedText(period);
+  if (!raw) return "";
+  const localized = currentLang === "en" ? raw.replace(/至今/g, "NOW") : raw;
+  return localized.replace(/\s*-\s*/g, " - ");
 }
 
 function renderEducationBody(item) {
-    const body = createElement("div", "education-body");
-    body.appendChild(renderEducationSummaryRow(item));
-    body.appendChild(renderMetaRow(LABELS.campusRoles, getLocalizedText(item.campusRoles)));
-    return body;
+  const body = createElement("div", "education-body");
+  const summaryParts = [];
+  if (item.gpa) summaryParts.push(renderMetaPair(LABELS.gpa, item.gpa));
+  const honors = getLocalizedText(item.honors);
+  if (honors) summaryParts.push(renderMetaPair(LABELS.honors, honors));
+  if (summaryParts.length) {
+    const row = createElement("div", "meta-row");
+    row.append(...summaryParts);
+    body.appendChild(row);
+  }
+  const campusRoles = getLocalizedText(item.campusRoles);
+  if (campusRoles) body.appendChild(renderMetaRow(LABELS.campusRoles, campusRoles));
+  const coreCourses = getLocalizedCoreCourses(item.coreCourses);
+  if (coreCourses) body.appendChild(renderMetaRow(LABELS.coreCourses, coreCourses));
+  return body;
 }
 
-function renderEducationSummaryRow(item) {
-    const row = createElement("div", "meta-row meta-row-split");
-    row.append(
-        renderMetaPair(LABELS.gpa, item.gpa),
-        renderMetaPair(LABELS.honors, getLocalizedText(item.honors))
-    );
-    return row;
+function getLocalizedCoreCourses(cc) {
+  if (!cc) return "";
+  const v = cc[currentLang] ?? cc.zh ?? cc.en;
+  if (Array.isArray(v)) return v.filter(Boolean).join(currentLang === "zh" ? "；" : ", ");
+  return v || "";
 }
 
 function renderMetaRow(label, value) {
-    const row = createElement("div", "meta-row");
-    row.appendChild(renderMetaPair(label, value));
-    return row;
+  const row = createElement("div", "meta-row");
+  row.appendChild(renderMetaPair(label, value));
+  return row;
 }
 
 function renderMetaPair(label, value) {
-    const pair = createElement("span", "meta-pair");
-    const labelElement = createElement("strong", "meta-label", `${getLocalizedText(label)}：`);
-    const valueElement = createElement("span", "meta-value", value || "");
-    pair.append(labelElement, valueElement);
-    return pair;
+  const pair = createElement("span", "meta-pair");
+  pair.append(
+    createElement("strong", "meta-label", `${getLocalizedText(label)}：`),
+    createElement("span", "meta-value", value || "")
+  );
+  return pair;
 }
 
 function renderBulletList(bullets, type) {
-    const localizedBullets = Array.isArray(bullets?.[currentLang]) ? bullets[currentLang] : [];
-    const list = createElement("ul", `bullet-list ${type === "work" ? "work-bullets" : "project-bullets"}`);
-
-    localizedBullets.forEach((text) => {
-        const item = createElement("li", "bullet-item", text);
-        list.appendChild(item);
-    });
-
-    return list;
+  const items = Array.isArray(bullets?.[currentLang]) ? bullets[currentLang] : [];
+  const list = createElement("ul", "bullet-list");
+  items.forEach(text => list.appendChild(createElement("li", "bullet-item", text)));
+  return list;
 }
 
 function renderExternalLink(link) {
-    const wrapper = createElement("div", "item-link-row");
-    const anchor = createElement("a", "item-link", getLocalizedText(link.label || LABELS.onlineLink));
-    anchor.href = link.url;
-    anchor.target = "_blank";
-    anchor.rel = "noreferrer";
-    anchor.appendChild(createElement("span", "item-link-arrow", "->"));
-    wrapper.appendChild(anchor);
-    return wrapper;
+  const wrapper = createElement("div", "item-link-row");
+  const a = createElement("a", "item-link", getLocalizedText(link.label || LABELS.onlineLink));
+  a.href = link.url;
+  a.target = "_blank";
+  a.rel = "noreferrer";
+  a.appendChild(createElement("span", "item-link-arrow", "↗"));
+  wrapper.appendChild(a);
+  return wrapper;
 }
 
 function renderGallery(images) {
-    const gallery = createElement("div", "project-gallery");
-    gallery.dataset.count = String(images.length);
-
-    images.forEach((image, index) => {
-        const button = createElement("button", "gallery-button");
-        button.type = "button";
-        button.dataset.fullsrc = image.src;
-        button.dataset.caption = getLocalizedText(image.alt);
-        button.dataset.index = String(index);
-
-        const img = createElement("img", "gallery-image");
-        img.src = image.src;
-        img.alt = getLocalizedText(image.alt);
-        img.loading = "lazy";
-        img.decoding = "async";
-
-        button.appendChild(img);
-        gallery.appendChild(button);
-    });
-
-    return gallery;
+  const gallery = createElement("div", "project-gallery");
+  gallery.dataset.count = String(images.length);
+  images.forEach((image, index) => {
+    const btn = createElement("button", "gallery-button");
+    btn.type = "button";
+    btn.dataset.fullsrc  = image.src;
+    btn.dataset.caption  = getLocalizedText(image.alt);
+    btn.dataset.index    = String(index);
+    const img = createElement("img", "gallery-image");
+    img.src = image.src;
+    img.alt = getLocalizedText(image.alt);
+    img.loading = "lazy";
+    img.decoding = "async";
+    btn.appendChild(img);
+    gallery.appendChild(btn);
+  });
+  return gallery;
 }
 
+/* ── Gallery layout ── */
 function setupGalleryResizeHandler() {
-    if (galleryResizeHandlerBound) return;
-
-    galleryResizeHandlerBound = true;
-    window.addEventListener("resize", queueGalleryLayout, { passive: true });
-}
-
-function queueGalleryLayout() {
+  if (galleryResizeHandlerBound) return;
+  galleryResizeHandlerBound = true;
+  window.addEventListener("resize", () => {
     if (galleryResizeQueued) return;
-
     galleryResizeQueued = true;
-    window.requestAnimationFrame(() => {
-        galleryResizeQueued = false;
-        refreshProjectGalleries();
-    });
+    requestAnimationFrame(() => { galleryResizeQueued = false; refreshProjectGalleries(); });
+  }, { passive: true });
 }
 
 function refreshProjectGalleries() {
-    document.querySelectorAll(".project-gallery").forEach((gallery) => {
-        layoutProjectGallery(gallery);
-    });
+  document.querySelectorAll(".project-gallery").forEach(g => layoutProjectGallery(g));
 }
 
 function layoutProjectGallery(gallery) {
-    const styles = window.getComputedStyle(gallery);
-    const rowHeight = parseFloat(styles.getPropertyValue("grid-auto-rows")) || 8;
-    const gap = parseFloat(styles.getPropertyValue("gap")) || 10;
-    const columnCount = styles.gridTemplateColumns.split(" ").filter(Boolean).length || 1;
+  const styles = getComputedStyle(gallery);
+  const rowH   = parseFloat(styles.getPropertyValue("grid-auto-rows")) || 8;
+  const gap    = parseFloat(styles.gap) || 8;
+  const cols   = styles.gridTemplateColumns.split(" ").filter(Boolean).length || 1;
 
-    gallery.querySelectorAll(".gallery-button").forEach((button) => {
-        const image = button.querySelector(".gallery-image");
-        if (!image) return;
-
-        if (!image.complete || !image.naturalWidth || !image.naturalHeight) {
-            image.addEventListener("load", queueGalleryLayout, { once: true });
-            return;
-        }
-
-        const ratio = image.naturalWidth / image.naturalHeight;
-        const { shape, colSpan } = getGalleryShape(ratio, columnCount);
-        button.dataset.shape = shape;
-        button.style.setProperty("--gallery-col-span", String(colSpan));
-
-        const renderedWidth = button.clientWidth || image.clientWidth;
-        if (!renderedWidth) return;
-
-        const heightAdjustment = getGalleryHeightAdjustment(shape);
-        const estimatedHeight = renderedWidth * (image.naturalHeight / image.naturalWidth) * heightAdjustment;
-        const span = Math.max(14, Math.min(48, Math.ceil((estimatedHeight + gap) / (rowHeight + gap))));
-        button.style.setProperty("--gallery-span", String(span));
-    });
+  gallery.querySelectorAll(".gallery-button").forEach(btn => {
+    const img = btn.querySelector(".gallery-image");
+    if (!img) return;
+    if (!img.complete || !img.naturalWidth || !img.naturalHeight) {
+      img.addEventListener("load", refreshProjectGalleries, { once: true });
+      return;
+    }
+    const ratio = img.naturalWidth / img.naturalHeight;
+    const { shape, colSpan } = getGalleryShape(ratio, cols);
+    btn.dataset.shape = shape;
+    btn.style.setProperty("--gallery-col-span", String(colSpan));
+    const w = btn.clientWidth || img.clientWidth;
+    if (!w) return;
+    const adj = shape === "panorama" ? 0.8 : shape === "landscape" ? 0.92 : shape === "poster" ? 1.1 : 1;
+    const h   = w * (img.naturalHeight / img.naturalWidth) * adj;
+    const span = Math.max(14, Math.min(48, Math.ceil((h + gap) / (rowH + gap))));
+    btn.style.setProperty("--gallery-span", String(span));
+  });
 }
 
-function getGalleryShape(ratio, columnCount) {
-    if (columnCount <= 1) {
-        return { shape: "standard", colSpan: 1 };
-    }
-
-    if (ratio >= 2.1 && columnCount >= 3) {
-        return { shape: "panorama", colSpan: Math.min(3, columnCount) };
-    }
-
-    if (ratio >= 1.45) {
-        return { shape: "landscape", colSpan: Math.min(2, columnCount) };
-    }
-
-    if (ratio <= 0.62) {
-        return { shape: "poster", colSpan: 1 };
-    }
-
-    if (ratio <= 0.84) {
-        return { shape: "portrait", colSpan: 1 };
-    }
-
-    return { shape: "standard", colSpan: 1 };
+function getGalleryShape(ratio, cols) {
+  if (cols <= 1)             return { shape: "standard",  colSpan: 1 };
+  if (ratio >= 2.1 && cols >= 3) return { shape: "panorama",  colSpan: Math.min(3, cols) };
+  if (ratio >= 1.45)         return { shape: "landscape", colSpan: Math.min(2, cols) };
+  if (ratio <= 0.62)         return { shape: "poster",    colSpan: 1 };
+  if (ratio <= 0.84)         return { shape: "portrait",  colSpan: 1 };
+  return { shape: "standard", colSpan: 1 };
 }
 
-function getGalleryHeightAdjustment(shape) {
-    if (shape === "panorama") return 0.8;
-    if (shape === "landscape") return 0.92;
-    if (shape === "poster") return 1.1;
-    return 1;
-}
-
-function renderNavigation() {
-    const navLinks = document.getElementById("nav-links");
-    if (!navLinks) return;
-
-    navLinks.innerHTML = "";
-    document.querySelectorAll(".resume-section").forEach((section) => {
-        const link = createElement("a", "nav-link");
-        link.href = `#${section.id}`;
-        link.dataset.target = section.id;
-        link.textContent = currentLang === "zh" ? section.dataset.navZh : section.dataset.navEn;
-        navLinks.appendChild(link);
-    });
-}
-
-function renderTimeline(data) {
-    const timelineLinks = document.getElementById("timeline-links");
-    if (!timelineLinks) return;
-
-    timelineLinks.innerHTML = "";
-
-    SECTION_CONFIG.forEach((section) => {
-        const items = Array.isArray(data[section.key]) ? data[section.key] : [];
-        const sectionElement = document.getElementById(section.sectionId);
-        if (!sectionElement || items.length === 0) return;
-
-        const group = createElement("section", "timeline-group");
-        const groupTitle = createElement(
-            "a",
-            "timeline-group-title",
-            currentLang === "zh" ? sectionElement.dataset.navZh : sectionElement.dataset.navEn
-        );
-        groupTitle.href = `#${section.sectionId}`;
-        group.appendChild(groupTitle);
-
-        const list = createElement("div", "timeline-group-list");
-        items.forEach((item, index) => {
-            const link = createElement("a", "timeline-link");
-            link.href = `#${getCardId(section.key, index)}`;
-            link.dataset.target = getCardId(section.key, index);
-
-            const period = createElement("span", "timeline-link-period", item.period || "");
-            const text = createElement("span", "timeline-link-text", getTimelineLabel(item, section.type));
-
-            link.append(period, text);
-            list.appendChild(link);
-        });
-
-        group.appendChild(list);
-        timelineLinks.appendChild(group);
-    });
-}
-
-function observeSections() {
-    if (sectionObserver) {
-        sectionObserver.disconnect();
-    }
-
-    const navLinks = [...document.querySelectorAll(".nav-link")];
-    sectionObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (!entry.isIntersecting) return;
-
-            navLinks.forEach((link) => {
-                link.classList.toggle("is-active", link.dataset.target === entry.target.id);
-            });
-        });
-    }, {
-        rootMargin: "-28% 0px -58% 0px",
-        threshold: 0.1
-    });
-
-    document.querySelectorAll(".resume-section").forEach((section) => {
-        sectionObserver.observe(section);
-    });
-}
-
-function observeTimelineItems() {
-    if (timelineObserver) {
-        timelineObserver.disconnect();
-    }
-
-    const timelineLinks = [...document.querySelectorAll(".timeline-link")];
-    timelineObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (!entry.isIntersecting) return;
-
-            timelineLinks.forEach((link) => {
-                link.classList.toggle("is-active", link.dataset.target === entry.target.id);
-            });
-        });
-    }, {
-        rootMargin: "-22% 0px -64% 0px",
-        threshold: 0.12
-    });
-
-    document.querySelectorAll(".resume-card").forEach((card) => {
-        timelineObserver.observe(card);
-    });
-}
-
+/* ── Card reveal on scroll ── */
 function revealCardsOnScroll() {
-    if (cardRevealObserver) {
-        cardRevealObserver.disconnect();
-    }
-
-    cardRevealObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("is-visible");
-                cardRevealObserver.unobserve(entry.target);
-            }
-        });
-    }, {
-        threshold: 0.15
+  if (cardRevealObserver) cardRevealObserver.disconnect();
+  cardRevealObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        cardRevealObserver.unobserve(entry.target);
+      }
     });
+  }, { threshold: 0.08 });
 
-    document.querySelectorAll(".resume-card").forEach((card) => {
-        cardRevealObserver.observe(card);
-    });
+  const active = document.getElementById(currentSection);
+  if (!active) return;
+  active.querySelectorAll(".resume-card").forEach(card => {
+    card.classList.remove("is-visible");
+    cardRevealObserver.observe(card);
+  });
 }
 
+/* ── Image modal ── */
 function setupImageModal() {
-    const modal = document.getElementById("image-modal");
-    const modalImage = document.getElementById("image-modal-img");
-    const modalCaption = document.getElementById("image-modal-caption");
-    const closeButton = document.getElementById("image-modal-close");
-    const prevButton = document.getElementById("image-modal-prev");
-    const nextButton = document.getElementById("image-modal-next");
+  const modal   = document.getElementById("image-modal");
+  const img     = document.getElementById("image-modal-img");
+  const caption = document.getElementById("image-modal-caption");
+  const close   = document.getElementById("image-modal-close");
+  const prev    = document.getElementById("image-modal-prev");
+  const next    = document.getElementById("image-modal-next");
+  if (!modal || !img || !caption || !close || !prev || !next) return;
 
-    if (!modal || !modalImage || !modalCaption || !closeButton || !prevButton || !nextButton) return;
-
-    document.addEventListener("click", (event) => {
-        const trigger = event.target.closest(".gallery-button");
-        if (trigger) {
-            const gallery = trigger.closest(".project-gallery");
-            openImageModal(gallery ? [...gallery.querySelectorAll(".gallery-button")] : [trigger], Number(trigger.dataset.index) || 0);
-            return;
-        }
-
-        if (event.target === modal || event.target === closeButton) {
-            closeImageModal();
-            return;
-        }
-
-        if (event.target.closest("#image-modal-prev")) {
-            showAdjacentImage(-1);
-            return;
-        }
-
-        if (event.target.closest("#image-modal-next")) {
-            showAdjacentImage(1);
-        }
-    });
-
-    document.addEventListener("keydown", (event) => {
-        if (!modal.classList.contains("is-open")) return;
-
-        if (event.key === "Escape") {
-            closeImageModal();
-            return;
-        }
-
-        if (event.key === "ArrowLeft") {
-            event.preventDefault();
-            showAdjacentImage(-1);
-            return;
-        }
-
-        if (event.key === "ArrowRight") {
-            event.preventDefault();
-            showAdjacentImage(1);
-        }
-    });
-
-    function openImageModal(buttons, startIndex) {
-        imageModalState.galleryButtons = buttons;
-        imageModalState.currentIndex = clampModalIndex(startIndex);
-        updateModalImage();
-        modal.classList.add("is-open");
-        modal.setAttribute("aria-hidden", "false");
-        document.body.classList.add("modal-open");
+  document.addEventListener("click", e => {
+    const trigger = e.target.closest(".gallery-button");
+    if (trigger) {
+      const gallery = trigger.closest(".project-gallery");
+      const buttons = gallery ? [...gallery.querySelectorAll(".gallery-button")] : [trigger];
+      openModal(buttons, Number(trigger.dataset.index) || 0);
+      return;
     }
+    if (e.target === modal || e.target.closest("#image-modal-close")) { closeModal(); return; }
+    if (e.target.closest("#image-modal-prev")) { navigate(-1); return; }
+    if (e.target.closest("#image-modal-next")) { navigate(1); }
+  });
 
-    function showAdjacentImage(direction) {
-        if (!imageModalState.galleryButtons.length) return;
+  document.addEventListener("keydown", e => {
+    if (!modal.classList.contains("is-open")) return;
+    if (e.key === "Escape")      { closeModal(); return; }
+    if (e.key === "ArrowLeft")   { e.preventDefault(); navigate(-1); return; }
+    if (e.key === "ArrowRight")  { e.preventDefault(); navigate(1); }
+  });
 
-        const total = imageModalState.galleryButtons.length;
-        imageModalState.currentIndex = (imageModalState.currentIndex + direction + total) % total;
-        updateModalImage();
-    }
+  function openModal(buttons, startIndex) {
+    imageModalState.galleryButtons = buttons;
+    imageModalState.currentIndex   = clamp(startIndex, 0, buttons.length - 1);
+    updateDisplay();
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("modal-open");
+  }
 
-    function updateModalImage() {
-        const currentButton = imageModalState.galleryButtons[imageModalState.currentIndex];
-        if (!currentButton) return;
+  function navigate(dir) {
+    const total = imageModalState.galleryButtons.length;
+    if (!total) return;
+    imageModalState.currentIndex = (imageModalState.currentIndex + dir + total) % total;
+    updateDisplay();
+  }
 
-        modalImage.src = currentButton.dataset.fullsrc || "";
-        modalImage.alt = currentButton.dataset.caption || "";
-        modalCaption.textContent = currentButton.dataset.caption || "";
-        updateModalButtons();
-    }
+  function updateDisplay() {
+    const btn = imageModalState.galleryButtons[imageModalState.currentIndex];
+    if (!btn) return;
+    img.src       = btn.dataset.fullsrc || "";
+    img.alt       = btn.dataset.caption || "";
+    caption.textContent = btn.dataset.caption || "";
+    const multi   = imageModalState.galleryButtons.length > 1;
+    prev.hidden   = !multi;
+    next.hidden   = !multi;
+  }
 
-    function updateModalButtons() {
-        const multiple = imageModalState.galleryButtons.length > 1;
-        prevButton.hidden = !multiple;
-        nextButton.hidden = !multiple;
-        prevButton.disabled = !multiple;
-        nextButton.disabled = !multiple;
-    }
-
-    function clampModalIndex(index) {
-        if (!imageModalState.galleryButtons.length) return 0;
-        return Math.max(0, Math.min(index, imageModalState.galleryButtons.length - 1));
-    }
-
-    function closeImageModal() {
-        modal.classList.remove("is-open");
-        modal.setAttribute("aria-hidden", "true");
-        modalImage.src = "";
-        modalImage.alt = "";
-        modalCaption.textContent = "";
-        imageModalState.galleryButtons = [];
-        imageModalState.currentIndex = 0;
-        document.body.classList.remove("modal-open");
-    }
+  function closeModal() {
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+    img.src = "";
+    img.alt = "";
+    caption.textContent = "";
+    imageModalState.galleryButtons = [];
+    imageModalState.currentIndex   = 0;
+    document.body.classList.remove("modal-open");
+  }
 }
 
+/* ── Blog ── */
+function setupBlogControls() {
+  const searchInput = document.getElementById("blog-search");
+  if (searchInput) {
+    searchInput.addEventListener("input", () => {
+      blogSearchQuery = searchInput.value.trim().toLowerCase();
+      renderBlogList();
+    });
+  }
+
+  const backBtn = document.getElementById("blog-back-btn");
+  if (backBtn) {
+    backBtn.addEventListener("click", () => showBlogIndex());
+  }
+}
+
+function renderBlogPage() {
+  renderBlogTagFilters();
+  renderBlogList();
+  applyStaticLanguage();
+}
+
+function renderBlogTagFilters() {
+  const container = document.getElementById("blog-tags");
+  if (!container) return;
+  container.innerHTML = "";
+
+  const allTags = [...new Set(BLOG_POSTS.flatMap(p => p.tags))].sort();
+
+  const allBtn = createElement("button", `tag-filter-btn${blogActiveTag === null ? " is-active" : ""}`);
+  allBtn.type = "button";
+  allBtn.textContent = currentLang === "zh" ? "全部" : "All";
+  allBtn.addEventListener("click", () => { blogActiveTag = null; renderBlogTagFilters(); renderBlogList(); });
+  container.appendChild(allBtn);
+
+  allTags.forEach(tag => {
+    const btn = createElement("button", `tag-filter-btn${blogActiveTag === tag ? " is-active" : ""}`);
+    btn.type = "button";
+    btn.textContent = tag;
+    btn.addEventListener("click", () => {
+      blogActiveTag = (blogActiveTag === tag) ? null : tag;
+      renderBlogTagFilters();
+      renderBlogList();
+    });
+    container.appendChild(btn);
+  });
+}
+
+function getFilteredPosts() {
+  return BLOG_POSTS
+    .filter(p => !blogActiveTag || p.tags.includes(blogActiveTag))
+    .filter(p => {
+      if (!blogSearchQuery) return true;
+      const title = getLocalizedText(p.title).toLowerCase();
+      return title.includes(blogSearchQuery);
+    })
+    .sort((a, b) => b.date.localeCompare(a.date));
+}
+
+function renderBlogList() {
+  const list  = document.getElementById("blog-list");
+  const empty = document.getElementById("blog-empty");
+  if (!list || !empty) return;
+
+  const posts = getFilteredPosts();
+  list.innerHTML = "";
+
+  if (posts.length === 0) {
+    empty.hidden = false;
+    const mainEl = empty.querySelector(".blog-empty-main");
+    const subEl  = empty.querySelector(".blog-empty-sub");
+    const hasFilter = blogActiveTag || blogSearchQuery;
+    if (mainEl) mainEl.textContent = currentLang === "zh"
+      ? (hasFilter ? "没找到相关文章" : "努力整理中.....^^")
+      : (hasFilter ? "No posts match" : "Working on it.....^^");
+    if (subEl) subEl.hidden = !hasFilter;
+    return;
+  }
+
+  empty.hidden = true;
+  posts.forEach(post => list.appendChild(renderBlogCard(post)));
+}
+
+function renderBlogCard(post) {
+  const card = createElement("article", "blog-card");
+  card.setAttribute("role", "button");
+  card.setAttribute("tabindex", "0");
+
+  const head    = createElement("div", "blog-card-head");
+  const title   = createElement("h3", "blog-card-title", getLocalizedText(post.title));
+  const dateEl  = createElement("time", "blog-card-date", post.date);
+  dateEl.setAttribute("datetime", post.date);
+  head.append(title, dateEl);
+
+  const excerpt = createElement("p", "blog-card-excerpt",
+    getLocalizedText(post.excerpt) || "");
+
+  const tags    = createElement("div", "blog-card-tags");
+  post.tags.forEach(t => tags.appendChild(createElement("span", "blog-tag", t)));
+
+  card.append(head, excerpt, tags);
+
+  const open = () => showBlogPost(post.id);
+  card.addEventListener("click", open);
+  card.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } });
+
+  return card;
+}
+
+function showBlogPost(id) {
+  const post = BLOG_POSTS.find(p => p.id === id);
+  if (!post) return;
+  blogCurrentPostId = id;
+
+  const indexEl = document.getElementById("blog-index");
+  const postEl  = document.getElementById("blog-post-view");
+  const bodyEl  = document.getElementById("blog-post-content");
+  if (!indexEl || !postEl || !bodyEl) return;
+
+  const content = getLocalizedText(post.content) || getLocalizedText(post.excerpt) || "";
+
+  const metaHtml = `
+    <div class="post-meta-header">
+      <p class="post-date">${post.date}</p>
+      <h1>${getLocalizedText(post.title)}</h1>
+      <div class="post-tags">
+        ${post.tags.map(t => `<span class="blog-tag">${t}</span>`).join("")}
+      </div>
+    </div>
+  `;
+
+  const mdHtml = typeof marked !== "undefined"
+    ? marked.parse(content)
+    : content.replace(/\n/g, "<br>");
+
+  bodyEl.innerHTML = metaHtml + mdHtml;
+
+  indexEl.hidden = true;
+  postEl.hidden  = false;
+  postEl.scrollIntoView({ behavior: "instant" });
+
+  const backSpan = postEl.querySelector("[data-zh]");
+  if (backSpan) backSpan.textContent = currentLang === "zh" ? "返回列表" : "Back to list";
+}
+
+function showBlogIndex() {
+  const indexEl = document.getElementById("blog-index");
+  const postEl  = document.getElementById("blog-post-view");
+  if (indexEl) indexEl.hidden = false;
+  if (postEl)  postEl.hidden  = true;
+  blogCurrentPostId = null;
+}
+
+/* ── Utilities ── */
 function getLocalizedText(value) {
-    if (typeof value === "string") return value;
-    if (!value || typeof value !== "object") return "";
-    return value[currentLang] || value.zh || value.en || "";
+  if (typeof value === "string") return value;
+  if (!value || typeof value !== "object") return "";
+  return value[currentLang] || value.zh || value.en || "";
 }
 
-function getCardId(sectionKey, index) {
-    return `${sectionKey}-item-${index + 1}`;
-}
+function getCardId(key, index) { return `${key}-item-${index + 1}`; }
 
 function getEntryTitle(item, type) {
-    if (type === "work") return getLocalizedText(item.company);
-    if (type === "education") return getLocalizedText(item.school);
-    return getLocalizedText(item.name);
-}
-
-function getTimelineLabel(item, type) {
-    if (type === "work") {
-        return getLocalizedText(item.company);
-    }
-
-    if (type === "education") {
-        return getLocalizedText(item.school);
-    }
-
-    const fullName = getLocalizedText(item.name);
-    const customLabel = getLocalizedText(item.timelineLabel);
-    if (customLabel) {
-        return customLabel;
-    }
-
-    return TIMELINE_SHORT_LABELS[currentLang]?.[fullName] || fullName;
+  if (type === "work")      return getLocalizedText(item.company);
+  if (type === "education") return getLocalizedText(item.school);
+  return getLocalizedText(item.name);
 }
 
 function createElement(tagName, className, text) {
-    const element = document.createElement(tagName);
-    if (className) {
-        element.className = className;
-    }
-    if (typeof text === "string") {
-        element.textContent = text;
-    }
-    return element;
+  const el = document.createElement(tagName);
+  if (className) el.className = className;
+  if (typeof text === "string") el.textContent = text;
+  return el;
 }
+
+function clamp(val, min, max) { return Math.max(min, Math.min(max, val)); }
