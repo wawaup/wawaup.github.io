@@ -86,18 +86,27 @@ function isValidSection(section) {
   return VALID_SECTIONS.has(section);
 }
 
+function detectBrowserLanguage() {
+  const list = Array.isArray(navigator.languages) && navigator.languages.length
+    ? navigator.languages
+    : [navigator.language || navigator.userLanguage || "zh"];
+  for (const raw of list) {
+    const code = String(raw || "").toLowerCase();
+    if (code.startsWith("zh")) return "zh";
+    if (code.startsWith("en")) return "en";
+  }
+  return "zh";
+}
+
 function getInitialLanguage() {
   const lang = getSearchParams().get("lang");
   if (isValidLang(lang)) return lang;
-  const saved = localStorage.getItem("lang");
-  if (isValidLang(saved)) return saved;
-  const b = navigator.language || "zh";
-  return b.toLowerCase().startsWith("en") ? "en" : "zh";
+  return detectBrowserLanguage();
 }
 
 function getInitialSection() {
   const section = getSearchParams().get("section");
-  return isValidSection(section) ? section : "education";
+  return isValidSection(section) ? section : "work";
 }
 
 function buildResumeUrl(lang = currentLang, section = currentSection) {
@@ -328,10 +337,8 @@ function renderHeader(item, type) {
   }
 
   titleText.appendChild(title);
-  const subtitle = buildSubtitle(item, type);
-  if (subtitle) {
-    titleText.appendChild(createElement("p", "item-subtitle", subtitle));
-  }
+  const subtitle = renderSubtitle(item, type);
+  if (subtitle) titleText.appendChild(subtitle);
   line.appendChild(titleText);
 
   header.appendChild(line);
@@ -424,12 +431,18 @@ function renderAppVideo(video) {
   const block = createElement("figure", "app-video-block");
   const player = document.createElement("video");
   player.className = "app-video";
-  player.src = video.src;
   if (video.poster) player.poster = video.poster;
   player.controls = true;
   player.playsInline = true;
   player.preload = "metadata";
   player.setAttribute("controlslist", "nodownload");
+  const sources = Array.isArray(video.src) ? video.src : [video.src];
+  sources.filter(Boolean).forEach(src => {
+    const source = document.createElement("source");
+    source.src = src;
+    source.type = "video/mp4";
+    player.appendChild(source);
+  });
   block.appendChild(player);
   const credit = getLocalizedText(video.credit);
   if (credit) block.appendChild(createElement("figcaption", "app-video-credit", credit));
@@ -446,6 +459,27 @@ function buildSubtitle(item, type) {
       .filter(Boolean).join(" / ");
   }
   return getLocalizedText(item.role);
+}
+
+function renderSubtitle(item, type) {
+  const text = buildSubtitle(item, type);
+  if (!text) return null;
+  const p = createElement("p", "item-subtitle");
+  const collab = item.collaborator;
+  if (type === "app" && collab?.name && text.includes("{collaborator}")) {
+    const handle = collab.name.startsWith("@") ? collab.name : `@${collab.name}`;
+    const [before, after] = text.split("{collaborator}");
+    if (before) p.append(before);
+    const a = createElement("a", "collaborator-link", handle);
+    a.href = collab.url || `https://github.com/${collab.name.replace(/^@/, "")}`;
+    a.target = "_blank";
+    a.rel = "noreferrer";
+    p.appendChild(a);
+    if (after) p.append(after);
+    return p;
+  }
+  p.textContent = text;
+  return p;
 }
 
 function formatPeriod(period) {

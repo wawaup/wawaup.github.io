@@ -160,8 +160,12 @@
         "en": "Ringflow"
       },
       "role": {
-        "zh": "独立开发 · macOS 效率工具",
-        "en": "Independent development · macOS utility"
+        "zh": "独立开发 · 合作者 {collaborator} · macOS 效率工具",
+        "en": "Independent development with {collaborator} · macOS utility"
+      },
+      "collaborator": {
+        "name": "orzorz1",
+        "url": "https://github.com/orzorz1"
       },
       "period": {
         "zh": "2026.08 上线",
@@ -190,8 +194,11 @@
         ]
       },
       "video": {
-        "src": "public/video/ringflow-promo-animatic.mp4",
-        "poster": "public/video/ringflow-promo-poster.png",
+        "src": [
+          "https://cdn.jsdelivr.net/gh/wawaup/wawaup.github.io@main/public/video/ringflow-promo.mp4",
+          "public/video/ringflow-promo.mp4"
+        ],
+        "poster": "public/video/ringflow-promo-poster.jpg",
         "credit": {
           "zh": "宣传视频 · made by me and claude-fable-5 using remotion",
           "en": "Promo video · made by me and claude-fable-5 using remotion"

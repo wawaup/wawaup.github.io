@@ -553,6 +553,13 @@ p { margin: 0; }
 }
 .title-link:hover { color: var(--color-accent); border-color: var(--color-accent); }
 
+.collaborator-link {
+    color: var(--color-accent);
+    font-weight: 600;
+    text-decoration: none;
+}
+.collaborator-link:hover { color: var(--color-accent-text); }
+
 .item-period {
     flex-shrink: 0;
     display: inline-flex;
