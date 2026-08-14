@@ -5,6 +5,7 @@ const BLOG_POSTS = [];
 const SECTION_CONFIG = [
   { key: "education", containerId: "education-list", sectionId: "education", type: "education" },
   { key: "work",      containerId: "work-list",      sectionId: "work",       type: "work" },
+  { key: "apps",      containerId: "apps-list",      sectionId: "live-apps",  type: "app" },
   { key: "dev",       containerId: "dev-list",        sectionId: "dev-project",type: "project" },
   { key: "pm",        containerId: "pm-list",         sectionId: "pm-project", type: "project" }
 ];
@@ -15,13 +16,19 @@ const LABELS = {
   campusRoles:   { zh: "在校担任",    en: "Campus Roles" },
   coreCourses:   { zh: "核心课程",    en: "Core Courses" },
   onlineLink:    { zh: "在线展示",    en: "Online Link" },
-  schoolWebsite: { zh: "学校官网",    en: "School Website" }
+  schoolWebsite: { zh: "学校官网",    en: "School Website" },
+  visitSite:     { zh: "访问官网",    en: "Visit website" },
+  openSite:      { zh: "打开",        en: "Open" }
 };
+
+const VALID_LANGS = new Set(["zh", "en"]);
+const VALID_SECTIONS = new Set(SECTION_CONFIG.map(section => section.sectionId));
+const IMAGE_MAX_HEIGHT = { phone: 420, wide: 280 };
 
 /* ── State ── */
 let currentLang     = getInitialLanguage();
 let currentPage     = "resume";
-let currentSection  = "education";
+let currentSection  = getInitialSection();
 let resumeDataPromise;
 let cardRevealObserver;
 let galleryResizeQueued = false;
@@ -38,9 +45,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   setupWordmarkDraw();
   setupLanguageSwitch();
   setupPageTabs();
+  setupUrlRouting();
   setupImageModal();
   setupGalleryResizeHandler();
   setupBlogControls();
+  syncUrl({ replace: true });
   await initPage();
 });
 
@@ -65,11 +74,82 @@ function setupWordmarkDraw() {
   start();
 }
 
+function getSearchParams() {
+  return new URLSearchParams(window.location.search);
+}
+
+function isValidLang(lang) {
+  return VALID_LANGS.has(lang);
+}
+
+function isValidSection(section) {
+  return VALID_SECTIONS.has(section);
+}
+
 function getInitialLanguage() {
+  const lang = getSearchParams().get("lang");
+  if (isValidLang(lang)) return lang;
   const saved = localStorage.getItem("lang");
-  if (saved) return saved;
+  if (isValidLang(saved)) return saved;
   const b = navigator.language || "zh";
   return b.toLowerCase().startsWith("en") ? "en" : "zh";
+}
+
+function getInitialSection() {
+  const section = getSearchParams().get("section");
+  return isValidSection(section) ? section : "education";
+}
+
+function buildResumeUrl(lang = currentLang, section = currentSection) {
+  const params = new URLSearchParams();
+  params.set("lang", lang);
+  params.set("section", section);
+  return `?${params.toString()}`;
+}
+
+function syncUrl({ replace = false } = {}) {
+  const params = getSearchParams();
+  if (params.get("lang") === currentLang && params.get("section") === currentSection) return;
+  const url = `${window.location.pathname}${buildResumeUrl()}${window.location.hash}`;
+  const state = { lang: currentLang, section: currentSection };
+  if (replace) history.replaceState(state, "", url);
+  else history.pushState(state, "", url);
+}
+
+function refreshNavHrefs() {
+  document.querySelectorAll(".lang-btn").forEach(btn => {
+    const lang = btn.dataset.lang;
+    if (isValidLang(lang)) btn.setAttribute("href", buildResumeUrl(lang, currentSection));
+  });
+  document.querySelectorAll(".section-tab").forEach(btn => {
+    const section = btn.dataset.section;
+    if (isValidSection(section)) btn.setAttribute("href", buildResumeUrl(currentLang, section));
+  });
+}
+
+function setupUrlRouting() {
+  window.addEventListener("popstate", async () => {
+    const prevLang = currentLang;
+    const prevSection = currentSection;
+    const params = getSearchParams();
+    const lang = params.get("lang");
+    const section = params.get("section");
+
+    if (isValidLang(lang)) {
+      currentLang = lang;
+      localStorage.setItem("lang", lang);
+    }
+    if (isValidSection(section)) currentSection = section;
+
+    if (currentLang !== prevLang) {
+      await initPage();
+      return;
+    }
+    if (currentSection !== prevSection) {
+      activateSectionTab();
+      refreshNavHrefs();
+    }
+  });
 }
 
 async function initPage() {
@@ -81,6 +161,7 @@ async function initPage() {
   activateLanguageButton();
   activatePageTab();
   activateSectionTab();
+  refreshNavHrefs();
   revealCardsOnScroll();
   renderBlogPage();
 }
@@ -98,11 +179,14 @@ async function loadResumeData() {
 /* ── Language ── */
 function setupLanguageSwitch() {
   document.querySelectorAll(".lang-btn").forEach(btn => {
-    btn.addEventListener("click", async () => {
+    btn.addEventListener("click", async event => {
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
       const next = btn.dataset.lang;
-      if (!next || next === currentLang) return;
+      if (!isValidLang(next) || next === currentLang) return;
       currentLang = next;
       localStorage.setItem("lang", next);
+      syncUrl();
       await initPage();
     });
   });
@@ -112,7 +196,10 @@ function activateLanguageButton() {
   document.documentElement.lang = currentLang === "zh" ? "zh-CN" : "en";
   document.title = currentLang === "zh" ? "wawaup 的个人主页" : "wawaup's homepage";
   document.querySelectorAll(".lang-btn").forEach(btn => {
-    btn.classList.toggle("is-active", btn.dataset.lang === currentLang);
+    const active = btn.dataset.lang === currentLang;
+    btn.classList.toggle("is-active", active);
+    if (active) btn.setAttribute("aria-current", "true");
+    else btn.removeAttribute("aria-current");
   });
 }
 
@@ -156,13 +243,17 @@ function renderSectionTabs() {
   if (!container) return;
   container.innerHTML = "";
   document.querySelectorAll(".resume-section").forEach(section => {
-    const btn = createElement("button", "section-tab");
-    btn.type = "button";
+    const btn = createElement("a", "section-tab");
+    btn.href = buildResumeUrl(currentLang, section.id);
     btn.dataset.section = section.id;
     btn.textContent = currentLang === "zh" ? section.dataset.navZh : section.dataset.navEn;
-    btn.addEventListener("click", () => {
+    btn.addEventListener("click", event => {
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
       if (currentSection === section.id) return;
       currentSection = section.id;
+      syncUrl();
+      refreshNavHrefs();
       activateSectionTab();
     });
     container.appendChild(btn);
@@ -171,7 +262,10 @@ function renderSectionTabs() {
 
 function activateSectionTab() {
   document.querySelectorAll(".section-tab").forEach(btn => {
-    btn.classList.toggle("is-active", btn.dataset.section === currentSection);
+    const active = btn.dataset.section === currentSection;
+    btn.classList.toggle("is-active", active);
+    if (active) btn.setAttribute("aria-current", "true");
+    else btn.removeAttribute("aria-current");
   });
   document.querySelectorAll(".resume-section").forEach(section => {
     section.classList.toggle("is-active", section.id === currentSection);
@@ -199,6 +293,8 @@ function renderItemCard(item, type, cardId) {
   article.appendChild(renderHeader(item, type));
   if (type === "education") {
     article.appendChild(renderEducationBody(item));
+  } else if (type === "app") {
+    article.appendChild(renderAppBody(item));
   } else {
     article.appendChild(renderBulletList(item.bullets, type));
     if (item.link?.url) article.appendChild(renderExternalLink(item.link));
@@ -213,10 +309,10 @@ function renderHeader(item, type) {
   const header = createElement("div", "item-header");
   const line = createElement("div", "item-title-line");
 
-  if (item.logo && (type === "work" || type === "education")) {
+  if (item.logo && (type === "work" || type === "education" || type === "app")) {
     const logo = createElement("img", type === "education" ? "school-logo" : "company-logo");
     logo.src = item.logo;
-    logo.alt = type === "education" ? getLocalizedText(item.school) : getLocalizedText(item.company);
+    logo.alt = type === "education" ? getLocalizedText(item.school) : getEntryTitle(item, type);
     line.appendChild(logo);
   }
 
@@ -225,6 +321,8 @@ function renderHeader(item, type) {
 
   if (type === "education") {
     title.appendChild(renderSchoolLink(item));
+  } else if (type === "app" && item.website) {
+    title.appendChild(renderAppTitleLink(item));
   } else {
     title.textContent = getEntryTitle(item, type);
   }
@@ -250,6 +348,92 @@ function renderSchoolLink(item) {
   a.rel = "noreferrer";
   a.setAttribute("aria-label", `${name} - ${getLocalizedText(LABELS.schoolWebsite)}`);
   return a;
+}
+
+function renderAppTitleLink(item) {
+  const name = getEntryTitle(item, "app");
+  const a = createElement("a", "title-link", name);
+  a.href = item.website;
+  a.target = "_blank";
+  a.rel = "noreferrer";
+  a.setAttribute("aria-label", `${name} - ${getLocalizedText(LABELS.visitSite)}`);
+  return a;
+}
+
+function renderAppBody(item) {
+  const body = createElement("div", "app-body");
+  const tagline = getLocalizedText(item.tagline);
+  const intro = getLocalizedText(item.intro);
+  if (tagline) body.appendChild(createElement("p", "app-tagline", tagline));
+  if (intro) body.appendChild(createElement("p", "app-intro", intro));
+
+  const highlights = Array.isArray(item.highlights?.[currentLang])
+    ? item.highlights[currentLang]
+    : Array.isArray(item.highlights?.zh) ? item.highlights.zh : [];
+  if (highlights.length) {
+    const list = createElement("ul", "app-highlights");
+    highlights.forEach(text => list.appendChild(createElement("li", "app-highlight", text)));
+    body.appendChild(list);
+  }
+
+  const media = createElement("div", "app-media-row");
+  if (item.website) media.appendChild(renderAppPreview(item));
+  if (item.video?.src) media.appendChild(renderAppVideo(item.video));
+  if (media.childNodes.length) body.appendChild(media);
+  if (item.link?.url) body.appendChild(renderExternalLink(item.link));
+  return body;
+}
+
+function renderAppPreview(item) {
+  const url = item.website;
+  const wrap = createElement("div", "app-preview");
+
+  const bar = createElement("a", "app-preview-bar");
+  bar.href = url;
+  bar.target = "_blank";
+  bar.rel = "noreferrer";
+  bar.appendChild(createElement("span", "app-preview-url", url.replace(/^https?:\/\//, "").replace(/\/$/, "")));
+  bar.appendChild(createElement("span", "app-preview-open", getLocalizedText(LABELS.openSite)));
+
+  const shot = createElement("a", "app-preview-shot");
+  shot.href = url;
+  shot.target = "_blank";
+  shot.rel = "noreferrer";
+  shot.setAttribute("aria-label", `${getEntryTitle(item, "app")} - ${getLocalizedText(LABELS.visitSite)}`);
+
+  if (item.previewImage) {
+    const img = createElement("img", "app-preview-image");
+    img.src = item.previewImage;
+    img.alt = `${getEntryTitle(item, "app")} website`;
+    img.loading = "lazy";
+    img.decoding = "async";
+    shot.appendChild(img);
+  } else {
+    const fallback = createElement("div", "app-preview-fallback");
+    fallback.appendChild(createElement("p", "app-preview-name", getEntryTitle(item, "app")));
+    fallback.appendChild(createElement("p", "app-preview-headline", getLocalizedText(item.tagline)));
+    fallback.appendChild(createElement("p", "app-preview-lead", getLocalizedText(item.intro)));
+    shot.appendChild(fallback);
+  }
+
+  wrap.append(bar, shot);
+  return wrap;
+}
+
+function renderAppVideo(video) {
+  const block = createElement("figure", "app-video-block");
+  const player = document.createElement("video");
+  player.className = "app-video";
+  player.src = video.src;
+  if (video.poster) player.poster = video.poster;
+  player.controls = true;
+  player.playsInline = true;
+  player.preload = "metadata";
+  player.setAttribute("controlslist", "nodownload");
+  block.appendChild(player);
+  const credit = getLocalizedText(video.credit);
+  if (credit) block.appendChild(createElement("figcaption", "app-video-credit", credit));
+  return block;
 }
 
 function buildSubtitle(item, type) {
@@ -383,20 +567,30 @@ function layoutProjectGallery(gallery) {
     btn.style.setProperty("--gallery-col-span", String(colSpan));
     const w = btn.clientWidth || img.clientWidth;
     if (!w) return;
-    const adj = shape === "panorama" ? 0.8 : shape === "landscape" ? 0.92 : shape === "poster" ? 1.1 : 1;
-    const h   = w * (img.naturalHeight / img.naturalWidth) * adj;
-    const span = Math.max(14, Math.min(48, Math.ceil((h + gap) / (rowH + gap))));
+    const isPhone = isPhoneImageShape(shape);
+    const maxH = imageMaxHeight(shape);
+    const h = Math.min(maxH, w * (img.naturalHeight / img.naturalWidth));
+    const minSpan = isPhone ? 16 : 10;
+    const maxSpan = isPhone ? 28 : 18;
+    const span = Math.max(minSpan, Math.min(maxSpan, Math.ceil((h + gap) / (rowH + gap))));
     btn.style.setProperty("--gallery-span", String(span));
   });
 }
 
 function getGalleryShape(ratio, cols) {
-  if (cols <= 1)             return { shape: "standard",  colSpan: 1 };
-  if (ratio >= 2.1 && cols >= 3) return { shape: "panorama",  colSpan: Math.min(3, cols) };
-  if (ratio >= 1.45)         return { shape: "landscape", colSpan: Math.min(2, cols) };
-  if (ratio <= 0.62)         return { shape: "poster",    colSpan: 1 };
-  if (ratio <= 0.84)         return { shape: "portrait",  colSpan: 1 };
+  if (ratio <= 0.62) return { shape: "poster", colSpan: 1 };
+  if (ratio <= 0.84) return { shape: "portrait", colSpan: 1 };
+  if (ratio >= 2.1 && cols >= 3) return { shape: "panorama", colSpan: Math.min(3, cols) };
+  if (ratio >= 1.45) return { shape: "landscape", colSpan: cols >= 2 ? Math.min(2, cols) : 1 };
   return { shape: "standard", colSpan: 1 };
+}
+
+function isPhoneImageShape(shape) {
+  return shape === "poster" || shape === "portrait";
+}
+
+function imageMaxHeight(shape) {
+  return isPhoneImageShape(shape) ? IMAGE_MAX_HEIGHT.phone : IMAGE_MAX_HEIGHT.wide;
 }
 
 /* ── Card reveal on scroll ── */
@@ -430,11 +624,15 @@ function setupImageModal() {
   if (!modal || !img || !caption || !close || !prev || !next) return;
 
   document.addEventListener("click", e => {
-    const trigger = e.target.closest(".gallery-button");
+    const trigger = e.target.closest(".gallery-button, .content-image-button");
     if (trigger) {
-      const gallery = trigger.closest(".project-gallery");
-      const buttons = gallery ? [...gallery.querySelectorAll(".gallery-button")] : [trigger];
-      openModal(buttons, Number(trigger.dataset.index) || 0);
+      const gallery = trigger.closest(".project-gallery, .blog-post-body");
+      const sel = trigger.classList.contains("content-image-button")
+        ? ".content-image-button"
+        : ".gallery-button";
+      const buttons = gallery ? [...gallery.querySelectorAll(sel)] : [trigger];
+      const index = Number(trigger.dataset.index);
+      openModal(buttons, Number.isFinite(index) ? index : Math.max(0, buttons.indexOf(trigger)));
       return;
     }
     if (e.target === modal || e.target.closest("#image-modal-close")) { closeModal(); return; }
@@ -624,6 +822,7 @@ function showBlogPost(id) {
     : content.replace(/\n/g, "<br>");
 
   bodyEl.innerHTML = metaHtml + mdHtml;
+  decoratePostImages(bodyEl);
 
   indexEl.hidden = true;
   postEl.hidden  = false;
@@ -631,6 +830,31 @@ function showBlogPost(id) {
 
   const backSpan = postEl.querySelector("[data-zh]");
   if (backSpan) backSpan.textContent = currentLang === "zh" ? "返回列表" : "Back to list";
+}
+
+function decoratePostImages(root) {
+  if (!root) return;
+  root.querySelectorAll("img").forEach((img, index) => {
+    if (img.closest(".content-image-button, .post-meta-header")) return;
+    const parent = img.parentElement;
+    const btn = createElement("button", "content-image-button");
+    btn.type = "button";
+    btn.dataset.fullsrc = img.getAttribute("src") || "";
+    btn.dataset.caption = img.alt || "";
+    btn.dataset.index = String(index);
+    img.replaceWith(btn);
+    btn.appendChild(img);
+    if (parent?.tagName === "P" && parent.children.length === 1 && !parent.textContent.trim()) {
+      parent.replaceWith(btn);
+    }
+    const apply = () => {
+      if (!img.naturalWidth || !img.naturalHeight) return;
+      const { shape } = getGalleryShape(img.naturalWidth / img.naturalHeight, 1);
+      btn.dataset.shape = shape;
+    };
+    if (img.complete) apply();
+    else img.addEventListener("load", apply, { once: true });
+  });
 }
 
 function showBlogIndex() {

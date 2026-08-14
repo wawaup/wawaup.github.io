@@ -67,6 +67,33 @@
   ],
   "work": [
     {
+      "company": {
+        "zh": "天津量维科技有限公司（校友初创）",
+        "en": "Tianjin Liangwei Technology Co., Ltd. (Alumni Startup)"
+      },
+      "position": {
+        "zh": "大模型算法工程师",
+        "en": "LLM Algorithm Engineer"
+      },
+      "period": "2026.03-2026.06",
+      "bullets": {
+        "zh": [
+          "独立搭建并上线面向建筑施工场景的 AI 管理平台，覆盖工程文档知识问答、施工进度查询、图纸检索及计划调整等能力，负责 React/FastAPI 应用、RAG 知识库与工具调用链路开发，系统已投入公司实际项目使用。",
+          "基于 RAGFlow 二次开发文档 RAG 流程，完成 PDF OCR、版面分析、表格识别及带页码 chunk 构建，基于 Elasticsearch 实现关键词与向量混合召回（Top-10）及候选集词法重排；采用 retrieve-then-extract 问答链路，并通过 chunk 元数据回溯原始文件与页码，提升回答可追溯性并降低幻觉风险。",
+          "针对 600+ 页施工组织设计 PDF 入库约 12 小时的性能瓶颈，通过阶段埋点定位表格识别热点并实现旋转早停策略；50 页严格对照实验端到端提速约 3 倍、切块结果保持一致，全量文档入库耗时缩短至约 6 小时。",
+          "建立 RAG 分层评测与 error analysis 体系，将失败拆分为 ingestion、retrieval 与 answering，结合 Hit@10、MRR@10、回答准确率及引用正确率进行评估；定位示意图误分类导致的 evidence missing 并修复解析链路，使核心评测集回答准确率由 87.5% 提升至 100%。",
+          "将知识检索、施工进度、图纸搜索及计划修改等能力封装为 8 个可注册工具，实现意图路由、复合问题拆解、多工具调用与结果聚合；针对计划修改等写操作设计 Human-in-the-loop “Draft → Confirm → Execute” 审批机制，并构建 tool-call safety benchmark，使安全路由测试通过率由 33% 提升至 100%。"
+        ],
+        "en": [
+          "Independently built and deployed an AI management platform for construction projects, integrating engineering document Q&A, schedule querying, drawing search, and plan adjustment workflows; developed the React/FastAPI application, RAG knowledge base, and tool-calling pipeline, with the system deployed in real-world projects.",
+          "Extended RAGFlow to build a production RAG pipeline covering PDF OCR, layout analysis, table recognition, and page-aware chunking; implemented hybrid keyword and vector retrieval in Elasticsearch (Top-10) with lexical reranking, and adopted a retrieve-then-extract workflow with source-file and page-level citation tracing to improve answer traceability and reduce hallucination risk.",
+          "Optimized ingestion for a 600+ page construction planning PDF that previously required approximately 12 hours to process; instrumented the parsing pipeline to identify table recognition as the primary bottleneck and implemented an early-stop strategy for table rotation, achieving approximately 3× end-to-end speedup on a controlled 50-page benchmark while preserving identical chunk outputs, and reducing full-document ingestion time to approximately 6 hours.",
+          "Built a layered RAG evaluation and error-analysis framework that categorized failures into ingestion, retrieval, and answering stages, using Hit@10, MRR@10, answer accuracy, and citation accuracy; identified a layout-classification defect that caused diagram text to be omitted from the knowledge base, and improved answer accuracy on the core evaluation set from 87.5% to 100%.",
+          "Encapsulated knowledge retrieval, schedule querying, drawing search, and plan modification into 8 registerable tools, supporting intent routing, compound-query decomposition, multi-tool execution, and result aggregation; designed a Human-in-the-loop “Draft → Confirm → Execute” approval gate for write operations and a tool-call safety benchmark covering negation, hypothetical requests, and compound instructions, improving safety-routing pass rate from 33% to 100%, with all 418 automated tests passing."
+        ]
+      }
+    },
+    {
       "logo": "public/img/MS.jpg",
       "company": {
         "zh": "微软 CSS",
@@ -121,6 +148,97 @@
           "Built an automatic news-comment generation model during the internship to support user engagement growth and public-opinion management.",
           "Constructed a high-quality supervised fine-tuning dataset from Tencent Kuai-bao news and comment data, using PaddleHub's senta-bow model to assign sentiment polarity labels to 160,000 news-comment pairs. Fine-tuned the pretrained Mengzi-T5 model from Hugging Face by jointly modeling news text and sentiment labels so the model could generate responses with a specific emotional tone.",
           "Compared and optimized decoding strategies such as Beam Search and Top-K Sampling to balance fluency and diversity, enabling the model to generate natural and stance-aware comments in entertainment and sports scenarios."
+        ]
+      }
+    }
+  ],
+  "apps": [
+    {
+      "logo": "public/img/Ringflow.png",
+      "name": {
+        "zh": "Ringflow",
+        "en": "Ringflow"
+      },
+      "role": {
+        "zh": "独立开发 · macOS 效率工具",
+        "en": "Independent development · macOS utility"
+      },
+      "period": {
+        "zh": "2026.08 上线",
+        "en": "Launched Aug 2026"
+      },
+      "website": "https://www.ringflow.cn/",
+      "previewImage": "public/pics/ringflow-site.jpg",
+      "tagline": {
+        "zh": "围绕光标的快捷操作轮盘",
+        "en": "A shortcut ring around your cursor"
+      },
+      "intro": {
+        "zh": "按住拖动，移向目标，松手执行。让快捷键、文本输入、应用启动、连续操作与自动化脚本，都能在光标旁一划触发。2026 年 8 月正式上线。",
+        "en": "Hold, drag toward a target, release to run. Shortcuts, text snippets, app launches, chained actions, and automation scripts all fire from a ring beside the cursor. Officially launched in August 2026."
+      },
+      "highlights": {
+        "zh": [
+          "一个手势，轮盘出现在光标旁",
+          "分组外环，一个轮盘装下更多动作",
+          "按前台应用自动匹配轮盘预设"
+        ],
+        "en": [
+          "One gesture brings the ring up beside the cursor",
+          "Nested outer rings hold more actions without clutter",
+          "Per-app layouts switch with whatever is in front"
+        ]
+      },
+      "video": {
+        "src": "public/video/ringflow-promo-animatic.mp4",
+        "poster": "public/video/ringflow-promo-poster.png",
+        "credit": {
+          "zh": "宣传视频 · made by me and claude-fable-5 using remotion",
+          "en": "Promo video · made by me and claude-fable-5 using remotion"
+        }
+      },
+      "link": {
+        "url": "https://www.ringflow.cn/",
+        "label": {
+          "zh": "访问官网",
+          "en": "Visit website"
+        }
+      }
+    },
+    {
+      "logo": "public/img/townwhisper.png",
+      "name": {
+        "zh": "TownWhisper",
+        "en": "TownWhisper"
+      },
+      "role": {
+        "zh": "独立开发 · macOS 效率工具",
+        "en": "Independent development · macOS utility"
+      },
+      "period": {
+        "zh": "开发中",
+        "en": "In development"
+      },
+      "tagline": {
+        "zh": "按软件匹配的语音转写工作流",
+        "en": "App-aware speech-to-text workflows"
+      },
+      "intro": {
+        "zh": "针对不同软件匹配语音转化工作流，优化你的发言和语音转文字。使用轻量模型与 Mac 内置语音识别，并针对中文语料单独优化。",
+        "en": "Match a speech-to-text workflow to the app in front of you, then refine both what you said and the transcript. It runs on lightweight models and Mac built-in speech recognition, with extra tuning for Chinese."
+      },
+      "highlights": {
+        "zh": [
+          "按前台软件匹配语音转化工作流",
+          "优化发言与语音转文字结果",
+          "轻量模型 + Mac 内置语音识别",
+          "针对中文语料单独优化"
+        ],
+        "en": [
+          "App-specific speech-to-text workflows",
+          "Refine both your wording and the transcript",
+          "Lightweight models plus Mac built-in recognition",
+          "Tuned specifically for Chinese"
         ]
       }
     }
